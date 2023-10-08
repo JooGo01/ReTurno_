@@ -128,57 +128,58 @@
             // panel_semana0
             // 
             this.panel_semana0.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana0.Location = new System.Drawing.Point(0, 439);
+            this.panel_semana0.Location = new System.Drawing.Point(0, 432);
             this.panel_semana0.Name = "panel_semana0";
-            this.panel_semana0.Size = new System.Drawing.Size(797, 73);
+            this.panel_semana0.Size = new System.Drawing.Size(797, 80);
             this.panel_semana0.TabIndex = 0;
             // 
             // panel_semana1
             // 
             this.panel_semana1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana1.Location = new System.Drawing.Point(0, 366);
+            this.panel_semana1.Location = new System.Drawing.Point(0, 352);
             this.panel_semana1.Name = "panel_semana1";
-            this.panel_semana1.Size = new System.Drawing.Size(797, 73);
+            this.panel_semana1.Size = new System.Drawing.Size(797, 80);
             this.panel_semana1.TabIndex = 1;
             // 
             // panel_semana2
             // 
             this.panel_semana2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana2.Location = new System.Drawing.Point(0, 293);
+            this.panel_semana2.Location = new System.Drawing.Point(0, 272);
             this.panel_semana2.Name = "panel_semana2";
-            this.panel_semana2.Size = new System.Drawing.Size(797, 73);
+            this.panel_semana2.Size = new System.Drawing.Size(797, 80);
             this.panel_semana2.TabIndex = 2;
             // 
             // panel_semana3
             // 
             this.panel_semana3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana3.Location = new System.Drawing.Point(0, 220);
+            this.panel_semana3.Location = new System.Drawing.Point(0, 192);
             this.panel_semana3.Name = "panel_semana3";
-            this.panel_semana3.Size = new System.Drawing.Size(797, 73);
+            this.panel_semana3.Size = new System.Drawing.Size(797, 80);
             this.panel_semana3.TabIndex = 3;
             // 
             // panel_semana4
             // 
             this.panel_semana4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana4.Location = new System.Drawing.Point(0, 147);
+            this.panel_semana4.Location = new System.Drawing.Point(0, 112);
             this.panel_semana4.Name = "panel_semana4";
-            this.panel_semana4.Size = new System.Drawing.Size(797, 73);
+            this.panel_semana4.Size = new System.Drawing.Size(797, 80);
             this.panel_semana4.TabIndex = 4;
             // 
             // panel_semana5
             // 
             this.panel_semana5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana5.Location = new System.Drawing.Point(0, 74);
+            this.panel_semana5.Location = new System.Drawing.Point(0, 32);
             this.panel_semana5.Name = "panel_semana5";
-            this.panel_semana5.Size = new System.Drawing.Size(797, 73);
+            this.panel_semana5.Size = new System.Drawing.Size(797, 80);
             this.panel_semana5.TabIndex = 5;
             // 
             // panel_dia_semana
             // 
-            this.panel_dia_semana.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_dia_semana.Location = new System.Drawing.Point(0, 1);
+            this.panel_dia_semana.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel_dia_semana.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_dia_semana.Location = new System.Drawing.Point(0, 0);
             this.panel_dia_semana.Name = "panel_dia_semana";
-            this.panel_dia_semana.Size = new System.Drawing.Size(797, 73);
+            this.panel_dia_semana.Size = new System.Drawing.Size(797, 32);
             this.panel_dia_semana.TabIndex = 6;
             // 
             // FormCalendario

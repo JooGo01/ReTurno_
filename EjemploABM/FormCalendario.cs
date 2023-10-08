@@ -21,6 +21,7 @@ namespace EjemploABM
         private void FormCalendario_Load(object sender, EventArgs e)
         {
             crearDias();
+            diasSemana();
             ajustePanel();
         }
 
@@ -39,6 +40,7 @@ namespace EjemploABM
                     diaMes.Name = String.Format("lblDiaMes{0}{1}", indexFila, indexCol);
                     diaMes.Text = diaMes.Name;
                     diaPanel.Controls.Add(diaMes);
+                    diaPanel.BorderStyle = BorderStyle.FixedSingle;
 
                     switch (indexFila) { 
                         case 0:
@@ -67,6 +69,7 @@ namespace EjemploABM
         private void ajustePanel()
         {
             Panel[] arrPanel = new Panel[] {
+                panel_dia_semana,
                 panel_semana0,
                 panel_semana1,
                 panel_semana2,
@@ -100,6 +103,51 @@ namespace EjemploABM
                 ctl.Width = ancho;
                 ctl.Location = new Point(x, 0);
                 x += ancho;
+            }
+        }
+
+        private void diasSemana() {
+            Panel diaPanel = new Panel();
+            Label diaSemana = new Label();
+            int indexCol = 0;
+
+            for (indexCol = 0; indexCol < 7; indexCol++)
+            {
+                diaPanel = new Panel();
+                diaPanel.Name = String.Format("pnlDia{0}{1}", 0, indexCol);
+                diaSemana = new Label();
+                switch (indexCol)
+                {
+                    case 0:
+                        diaSemana.Name = "Domingo";
+                        break;
+                    case 1:
+                        diaSemana.Name = "Lunes";
+                        break;
+                    case 2:
+                        diaSemana.Name = "Martes";
+                        break;
+                    case 3:
+                        diaSemana.Name = "Miercoles";
+                        break;
+                    case 4:
+                        diaSemana.Name = "Jueves";
+                        break;
+                    case 5:
+                        diaSemana.Name = "Viernes";
+                        break;
+                    case 6:
+                        diaSemana.Name = "Sabado";
+                        break;
+                }
+                diaSemana.Text = diaSemana.Name;
+                diaSemana.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                diaSemana.AutoSize = true;
+                diaSemana.Font = new Font("Calibri", 14);
+                diaSemana.ForeColor = Color.Black;
+                diaPanel.Controls.Add(diaSemana);
+                diaPanel.BorderStyle = BorderStyle.FixedSingle;
+                panel_dia_semana.Controls.Add(diaPanel);
             }
         }
     }
