@@ -13,6 +13,7 @@ namespace EjemploABM
 {
     public partial class FormCalendario : MaterialSkin.Controls.MaterialForm
     {
+        private InfoMesCalendario _infoCalendario;
         public FormCalendario()
         {
             InitializeComponent();
@@ -23,6 +24,8 @@ namespace EjemploABM
             crearDias();
             diasSemana();
             ajustePanel();
+            _infoCalendario = new InfoMesCalendario(9,2023);
+            llenarCalendario();
         }
 
         private void crearDias() {
@@ -70,12 +73,12 @@ namespace EjemploABM
         {
             Panel[] arrPanel = new Panel[] {
                 panel_dia_semana,
-                panel_semana0,
-                panel_semana1,
-                panel_semana2,
-                panel_semana3,
-                panel_semana4,
                 panel_semana5,
+                panel_semana4,
+                panel_semana3,
+                panel_semana2,
+                panel_semana1,
+                panel_semana0,
             };
 
             foreach (Panel pnl in arrPanel)
@@ -149,6 +152,86 @@ namespace EjemploABM
                 diaPanel.BorderStyle = BorderStyle.FixedSingle;
                 panel_dia_semana.Controls.Add(diaPanel);
             }
+        }
+
+        private void llenarCalendario() {
+            Label lbl = new Label();
+            Control lblControl = new Control();
+            String lblNombre;
+            int indexFila = 0;
+            int indexCol = 0;
+
+            lbl.Text = String.Format("{0}, {1}", nombreMes(_infoCalendario.getMes()), _infoCalendario.getAnio());
+            panel_control.Controls.Add(lbl);
+
+            for (indexFila = 0; indexFila < 6; indexFila++)
+            {
+                for (indexCol = 0; indexCol < 7; indexCol++)
+                {
+                    lblNombre = String.Format("lblDiaMes{0}{1}", indexFila, indexCol);
+                    lblControl = Controls.Find(lblNombre, true).First();
+                    lblControl.Text = _infoCalendario.diaDeMes(indexFila,indexCol).ToString();
+                    lblControl.AutoSize = true;
+                    lblControl.Font = new Font("Calibri", 16);
+
+                    if (_infoCalendario.esMesActivo(indexFila, indexCol))
+                    {
+                        lblControl.ForeColor = Color.Black;
+                    }
+                    else {
+                        lblControl.ForeColor = Color.Gray;
+                    }
+
+                    if (_infoCalendario.esHoy(indexFila, indexCol)) {
+                        lblControl.ForeColor = Color.Blue;
+                    }
+                }
+            }
+
+        }
+
+        private String nombreMes(int mes) {
+            String nombre;
+            nombre = "";
+            switch (mes) {
+                case 1:
+                    nombre = "Enero";
+                    break;
+                case 2:
+                    nombre = "Febrero";
+                    break;
+                case 3:
+                    nombre = "Marzo";
+                    break;
+                case 4:
+                    nombre = "Abril";
+                    break;
+                case 5:
+                    nombre = "Mayo";
+                    break;
+                case 6:
+                    nombre = "Junio";
+                    break;
+                case 7:
+                    nombre = "Julio";
+                    break;
+                case 8:
+                    nombre = "Agosto";
+                    break;
+                case 9:
+                    nombre = "Septiembre";
+                    break;
+                case 10:
+                    nombre = "Octubre";
+                    break;
+                case 11:
+                    nombre = "Noviembre";
+                    break;
+                case 12:
+                    nombre = "Diciembre";
+                    break;
+            }
+            return nombre;
         }
     }
 }

@@ -35,17 +35,22 @@
             this.panel_control = new System.Windows.Forms.Panel();
             this.panel_actividad = new System.Windows.Forms.Panel();
             this.panel_calendario = new System.Windows.Forms.Panel();
-            this.panel_semana0 = new System.Windows.Forms.Panel();
-            this.panel_semana1 = new System.Windows.Forms.Panel();
-            this.panel_semana2 = new System.Windows.Forms.Panel();
-            this.panel_semana3 = new System.Windows.Forms.Panel();
-            this.panel_semana4 = new System.Windows.Forms.Panel();
             this.panel_semana5 = new System.Windows.Forms.Panel();
+            this.panel_semana4 = new System.Windows.Forms.Panel();
+            this.panel_semana3 = new System.Windows.Forms.Panel();
+            this.panel_semana2 = new System.Windows.Forms.Panel();
+            this.panel_semana1 = new System.Windows.Forms.Panel();
+            this.panel_semana0 = new System.Windows.Forms.Panel();
             this.panel_dia_semana = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAnterior = new MaterialSkin.Controls.MaterialButton();
+            this.btnSiguiente = new MaterialSkin.Controls.MaterialButton();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
+            this.panel_control.SuspendLayout();
             this.panel_calendario.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlCalendario
@@ -96,6 +101,7 @@
             // 
             // panel_control
             // 
+            this.panel_control.Controls.Add(this.panel1);
             this.panel_control.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_control.Location = new System.Drawing.Point(0, 0);
             this.panel_control.Name = "panel_control";
@@ -113,65 +119,65 @@
             // panel_calendario
             // 
             this.panel_calendario.Controls.Add(this.panel_dia_semana);
-            this.panel_calendario.Controls.Add(this.panel_semana5);
-            this.panel_calendario.Controls.Add(this.panel_semana4);
-            this.panel_calendario.Controls.Add(this.panel_semana3);
-            this.panel_calendario.Controls.Add(this.panel_semana2);
-            this.panel_calendario.Controls.Add(this.panel_semana1);
             this.panel_calendario.Controls.Add(this.panel_semana0);
+            this.panel_calendario.Controls.Add(this.panel_semana1);
+            this.panel_calendario.Controls.Add(this.panel_semana2);
+            this.panel_calendario.Controls.Add(this.panel_semana3);
+            this.panel_calendario.Controls.Add(this.panel_semana4);
+            this.panel_calendario.Controls.Add(this.panel_semana5);
             this.panel_calendario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_calendario.Location = new System.Drawing.Point(0, 44);
             this.panel_calendario.Name = "panel_calendario";
             this.panel_calendario.Size = new System.Drawing.Size(797, 512);
             this.panel_calendario.TabIndex = 2;
             // 
-            // panel_semana0
+            // panel_semana5
             // 
-            this.panel_semana0.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana0.Location = new System.Drawing.Point(0, 432);
-            this.panel_semana0.Name = "panel_semana0";
-            this.panel_semana0.Size = new System.Drawing.Size(797, 80);
-            this.panel_semana0.TabIndex = 0;
-            // 
-            // panel_semana1
-            // 
-            this.panel_semana1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana1.Location = new System.Drawing.Point(0, 352);
-            this.panel_semana1.Name = "panel_semana1";
-            this.panel_semana1.Size = new System.Drawing.Size(797, 80);
-            this.panel_semana1.TabIndex = 1;
-            // 
-            // panel_semana2
-            // 
-            this.panel_semana2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana2.Location = new System.Drawing.Point(0, 272);
-            this.panel_semana2.Name = "panel_semana2";
-            this.panel_semana2.Size = new System.Drawing.Size(797, 80);
-            this.panel_semana2.TabIndex = 2;
-            // 
-            // panel_semana3
-            // 
-            this.panel_semana3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana3.Location = new System.Drawing.Point(0, 192);
-            this.panel_semana3.Name = "panel_semana3";
-            this.panel_semana3.Size = new System.Drawing.Size(797, 80);
-            this.panel_semana3.TabIndex = 3;
+            this.panel_semana5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_semana5.Location = new System.Drawing.Point(0, 432);
+            this.panel_semana5.Name = "panel_semana5";
+            this.panel_semana5.Size = new System.Drawing.Size(797, 80);
+            this.panel_semana5.TabIndex = 0;
             // 
             // panel_semana4
             // 
             this.panel_semana4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana4.Location = new System.Drawing.Point(0, 112);
+            this.panel_semana4.Location = new System.Drawing.Point(0, 352);
             this.panel_semana4.Name = "panel_semana4";
             this.panel_semana4.Size = new System.Drawing.Size(797, 80);
-            this.panel_semana4.TabIndex = 4;
+            this.panel_semana4.TabIndex = 1;
             // 
-            // panel_semana5
+            // panel_semana3
             // 
-            this.panel_semana5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_semana5.Location = new System.Drawing.Point(0, 32);
-            this.panel_semana5.Name = "panel_semana5";
-            this.panel_semana5.Size = new System.Drawing.Size(797, 80);
-            this.panel_semana5.TabIndex = 5;
+            this.panel_semana3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_semana3.Location = new System.Drawing.Point(0, 272);
+            this.panel_semana3.Name = "panel_semana3";
+            this.panel_semana3.Size = new System.Drawing.Size(797, 80);
+            this.panel_semana3.TabIndex = 2;
+            // 
+            // panel_semana2
+            // 
+            this.panel_semana2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_semana2.Location = new System.Drawing.Point(0, 192);
+            this.panel_semana2.Name = "panel_semana2";
+            this.panel_semana2.Size = new System.Drawing.Size(797, 80);
+            this.panel_semana2.TabIndex = 3;
+            // 
+            // panel_semana1
+            // 
+            this.panel_semana1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_semana1.Location = new System.Drawing.Point(0, 112);
+            this.panel_semana1.Name = "panel_semana1";
+            this.panel_semana1.Size = new System.Drawing.Size(797, 80);
+            this.panel_semana1.TabIndex = 4;
+            // 
+            // panel_semana0
+            // 
+            this.panel_semana0.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_semana0.Location = new System.Drawing.Point(0, 32);
+            this.panel_semana0.Name = "panel_semana0";
+            this.panel_semana0.Size = new System.Drawing.Size(797, 80);
+            this.panel_semana0.TabIndex = 5;
             // 
             // panel_dia_semana
             // 
@@ -181,6 +187,56 @@
             this.panel_dia_semana.Name = "panel_dia_semana";
             this.panel_dia_semana.Size = new System.Drawing.Size(797, 32);
             this.panel_dia_semana.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSiguiente);
+            this.panel1.Controls.Add(this.btnAnterior);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(797, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(276, 44);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAnterior.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAnterior.Depth = 0;
+            this.btnAnterior.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAnterior.HighEmphasis = true;
+            this.btnAnterior.Icon = null;
+            this.btnAnterior.Location = new System.Drawing.Point(0, 0);
+            this.btnAnterior.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAnterior.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAnterior.Size = new System.Drawing.Size(64, 44);
+            this.btnAnterior.TabIndex = 0;
+            this.btnAnterior.Text = "<";
+            this.btnAnterior.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAnterior.UseAccentColor = false;
+            this.btnAnterior.UseVisualStyleBackColor = true;
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSiguiente.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnSiguiente.Depth = 0;
+            this.btnSiguiente.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSiguiente.HighEmphasis = true;
+            this.btnSiguiente.Icon = null;
+            this.btnSiguiente.Location = new System.Drawing.Point(212, 0);
+            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnSiguiente.Size = new System.Drawing.Size(64, 44);
+            this.btnSiguiente.TabIndex = 1;
+            this.btnSiguiente.Text = ">";
+            this.btnSiguiente.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnSiguiente.UseAccentColor = false;
+            this.btnSiguiente.UseVisualStyleBackColor = true;
             // 
             // FormCalendario
             // 
@@ -194,7 +250,10 @@
             this.tabControlCalendario.ResumeLayout(false);
             this.tab_calendario.ResumeLayout(false);
             this.panel_contenedor_calendario.ResumeLayout(false);
+            this.panel_control.ResumeLayout(false);
             this.panel_calendario.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -208,12 +267,15 @@
         private System.Windows.Forms.Panel panel_actividad;
         private System.Windows.Forms.Panel panel_control;
         private System.Windows.Forms.Panel panel_calendario;
-        private System.Windows.Forms.Panel panel_semana0;
         private System.Windows.Forms.Panel panel_semana5;
-        private System.Windows.Forms.Panel panel_semana4;
-        private System.Windows.Forms.Panel panel_semana3;
-        private System.Windows.Forms.Panel panel_semana2;
+        private System.Windows.Forms.Panel panel_semana0;
         private System.Windows.Forms.Panel panel_semana1;
+        private System.Windows.Forms.Panel panel_semana2;
+        private System.Windows.Forms.Panel panel_semana3;
+        private System.Windows.Forms.Panel panel_semana4;
         private System.Windows.Forms.Panel panel_dia_semana;
+        private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialButton btnSiguiente;
+        private MaterialSkin.Controls.MaterialButton btnAnterior;
     }
 }

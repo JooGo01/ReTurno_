@@ -109,6 +109,7 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoMesCalendario.cs" />
     <Compile Include="Modelo\Categoria.cs" />
     <Compile Include="Modelo\Producto.cs" />
     <Compile Include="Modelo\Usuario.cs" />
