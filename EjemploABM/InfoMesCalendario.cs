@@ -153,6 +153,21 @@ namespace EjemploABM
             return hoy;
         }
 
+        public bool fechaPasada(int fila, int col) {
+            bool pasado = false;
+            int res = 0;
+            DateTime d1 = _dia[fila, col];
+            DateTime hoy = DateTime.Now;
+            res = DateTime.Compare(d1.Date, hoy.Date);
+            if (res < 0)
+            {
+                pasado = true;
+            }else {
+                pasado = false;
+            }
+            return pasado;
+        }
+
         public int fncFila(DateTime dt)
         {
             int indexCol = 0;
