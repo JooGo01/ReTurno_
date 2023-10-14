@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EjemploABM.ControlesDeUsuario;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using EjemploABM.ControlesCalendario;
+using MaterialSkin;
 
 namespace EjemploABM
 {
@@ -28,6 +31,12 @@ namespace EjemploABM
             _infoCalendario = new InfoMesCalendario(10,2023);
             llenarCalendario();
             pruebaEventos();
+            //Calendario_UC calendarioUC = new Calendario_UC();
+            //addUserControl(calendarioUC);
+            MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT; // or .DARK
+            MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Blue400, Primary.Blue500, Primary.Blue300, Accent.Red400, TextShade.WHITE);
+            btnAchicar.Visible=false;
+
         }
 
         private void crearDias() {
@@ -391,6 +400,32 @@ namespace EjemploABM
                     }
                 }
             }
+        }
+
+        private void addUserControl(UserControl uc)
+        {
+            uc.Dock = DockStyle.Fill;
+            panel_actividad.Controls.Clear();
+            panel_actividad.Controls.Add(uc);
+            uc.BringToFront();
+        }
+
+        private void btnAchicar_Click(object sender, EventArgs e)
+        {
+            btnAgrandar.Visible = true;
+            panel_actividad.Width = 276;
+            btnAchicar.Visible = false;
+            ajustePanel();
+
+        }
+
+        private void btnAgrandar_Click(object sender, EventArgs e)
+        {
+            btnAchicar.Visible = true;
+            panel_actividad.Width = 843;
+            btnAgrandar.Visible = false;
+            btnAchicar.Location = new Point(780, 454);
+            ajustePanel();
         }
     }
 }

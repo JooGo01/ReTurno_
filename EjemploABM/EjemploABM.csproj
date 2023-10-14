@@ -67,6 +67,12 @@
   <ItemGroup>
     <Compile Include="Controladores\DB_Controller.cs" />
     <Compile Include="Controladores\Usuario_Controller.cs" />
+    <Compile Include="ControlesCalendario\Calendario_UC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesCalendario\Calendario_UC.Designer.cs">
+      <DependentUpon>Calendario_UC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesDeUsuario\Categorias_UC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ControlesCalendario\Calendario_UC.resx">
+      <DependentUpon>Calendario_UC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlesDeUsuario\Categorias_UC.resx">
       <DependentUpon>Categorias_UC.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +153,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -160,7 +170,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ControlesCalendario\" />
+    <None Include="img\flecha_derecha.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -173,6 +183,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\flecha_izquierda.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
