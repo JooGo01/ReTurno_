@@ -50,6 +50,7 @@ namespace EjemploABM
                 {
                     diaPanel = new Panel();
                     diaPanel.Name = String.Format("pnlDia{0}{1}", indexFila, indexCol);
+                    diaPanel.Click += DiaPanel_Click;
                     diaMes = new Label();
                     diaMes.Name = String.Format("lblDiaMes{0}{1}", indexFila, indexCol);
                     diaMes.Text = diaMes.Name;
@@ -78,6 +79,18 @@ namespace EjemploABM
                     }
                 }
             }
+        }
+
+        private void DiaPanel_Click(object sender, EventArgs e)
+        {
+            Panel dia = sender as Panel;
+            if (dia != null) {
+                eventoPanelDia(dia.Name);
+            }
+        }
+
+        private void eventoPanelDia(String nombre) {
+            lblMensajePanel.Text = nombre;
         }
 
         private void ajustePanel()

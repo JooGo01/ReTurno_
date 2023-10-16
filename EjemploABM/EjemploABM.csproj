@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\Calendario_Controller.cs" />
     <Compile Include="Controladores\DB_Controller.cs" />
     <Compile Include="Controladores\Usuario_Controller.cs" />
     <Compile Include="ControlesCalendario\Calendario_UC.cs">
@@ -117,7 +118,12 @@
     </Compile>
     <Compile Include="InfoMesCalendario.cs" />
     <Compile Include="Modelo\Categoria.cs" />
+    <Compile Include="Modelo\Cliente.cs" />
+    <Compile Include="Modelo\Direccion.cs" />
     <Compile Include="Modelo\Producto.cs" />
+    <Compile Include="Modelo\Rubro.cs" />
+    <Compile Include="Modelo\Sucursal.cs" />
+    <Compile Include="Modelo\Turno.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
