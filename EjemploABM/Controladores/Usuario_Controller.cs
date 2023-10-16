@@ -13,17 +13,17 @@ namespace EjemploABM.Controladores
     {
 
         // GET ONE
-
-        public static bool autenticar(string usr, string pass, bool hasheado)
+        //id, nombre, apellido, dni, telefono, email, contrasenia, tipo_usuario, direccion_id, estado_baja
+        public static bool autenticar(string mail, string pass, bool hasheado)
         {
             Usuario user = new Usuario();
-            string query = "select * from dbo.usuario where username = @usr and password = @pass;";
+            string query = "select * from dbo.usuario where email = @email and contrasenia = @contrasenia;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@usr", usr);
+            cmd.Parameters.AddWithValue("@email", mail);
             if (hasheado)
             {
-                cmd.Parameters.AddWithValue("@pass", pass);
+                cmd.Parameters.AddWithValue("@contrasenia", pass);
             }
             else
             {
@@ -38,7 +38,8 @@ namespace EjemploABM.Controladores
                 while (reader.Read())
                 {
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
-                    user = new Usuario(reader.GetInt32(0), reader.GetString(1), "", reader.GetString(3), reader.GetString(4), reader.GetInt32(5));
+                    //id, nombre, apellido, dni, telefono, email, contrasenia, tipo_usuario, direccion_id, estado_baja
+                    user = new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), Direccion_Controller.obtenerPorId(reader.GetInt32(8)), reader.GetInt32(9));
                 }
 
                 reader.Close();
@@ -61,19 +62,25 @@ namespace EjemploABM.Controladores
 
             string query = "insert into dbo.usuario values" +
                "(@id, " +
-               "@username, " +
-               "@password, " +
-               "@name, " +
-               "@lastname, " +
-               "@rol);";
-
+               "@nombre, " +
+               "@apellido, " +
+               "@dni, " +
+               "@telefono, " +
+               "@email, " +
+               "@contrasenia, " +
+               "@tipo_usuario, " +
+               "@direccion_id);";
+            //id, nombre, apellido, dni, telefono, email, contrasenia, tipo_usuario, direccion_id, estado_baja
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
-            cmd.Parameters.AddWithValue("@username", usr.usuario);
-            cmd.Parameters.AddWithValue("@password", usr.Contraseña);
-            cmd.Parameters.AddWithValue("@name", usr.Nombre);
-            cmd.Parameters.AddWithValue("@lastname", usr.Apellido);
-            cmd.Parameters.AddWithValue("@rol", usr.Id_tipo);
+            cmd.Parameters.AddWithValue("@nombre", usr.nombre);
+            cmd.Parameters.AddWithValue("@apellido", usr.apellido);
+            cmd.Parameters.AddWithValue("@dni", usr.dni);
+            cmd.Parameters.AddWithValue("@telefono", usr.telefono);
+            cmd.Parameters.AddWithValue("@email", usr.email);
+            cmd.Parameters.AddWithValue("@contrasenia", usr.contrasenia);
+            cmd.Parameters.AddWithValue("@tipo_usuario", usr.tipo_usuario);
+            cmd.Parameters.AddWithValue("@direccion_id", usr.direccion.id);
 
             try
             {
@@ -136,7 +143,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    list.Add(new Usuario(reader.GetInt32(0), reader.GetString(1), "", reader.GetString(3), reader.GetString(4), reader.GetInt32(5)));
+                    list.Add(new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), Direccion_Controller.obtenerPorId(reader.GetInt32(8)), reader.GetInt32(9)));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -171,7 +178,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    usr = new Usuario(reader.GetInt32(0), reader.GetString(1), "", reader.GetString(3), reader.GetString(4), reader.GetInt32(5));
+                    usr = new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), Direccion_Controller.obtenerPorId(reader.GetInt32(8)), reader.GetInt32(9));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -195,18 +202,26 @@ namespace EjemploABM.Controladores
         {
             //Darlo de alta en la BBDD
 
-            string query = "update dbo.usuario set username = @username , " +
-                "name = @name , " +
-                "lastname = @lastname , " +
-                "rol = @rol " + 
+            string query = "update dbo.usuario set apellido = @apellido , " +
+                "nombre = @nombre , " +
+                "dni = @dni , " +
+                "email = @email " +
+                "telefono = @telefono , " +
+                "contrasenia = @contrasenia , " +
+                "tipo_usuario = @tipo_usuario " +
+                "direccion_id = @direccion_id , " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", usr.Id);
-            cmd.Parameters.AddWithValue("@username", usr.usuario);
-            cmd.Parameters.AddWithValue("@name", usr.Nombre);
-            cmd.Parameters.AddWithValue("@lastname", usr.Apellido);
-            cmd.Parameters.AddWithValue("@rol", usr.Id_tipo);
+            cmd.Parameters.AddWithValue("@id", usr.id);
+            cmd.Parameters.AddWithValue("@nombre", usr.nombre);
+            cmd.Parameters.AddWithValue("@apellido", usr.apellido);
+            cmd.Parameters.AddWithValue("@dni", usr.dni);
+            cmd.Parameters.AddWithValue("@telefono", usr.telefono);
+            cmd.Parameters.AddWithValue("@email", usr.email);
+            cmd.Parameters.AddWithValue("@contrasenia", usr.contrasenia);
+            cmd.Parameters.AddWithValue("@tipo_usuario", usr.tipo_usuario);
+            cmd.Parameters.AddWithValue("@direccion_id", usr.direccion.id);
 
             try
             {
