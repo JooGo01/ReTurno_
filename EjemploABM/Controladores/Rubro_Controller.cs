@@ -5,31 +5,25 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace EjemploABM.Controladores
 {
-    class Calendario_Controller
+    class Rubro_Controller
     {
-        public static bool crearTurno(Usuario usr, Sucursal suc, DateTime fecha_ini, DateTime fecha_fin)
+        //id, nombre
+        public static bool crearRubro(String nombre)
         {
             //Darlo de alta en la BBDD
 
-            string query = "insert into dbo.turno values" +
+            string query = "insert into dbo.rubro values" +
                "(@id, " +
-               "@id_suc, " +
-               "@id_usr, " +
-               "@fecha_ini, " +
-               "@fecha_fin, " +
+               "@nombre, " +
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
-            cmd.Parameters.AddWithValue("@id_suc", suc.id);
-            cmd.Parameters.AddWithValue("@id_usr", usr.Id);
-            cmd.Parameters.AddWithValue("@fecha_ini", fecha_ini);
-            cmd.Parameters.AddWithValue("@fecha_fin", fecha_fin);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
 
             try
             {
@@ -51,7 +45,7 @@ namespace EjemploABM.Controladores
         public static int obtenerMaxId()
         {
             int MaxId = 0;
-            string query = "select max(id) from dbo.turno;";
+            string query = "select max(id) from dbo.rubro;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -78,10 +72,10 @@ namespace EjemploABM.Controladores
 
         // GET ALL
 
-        public static List<Turno> obtenerTodos()
+        public static List<Rubro> obtenerTodos()
         {
-            List<Turno> list = new List<Turno>();
-            string query = "select * from dbo.turno;";
+            List<Rubro> list = new List<Rubro>();
+            string query = "select * from dbo.rubro;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -92,8 +86,8 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    list.Add(new Turno(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), reader.GetInt32(6)));
-                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
+                    list.Add(new Rubro(reader.GetInt32(0), reader.GetString(1)));
+                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
@@ -112,10 +106,10 @@ namespace EjemploABM.Controladores
 
         // GET ONE BY ID
 
-        public static Turno obtenerPorId(int id)
+        public static Rubro obtenerPorId(int id)
         {
-            Turno trn = new Turno();
-            string query = "select * from dbo.turno where id = @id;";
+            Rubro dir = new Rubro();
+            string query = "select * from dbo.rubro where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -127,8 +121,8 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    trn = new Turno(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), reader.GetInt32(6));
-                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
+                    dir = new Rubro(reader.GetInt32(0), reader.GetString(1));
+                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
@@ -140,33 +134,23 @@ namespace EjemploABM.Controladores
                 throw new Exception("Hay un error en la query: " + ex.Message);
             }
 
-            return trn;
+            return dir;
         }
 
 
 
         // EDIT / PUT
 
-        public static bool editarTurno(Turno trn, Usuario usr, Sucursal suc, DateTime dt_ini, DateTime dt_fin, int estado, int estado_baja)
+        public static bool editarDireccion(Rubro rub, String nombre)
         {
-            //Darlo de alta en la BBDD
+            //Update en la BBDD
 
-            string query = "update dbo.turno set sucursal_id  = @sucursal , " +
-                "usuario_id  = @usuario , " +
-                "fecha_ini  = @fecha_ini  , " +
-                "fecha_fin  = @fecha_fin , " +
-                "estado  = @estado , " +
-                "estado_baja  = @estado_baja " +
+            string query = "update dbo.rubro set nombre  = @nombre , " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", trn.id);
-            cmd.Parameters.AddWithValue("@sucursal", suc.id);
-            cmd.Parameters.AddWithValue("@usuario", usr.Id);
-            cmd.Parameters.AddWithValue("@fecha_ini", dt_ini);
-            cmd.Parameters.AddWithValue("@fecha_fin", dt_fin);
-            cmd.Parameters.AddWithValue("@estado", estado);
-            cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
+            cmd.Parameters.AddWithValue("@id", rub.id);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
 
             try
             {

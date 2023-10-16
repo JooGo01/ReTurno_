@@ -66,7 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controladores\Calendario_Controller.cs" />
+    <Compile Include="Controladores\Cliente_Controller.cs" />
     <Compile Include="Controladores\DB_Controller.cs" />
+    <Compile Include="Controladores\Direccion_Controller.cs" />
+    <Compile Include="Controladores\Rubro_Controller.cs" />
+    <Compile Include="Controladores\Sucursal_Controller.cs" />
     <Compile Include="Controladores\Usuario_Controller.cs" />
     <Compile Include="ControlesCalendario\Calendario_UC.cs">
       <SubType>UserControl</SubType>
@@ -192,6 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\flecha_izquierda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ControlesCliente\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

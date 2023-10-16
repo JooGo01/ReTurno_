@@ -5,31 +5,37 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace EjemploABM.Controladores
 {
-    class Calendario_Controller
+    class Direccion_Controller
     {
-        public static bool crearTurno(Usuario usr, Sucursal suc, DateTime fecha_ini, DateTime fecha_fin)
+        //id, calle, altura, codigo_postal, piso, provincia, ciudad, departamento
+        public static bool crearDireccion(String calle, int altura, String cod_pos, int piso, String provincia, String ciudad, String departamento)
         {
             //Darlo de alta en la BBDD
 
-            string query = "insert into dbo.turno values" +
+            string query = "insert into dbo.direccion values" +
                "(@id, " +
-               "@id_suc, " +
-               "@id_usr, " +
-               "@fecha_ini, " +
-               "@fecha_fin, " +
+               "@calle, " +
+               "@altura, " +
+               "@codigo_postal, " +
+               "@piso, " +
+               "@provincia, " +
+               "@ciudad, " +
+               "@departamento, " +
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
-            cmd.Parameters.AddWithValue("@id_suc", suc.id);
-            cmd.Parameters.AddWithValue("@id_usr", usr.Id);
-            cmd.Parameters.AddWithValue("@fecha_ini", fecha_ini);
-            cmd.Parameters.AddWithValue("@fecha_fin", fecha_fin);
+            cmd.Parameters.AddWithValue("@calle", calle);
+            cmd.Parameters.AddWithValue("@altura", altura);
+            cmd.Parameters.AddWithValue("@codigo_postal", cod_pos);
+            cmd.Parameters.AddWithValue("@piso", piso);
+            cmd.Parameters.AddWithValue("@provincia", provincia);
+            cmd.Parameters.AddWithValue("@ciudad", ciudad);
+            cmd.Parameters.AddWithValue("@departamento", departamento);
 
             try
             {
@@ -51,7 +57,7 @@ namespace EjemploABM.Controladores
         public static int obtenerMaxId()
         {
             int MaxId = 0;
-            string query = "select max(id) from dbo.turno;";
+            string query = "select max(id) from dbo.direccion;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -78,10 +84,10 @@ namespace EjemploABM.Controladores
 
         // GET ALL
 
-        public static List<Turno> obtenerTodos()
+        public static List<Direccion> obtenerTodos()
         {
-            List<Turno> list = new List<Turno>();
-            string query = "select * from dbo.turno;";
+            List<Direccion> list = new List<Direccion>();
+            string query = "select * from dbo.direccion;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -92,7 +98,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    list.Add(new Turno(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), reader.GetInt32(6)));
+                    list.Add(new Direccion(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -112,10 +118,10 @@ namespace EjemploABM.Controladores
 
         // GET ONE BY ID
 
-        public static Turno obtenerPorId(int id)
+        public static Direccion obtenerPorId(int id)
         {
-            Turno trn = new Turno();
-            string query = "select * from dbo.turno where id = @id;";
+            Direccion dir = new Direccion();
+            string query = "select * from dbo.direccion where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -127,8 +133,8 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    trn = new Turno(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), reader.GetInt32(6));
-                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
+                    dir = new Direccion(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetString(5), reader.GetString(6), reader.GetString(7));
+                    Trace.WriteLine("Direccion encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
@@ -140,33 +146,34 @@ namespace EjemploABM.Controladores
                 throw new Exception("Hay un error en la query: " + ex.Message);
             }
 
-            return trn;
+            return dir;
         }
 
 
 
         // EDIT / PUT
 
-        public static bool editarTurno(Turno trn, Usuario usr, Sucursal suc, DateTime dt_ini, DateTime dt_fin, int estado, int estado_baja)
+        public static bool editarDireccion(Direccion dir, String calle, int altura, String cod_pos, int piso, String provincia, String ciudad, String departamento)
         {
-            //Darlo de alta en la BBDD
-
-            string query = "update dbo.turno set sucursal_id  = @sucursal , " +
-                "usuario_id  = @usuario , " +
-                "fecha_ini  = @fecha_ini  , " +
-                "fecha_fin  = @fecha_fin , " +
-                "estado  = @estado , " +
-                "estado_baja  = @estado_baja " +
+            //Update en la BBDD
+            string query = "update dbo.direccion set altura  = @altura , " +
+                "calle   = @calle , " +
+                "codigo_postal   = @codigo_postal , " +
+                "piso   = @piso , " +
+                "provincia   = @provincia , " +
+                "ciudad   = @ciudad , " +
+                "departamento   = @departamento , " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", trn.id);
-            cmd.Parameters.AddWithValue("@sucursal", suc.id);
-            cmd.Parameters.AddWithValue("@usuario", usr.Id);
-            cmd.Parameters.AddWithValue("@fecha_ini", dt_ini);
-            cmd.Parameters.AddWithValue("@fecha_fin", dt_fin);
-            cmd.Parameters.AddWithValue("@estado", estado);
-            cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
+            cmd.Parameters.AddWithValue("@id", dir.id);
+            cmd.Parameters.AddWithValue("@calle", calle);
+            cmd.Parameters.AddWithValue("@altura", altura);
+            cmd.Parameters.AddWithValue("@codigo_postal", cod_pos);
+            cmd.Parameters.AddWithValue("@piso", piso);
+            cmd.Parameters.AddWithValue("@provincia", provincia);
+            cmd.Parameters.AddWithValue("@ciudad", ciudad);
+            cmd.Parameters.AddWithValue("@departamento", departamento);
 
             try
             {

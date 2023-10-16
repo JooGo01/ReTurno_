@@ -5,31 +5,26 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace EjemploABM.Controladores
 {
-    class Calendario_Controller
+    class Cliente_Controller
     {
-        public static bool crearTurno(Usuario usr, Sucursal suc, DateTime fecha_ini, DateTime fecha_fin)
+        public static bool crearCliente(String rzn_social, Rubro rubro)
         {
             //Darlo de alta en la BBDD
-
-            string query = "insert into dbo.turno values" +
+            // id, razon_social, rubro_id, estado_baja
+            string query = "insert into dbo.cliente values" +
                "(@id, " +
-               "@id_suc, " +
-               "@id_usr, " +
-               "@fecha_ini, " +
-               "@fecha_fin, " +
+               "@razon_social, " +
+               "@rubro_id, " +
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
-            cmd.Parameters.AddWithValue("@id_suc", suc.id);
-            cmd.Parameters.AddWithValue("@id_usr", usr.Id);
-            cmd.Parameters.AddWithValue("@fecha_ini", fecha_ini);
-            cmd.Parameters.AddWithValue("@fecha_fin", fecha_fin);
+            cmd.Parameters.AddWithValue("@razon_social", rzn_social);
+            cmd.Parameters.AddWithValue("@rubro_id", rubro.id);
 
             try
             {
@@ -51,7 +46,7 @@ namespace EjemploABM.Controladores
         public static int obtenerMaxId()
         {
             int MaxId = 0;
-            string query = "select max(id) from dbo.turno;";
+            string query = "select max(id) from dbo.cliente;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -78,10 +73,10 @@ namespace EjemploABM.Controladores
 
         // GET ALL
 
-        public static List<Turno> obtenerTodos()
+        public static List<Cliente> obtenerTodos()
         {
-            List<Turno> list = new List<Turno>();
-            string query = "select * from dbo.turno;";
+            List<Cliente> list = new List<Cliente>();
+            string query = "select * from dbo.cliente;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -92,7 +87,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    list.Add(new Turno(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), reader.GetInt32(6)));
+                    list.Add(new Cliente(reader.GetInt32(0), reader.GetString(1), Rubro_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3)));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -112,10 +107,10 @@ namespace EjemploABM.Controladores
 
         // GET ONE BY ID
 
-        public static Turno obtenerPorId(int id)
+        public static Cliente obtenerPorId(int id)
         {
-            Turno trn = new Turno();
-            string query = "select * from dbo.turno where id = @id;";
+            Cliente cli = new Cliente();
+            string query = "select * from dbo.cliente where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -127,7 +122,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    trn = new Turno(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), reader.GetInt32(6));
+                    cli = new Cliente(reader.GetInt32(0), reader.GetString(1), Rubro_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -140,32 +135,56 @@ namespace EjemploABM.Controladores
                 throw new Exception("Hay un error en la query: " + ex.Message);
             }
 
-            return trn;
+            return cli;
         }
 
 
 
         // EDIT / PUT
 
-        public static bool editarTurno(Turno trn, Usuario usr, Sucursal suc, DateTime dt_ini, DateTime dt_fin, int estado, int estado_baja)
+        public static bool editarCliente(Cliente cliente, Rubro rubro, String razon_social, int estado_baja)
         {
-            //Darlo de alta en la BBDD
+            //Update en la BBDD
 
-            string query = "update dbo.turno set sucursal_id  = @sucursal , " +
-                "usuario_id  = @usuario , " +
-                "fecha_ini  = @fecha_ini  , " +
-                "fecha_fin  = @fecha_fin , " +
-                "estado  = @estado , " +
+            string query = "update dbo.cliente set rubro_id  = @rubro , " +
+                "razon_social   = @razon_social , " +
                 "estado_baja  = @estado_baja " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", trn.id);
-            cmd.Parameters.AddWithValue("@sucursal", suc.id);
-            cmd.Parameters.AddWithValue("@usuario", usr.Id);
-            cmd.Parameters.AddWithValue("@fecha_ini", dt_ini);
-            cmd.Parameters.AddWithValue("@fecha_fin", dt_fin);
-            cmd.Parameters.AddWithValue("@estado", estado);
+            cmd.Parameters.AddWithValue("@id", cliente.id);
+            cmd.Parameters.AddWithValue("@rubro", rubro.id);
+            cmd.Parameters.AddWithValue("@razon_social", razon_social);
+            cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
+
+            if (estado_baja == 1) {
+                bajaSucursalCliente(cliente, estado_baja);
+            }
+
+            try
+            {
+                DB_Controller.connection.Open();
+                cmd.ExecuteNonQuery();
+                DB_Controller.connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+        }
+
+        public static bool bajaSucursalCliente(Cliente cliente, int estado_baja)
+        {
+            //Update en la BBDD
+
+            string query = "update dbo.sucursal set " +
+                "estado_baja  = @estado_baja " +
+                "where cliente_id = @cliente_id;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@cliente_id", cliente.id);
             cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
 
             try
@@ -181,5 +200,6 @@ namespace EjemploABM.Controladores
             }
 
         }
+
     }
 }

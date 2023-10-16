@@ -21,12 +21,16 @@ namespace EjemploABM.Modelo
 
         public String departamento { get; set; }
 
-        public Direccion(int p_id, String p_calle, int p_altura, string p_codigo_postal, String p_provincia, String p_ciudad, String p_departamento)
+        public int piso { get; set; }
+
+        //String calle, int altura, String cod_pos, int piso, String provincia, String ciudad, String departamento
+        public Direccion(int p_id, String p_calle, int p_altura, string p_codigo_postal, int p_piso, String p_provincia, String p_ciudad, String p_departamento)
         {
             id = p_id;
             calle = p_calle;
             altura = p_altura;
             codigo_postal = p_codigo_postal;
+            piso = p_piso;
             provincia = p_provincia;
             ciudad = p_ciudad;
             departamento = p_departamento;
