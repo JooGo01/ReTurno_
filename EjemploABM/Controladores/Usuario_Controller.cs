@@ -32,7 +32,7 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -43,7 +43,7 @@ namespace EjemploABM.Controladores
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 Program.logueado = user;
                 return true;
             }
@@ -84,9 +84,9 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 cmd.ExecuteNonQuery();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return true;
             }
             catch (Exception ex)
@@ -108,7 +108,7 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -117,7 +117,7 @@ namespace EjemploABM.Controladores
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return MaxId;
             }
             catch (Exception ex)
@@ -132,23 +132,54 @@ namespace EjemploABM.Controladores
         public static List<Usuario> obtenerTodos()
         {
             List<Usuario> list = new List<Usuario>();
+            List<int> listId = new List<int>();
+            List<String> listNombre = new List<String>();
+            List<String> listApellido = new List<String>();
+            List<String> listDni = new List<String>();
+            List<String> listTelefono = new List<String>();
+            List<String> listMail = new List<String>();
+            List<String> listContrasenia = new List<String>();
+            List<String> listTipoUsuario = new List<String>();
+            List<int> listIdDireccion = new List<int>();
+            List<Direccion> listDireccion = new List<Direccion>();
+            List<int> listEstadoBaja = new List<int>();
             string query = "select * from dbo.usuario;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-
+            //id, nombre, apellido, dni, telefono, email, contrasenia, tipo_usuario, direccion_id, estado_baja
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    list.Add(new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), Direccion_Controller.obtenerPorId(reader.GetInt32(8)), reader.GetInt32(9)));
+                    listId.Add(reader.GetInt32(0));
+                    listNombre.Add(reader.GetString(1));
+                    listApellido.Add(reader.GetString(2));
+                    listDni.Add(reader.GetString(3));
+                    listTelefono.Add(reader.GetString(4));
+                    listMail.Add(reader.GetString(5));
+                    listContrasenia.Add(reader.GetString(6));
+                    listTipoUsuario.Add(reader.GetString(7));
+                    listIdDireccion.Add(reader.GetInt32(8));
+                    listEstadoBaja.Add(reader.GetInt32(9));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+
+                for (int i = 0; i < listIdDireccion.Count; i++)
+                {
+                    listDireccion.Add(Direccion_Controller.obtenerPorId(listIdDireccion[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    list.Add(new Usuario(listId[i], listNombre[i], listApellido[i], listDni[i], listTelefono[i], listMail[i], listContrasenia[i], listTipoUsuario[i], listDireccion[i], listEstadoBaja[i]));
+                }
+
+                DB_Controller.close();
 
             }
             catch (Exception ex)
@@ -166,6 +197,8 @@ namespace EjemploABM.Controladores
         public static Usuario obtenerPorId(int id)
         {
             Usuario usr = new Usuario();
+            Direccion dire = new Direccion();
+            int id_dire = 0;
             string query = "select * from dbo.usuario where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -173,17 +206,43 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    usr = new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), Direccion_Controller.obtenerPorId(reader.GetInt32(8)), reader.GetInt32(9));
+                    id_dire = reader.GetInt32(8);
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            dire = Direccion_Controller.obtenerPorId(id_dire);
+
+            query = "select * from dbo.usuario where id = @id;";
+
+            cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    usr = new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), dire, reader.GetInt32(9));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
 
             }
             catch (Exception ex)

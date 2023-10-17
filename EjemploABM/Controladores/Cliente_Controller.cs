@@ -28,9 +28,9 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 cmd.ExecuteNonQuery();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return true;
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -61,7 +61,7 @@ namespace EjemploABM.Controladores
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return MaxId;
             }
             catch (Exception ex)
@@ -76,23 +76,42 @@ namespace EjemploABM.Controladores
         public static List<Cliente> obtenerTodos()
         {
             List<Cliente> list = new List<Cliente>();
+            List<int> listId = new List<int>();
+            List<int> listIdRubro = new List<int>();
+            List<Rubro> listRubro = new List<Rubro>();
+            List<String> listRazonSocial = new List<String>();
+            List<int> listEstadoBaja = new List<int>();
             string query = "select * from dbo.cliente;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
-
+                // id, razon_social, rubro_id, estado_baja
                 while (reader.Read())
                 {
-                    list.Add(new Cliente(reader.GetInt32(0), reader.GetString(1), Rubro_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3)));
+                    listId.Add(reader.GetInt32(0));
+                    listRazonSocial.Add(reader.GetString(1));
+                    listIdRubro.Add(reader.GetInt32(2));
+                    listEstadoBaja.Add(reader.GetInt32(3));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+
+                for (int i = 0; i < listIdRubro.Count; i++)
+                {
+                    listRubro.Add(Rubro_Controller.obtenerPorId(listIdRubro[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    list.Add(new Cliente(listId[i], listRazonSocial[i], listRubro[i], listEstadoBaja[i]));
+                }
+
+                DB_Controller.close();
 
             }
             catch (Exception ex)
@@ -110,6 +129,8 @@ namespace EjemploABM.Controladores
         public static Cliente obtenerPorId(int id)
         {
             Cliente cli = new Cliente();
+            Rubro rub = new Rubro();
+            int id_rub = 0;
             string query = "select * from dbo.cliente where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -117,17 +138,47 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    cli = new Cliente(reader.GetInt32(0), reader.GetString(1), Rubro_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3));
+                    id_rub = reader.GetInt32(2);
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+
+                if(id_rub > 0)
+                {
+                    rub = Rubro_Controller.obtenerPorId(id_rub);
+                }
+
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            query = "select * from dbo.cliente where id = @id;";
+            cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cli = new Cliente(reader.GetInt32(0), reader.GetString(1), rub, reader.GetInt32(3));
+                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
+                }
+
+                reader.Close();
+                DB_Controller.close();
 
             }
             catch (Exception ex)

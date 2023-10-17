@@ -31,7 +31,7 @@ namespace EjemploABM.ControlesDeUsuario
             {
                 int rowIndex = dataGridView1.Rows.Add();
 
-                dataGridView1.Rows[rowIndex].Cells[0].Value = usr.Id.ToString();
+                /*dataGridView1.Rows[rowIndex].Cells[0].Value = usr.Id.ToString();
                 dataGridView1.Rows[rowIndex].Cells[1].Value = usr.Nombre.ToString();
                 dataGridView1.Rows[rowIndex].Cells[2].Value = usr.Apellido.ToString();
                 dataGridView1.Rows[rowIndex].Cells[3].Value = usr.usuario.ToString();
@@ -46,7 +46,7 @@ namespace EjemploABM.ControlesDeUsuario
                     dataGridView1.Rows[rowIndex].Cells[4].Value = "Vendedor";
                 }
                 dataGridView1.Rows[rowIndex].Cells[5].Value = "Editar";
-                dataGridView1.Rows[rowIndex].Cells[6].Value = "Eliminar";
+                dataGridView1.Rows[rowIndex].Cells[6].Value = "Eliminar";*/
 
             }
         }
@@ -92,6 +92,11 @@ namespace EjemploABM.ControlesDeUsuario
                 }
 
             }
+
+        }
+
+        private void Usuarios_UC_Load(object sender, EventArgs e)
+        {
 
         }
     }

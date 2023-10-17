@@ -18,15 +18,34 @@ namespace EjemploABM.Controladores
         {
             var builder = new SqlConnectionStringBuilder();
 
-            builder.DataSource = @"(localdb)\Local"; //NOMBRE DEL SERVIDOR
-            builder.InitialCatalog = "abm_completo"; //NOMBRE DE LA BASE DE DATOS
+            //builder.DataSource = @"(localdb)\Local"; //NOMBRE DEL SERVIDOR
+            builder.DataSource = @"DESKTOP-8Q1CKL2\SQLEXPRESS";
+            builder.InitialCatalog = "ReTurno"; //NOMBRE DE LA BASE DE DATOS
             builder.IntegratedSecurity = true; //TIENE O NO SEGURIDAD INTEGRADA CON WINDOWS
+            builder.MultipleActiveResultSets = true;
 
             connectionString = builder.ToString();
             connection = new SqlConnection(connectionString);
 
             Trace.WriteLine("Conexion a la DB: " + connection);
+            connection.Open();
+            connection.Close();
 
+        }
+
+        public static void close()
+        {
+            if (connection.State == System.Data.ConnectionState.Open)
+            {
+                connection.Close();
+            }
+        }
+
+        public static void open() {
+            if (connection.State == System.Data.ConnectionState.Closed)
+            {
+                connection.Open();
+            }
         }
 
     }

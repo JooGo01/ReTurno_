@@ -28,9 +28,9 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 cmd.ExecuteNonQuery();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return true;
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -61,7 +61,7 @@ namespace EjemploABM.Controladores
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return MaxId;
             }
             catch (Exception ex)
@@ -76,23 +76,52 @@ namespace EjemploABM.Controladores
         public static List<Sucursal> obtenerTodos()
         {
             List<Sucursal> list = new List<Sucursal>();
+            List<int> listId = new List<int>();
+            List<int> listIdCliente = new List<int>();
+            List<int> listIdDireccion = new List<int>();
+            List<int> listTelefono = new List<int>();
+            List<int> listEstadoBaja = new List<int>();
+            List<Cliente> listCliente = new List<Cliente>();
+            List<Direccion> listDireccion = new List<Direccion>();
             string query = "select * from dbo.sucursal;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             // id, cliente_id, direccion_id, telefono, estado_baja
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    list.Add(new Sucursal(reader.GetInt32(0), Cliente_Controller.obtenerPorId(reader.GetInt32(1)), Direccion_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3), reader.GetInt32(4)));
+                    listId.Add(reader.GetInt32(0));
+                    listIdCliente.Add(reader.GetInt32(1));
+                    listIdDireccion.Add(reader.GetInt32(2));
+                    listTelefono.Add(reader.GetInt32(3));
+                    listEstadoBaja.Add(reader.GetInt32(4));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
+                //list.Add(new Sucursal(reader.GetInt32(0), Cliente_Controller.obtenerPorId(reader.GetInt32(1)), Direccion_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3), reader.GetInt32(4)));
+
                 reader.Close();
-                DB_Controller.connection.Close();
+
+                for (int i = 0; i < listIdCliente.Count; i++)
+                {
+                    listCliente.Add(Cliente_Controller.obtenerPorId(listIdCliente[i]));
+                }
+
+                for (int i = 0; i < listIdDireccion.Count; i++)
+                {
+                    listDireccion.Add(Direccion_Controller.obtenerPorId(listIdDireccion[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    list.Add(new Sucursal(listId[i], listCliente[i], listDireccion[i], listTelefono[i], listEstadoBaja[i]));
+                }
+
+                DB_Controller.close();
 
             }
             catch (Exception ex)
@@ -110,6 +139,10 @@ namespace EjemploABM.Controladores
         public static Sucursal obtenerPorId(int id)
         {
             Sucursal suc = new Sucursal();
+            Cliente cli = new Cliente();
+            Direccion dire = new Direccion();
+            int id_cli = 0;
+            int id_dire = 0;
             string query = "select * from dbo.sucursal where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -117,17 +150,46 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    suc = new Sucursal(reader.GetInt32(0), Cliente_Controller.obtenerPorId(reader.GetInt32(1)), Direccion_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3), reader.GetInt32(4));
+                    id_cli = reader.GetInt32(1);
+                    id_dire = reader.GetInt32(2);
                     Trace.WriteLine("Sucursal encontrado, id: " + reader.GetInt32(0));
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                cli = Cliente_Controller.obtenerPorId(id_cli);
+                dire = Direccion_Controller.obtenerPorId(id_dire);
+                
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+
+            query = "select * from dbo.sucursal where id = @id;";
+            cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    suc = new Sucursal(reader.GetInt32(0), cli, dire, Int32.Parse(reader.GetString(3)), reader.GetInt32(4));
+                    Trace.WriteLine("Sucursal encontrado, id: " + reader.GetInt32(0));
+                }
+
+                reader.Close();
+                DB_Controller.close();
 
             }
             catch (Exception ex)
@@ -161,9 +223,9 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 cmd.ExecuteNonQuery();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return true;
             }
             catch (Exception ex)

@@ -31,7 +31,6 @@ namespace EjemploABM.ControlesDeUsuario
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btn_new = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +38,7 @@ namespace EjemploABM.ControlesDeUsuario
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btn_new = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,16 +67,6 @@ namespace EjemploABM.ControlesDeUsuario
             this.dataGridView1.Size = new System.Drawing.Size(753, 197);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // btn_new
-            // 
-            this.btn_new.Location = new System.Drawing.Point(389, 16);
-            this.btn_new.Name = "btn_new";
-            this.btn_new.Size = new System.Drawing.Size(91, 20);
-            this.btn_new.TabIndex = 2;
-            this.btn_new.Text = "Crear";
-            this.btn_new.UseVisualStyleBackColor = true;
-            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
             // 
             // Id
             // 
@@ -113,6 +103,16 @@ namespace EjemploABM.ControlesDeUsuario
             this.Eliminar.HeaderText = "Eliminar";
             this.Eliminar.Name = "Eliminar";
             // 
+            // btn_new
+            // 
+            this.btn_new.Location = new System.Drawing.Point(389, 16);
+            this.btn_new.Name = "btn_new";
+            this.btn_new.Size = new System.Drawing.Size(91, 20);
+            this.btn_new.TabIndex = 2;
+            this.btn_new.Text = "Crear";
+            this.btn_new.UseVisualStyleBackColor = true;
+            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
+            // 
             // Usuarios_UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,6 +122,7 @@ namespace EjemploABM.ControlesDeUsuario
             this.Controls.Add(this.label1);
             this.Name = "Usuarios_UC";
             this.Size = new System.Drawing.Size(779, 262);
+            this.Load += new System.EventHandler(this.Usuarios_UC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

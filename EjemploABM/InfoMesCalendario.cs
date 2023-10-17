@@ -103,6 +103,20 @@ namespace EjemploABM
             return _dia[fila, col].Day;
         }
 
+        public DateTime diaGrilla(int fila, int col) {
+            if (fila < 0 && fila > 5)
+            {
+                throw new ArgumentOutOfRangeException("fila");
+            }
+
+            if (col < 0 && col > 6)
+            {
+                throw new ArgumentOutOfRangeException("col");
+            }
+
+            return _dia[fila, col];
+        }
+
         public bool esMesActivo(int fila, int col)
         {
             bool activo = false;

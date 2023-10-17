@@ -29,5 +29,7 @@ namespace EjemploABM.Modelo
 
         public Sucursal() { }
 
+        public Sucursal(int p_id) { id = p_id; }
+
     }
 }

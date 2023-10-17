@@ -91,6 +91,16 @@ namespace EjemploABM
 
         private void eventoPanelDia(String nombre) {
             lblMensajePanel.Text = nombre;
+            //indexFila,indexCol
+            String filacol = nombre.Substring(nombre.Length - 2);
+            int fila = Int32.Parse(filacol.Substring(0,1));
+            int col = Int32.Parse(filacol.Substring(1, 1));
+            DateTime fecha = _infoCalendario.diaGrilla(fila,col);
+            Calendario_UC calendarioUC = new Calendario_UC(fecha);
+            addUserControl(calendarioUC);
+            lblMensajePanel.Visible = false;
+            btnAchicar.BringToFront();
+            btnAgrandar.BringToFront();
         }
 
         private void ajustePanel()
@@ -420,7 +430,7 @@ namespace EjemploABM
             uc.Dock = DockStyle.Fill;
             panel_actividad.Controls.Clear();
             panel_actividad.Controls.Add(uc);
-            uc.BringToFront();
+            //uc.BringToFront();
         }
 
         private void btnAchicar_Click(object sender, EventArgs e)

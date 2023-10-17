@@ -27,9 +27,9 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 cmd.ExecuteNonQuery();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return true;
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -60,7 +60,7 @@ namespace EjemploABM.Controladores
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return MaxId;
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -91,7 +91,7 @@ namespace EjemploABM.Controladores
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
 
             }
             catch (Exception ex)
@@ -116,7 +116,7 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -126,7 +126,7 @@ namespace EjemploABM.Controladores
                 }
 
                 reader.Close();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
 
             }
             catch (Exception ex)
@@ -154,9 +154,9 @@ namespace EjemploABM.Controladores
 
             try
             {
-                DB_Controller.connection.Open();
+                DB_Controller.open();
                 cmd.ExecuteNonQuery();
-                DB_Controller.connection.Close();
+                DB_Controller.close();
                 return true;
             }
             catch (Exception ex)
