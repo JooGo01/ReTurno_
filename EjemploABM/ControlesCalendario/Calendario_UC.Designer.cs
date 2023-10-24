@@ -83,6 +83,7 @@
             this.dgv_evento.Name = "dgv_evento";
             this.dgv_evento.Size = new System.Drawing.Size(843, 476);
             this.dgv_evento.TabIndex = 2;
+            this.dgv_evento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_evento_CellContentClick);
             // 
             // Id
             // 

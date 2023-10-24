@@ -109,5 +109,9 @@ namespace EjemploABM
             }*/
         }
 
+        private void FormUsuarios_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

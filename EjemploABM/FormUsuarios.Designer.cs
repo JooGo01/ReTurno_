@@ -162,6 +162,7 @@ namespace EjemploABM
             this.Controls.Add(this.label1);
             this.Name = "FormUsuarios";
             this.Text = "FormUsuarios";
+            this.Load += new System.EventHandler(this.FormUsuarios_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

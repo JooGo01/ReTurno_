@@ -13,12 +13,12 @@ namespace EjemploABM.Modelo
 
         public Direccion direccion { get; set; }
 
-        public int telefono { get; set; }
+        public String telefono { get; set; }
 
         public int estado_baja { get; set; }
 
 
-        public Sucursal(int p_id, Cliente p_cliente, Direccion p_direccion, int p_telefono, int p_estado_baja)
+        public Sucursal(int p_id, Cliente p_cliente, Direccion p_direccion, String p_telefono, int p_estado_baja)
         {
             id = p_id;
             cliente = p_cliente;

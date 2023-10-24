@@ -109,6 +109,18 @@
     <Compile Include="FormCalendario.Designer.cs">
       <DependentUpon>FormCalendario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTurno.Designer.cs">
+      <DependentUpon>FormTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTurnoEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTurnoEditar.Designer.cs">
+      <DependentUpon>FormTurnoEditar.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +162,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalendario.resx">
       <DependentUpon>FormCalendario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTurno.resx">
+      <DependentUpon>FormTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTurnoEditar.resx">
+      <DependentUpon>FormTurnoEditar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuarios.resx">
       <DependentUpon>FormUsuarios.cs</DependentUpon>

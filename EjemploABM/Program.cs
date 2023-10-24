@@ -32,7 +32,7 @@ namespace EjemploABM
 
 
             // Application.Run(new Form1());
-            Application.Run(new FormCalendario());
+            Application.Run(new FormTurno());
         }
 
         public static bool validateConnection()

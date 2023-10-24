@@ -19,10 +19,12 @@ namespace EjemploABM.ControlesCalendario
     {
 
         List<Turno> turnos;
+        public DateTime dt_seleccionado;
         public Calendario_UC(DateTime dt)
         {
             InitializeComponent();
             cargarTurno(dt);
+            dt_seleccionado = dt;
         }
 
         private void cargarTurno(DateTime dt)
@@ -49,6 +51,18 @@ namespace EjemploABM.ControlesCalendario
         }
 
         private void btnAgregarEvento_Click(object sender, EventArgs e)
+        {
+
+            FormCalendario frmCalendario = new FormCalendario();
+            DialogResult dr = frmCalendario.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -253,6 +253,65 @@ namespace EjemploABM.Controladores
             return usr;
         }
 
+        public static Usuario obtenerPorDni(String dni)
+        {
+            Usuario usr = new Usuario();
+            Direccion dire = new Direccion();
+            int id_dire = 0;
+            string query = "select * from dbo.usuario where dni = @dni;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@dni", dni);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    id_dire = reader.GetInt32(8);
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            dire = Direccion_Controller.obtenerPorId(id_dire);
+
+            query = "select * from dbo.usuario where dni = @dni;";
+
+            cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@dni", dni);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    usr = new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), dire, reader.GetInt32(9));
+                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return usr;
+        }
+
 
 
         // EDIT / PUT

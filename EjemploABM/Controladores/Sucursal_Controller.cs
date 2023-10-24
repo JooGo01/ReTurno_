@@ -79,13 +79,14 @@ namespace EjemploABM.Controladores
             List<int> listId = new List<int>();
             List<int> listIdCliente = new List<int>();
             List<int> listIdDireccion = new List<int>();
-            List<int> listTelefono = new List<int>();
+            List<String> listTelefono = new List<String>();
             List<int> listEstadoBaja = new List<int>();
             List<Cliente> listCliente = new List<Cliente>();
             List<Direccion> listDireccion = new List<Direccion>();
             string query = "select * from dbo.sucursal;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            
             // id, cliente_id, direccion_id, telefono, estado_baja
             try
             {
@@ -97,7 +98,7 @@ namespace EjemploABM.Controladores
                     listId.Add(reader.GetInt32(0));
                     listIdCliente.Add(reader.GetInt32(1));
                     listIdDireccion.Add(reader.GetInt32(2));
-                    listTelefono.Add(reader.GetInt32(3));
+                    listTelefono.Add(reader.GetString(3));
                     listEstadoBaja.Add(reader.GetInt32(4));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
@@ -132,6 +133,65 @@ namespace EjemploABM.Controladores
             return list;
         }
 
+        public static List<Sucursal> obtenerTodosSucCliente(Cliente cli)
+        {
+            List<Sucursal> list = new List<Sucursal>();
+            List<int> listId = new List<int>();
+            List<int> listIdCliente = new List<int>();
+            List<int> listIdDireccion = new List<int>();
+            List<String> listTelefono = new List<String>();
+            List<int> listEstadoBaja = new List<int>();
+            List<Cliente> listCliente = new List<Cliente>();
+            List<Direccion> listDireccion = new List<Direccion>();
+            string query = "select * from dbo.sucursal where cliente_id=@id_cliente;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id_cliente", cli.id);
+            // id, cliente_id, direccion_id, telefono, estado_baja
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listId.Add(reader.GetInt32(0));
+                    listIdCliente.Add(reader.GetInt32(1));
+                    listIdDireccion.Add(reader.GetInt32(2));
+                    listTelefono.Add(reader.GetString(3));
+                    listEstadoBaja.Add(reader.GetInt32(4));
+                    Trace.WriteLine("Sucursal encontrada, id: " + reader.GetInt32(0));
+                }
+
+                //list.Add(new Sucursal(reader.GetInt32(0), Cliente_Controller.obtenerPorId(reader.GetInt32(1)), Direccion_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3), reader.GetInt32(4)));
+
+                reader.Close();
+
+                for (int i = 0; i < listIdCliente.Count; i++)
+                {
+                    listCliente.Add(Cliente_Controller.obtenerPorId(listIdCliente[i]));
+                }
+
+                for (int i = 0; i < listIdDireccion.Count; i++)
+                {
+                    listDireccion.Add(Direccion_Controller.obtenerPorId(listIdDireccion[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    list.Add(new Sucursal(listId[i], listCliente[i], listDireccion[i], listTelefono[i], listEstadoBaja[i]));
+                }
+
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return list;
+        }
 
 
         // GET ONE BY ID
@@ -184,7 +244,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    suc = new Sucursal(reader.GetInt32(0), cli, dire, Int32.Parse(reader.GetString(3)), reader.GetInt32(4));
+                    suc = new Sucursal(reader.GetInt32(0), cli, dire, reader.GetString(3), reader.GetInt32(4));
                     Trace.WriteLine("Sucursal encontrado, id: " + reader.GetInt32(0));
                 }
 
