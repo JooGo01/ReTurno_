@@ -264,6 +264,37 @@ namespace EjemploABM.Controladores
 
         // EDIT / PUT
 
+        public static bool crearSucursal(Sucursal suc, Cliente cliente, Direccion dir, long telefono)
+        {
+            //Update en la BBDD
+
+            string query = "insert dbo.sucursal set cliente_id  = @cliente_id , " +
+                "direccion_id   = @direccion_id , " +
+                "telefono   = @telefono , " +
+                "estado_baja  = @estado_baja " +
+                "where id = @id ;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", suc.id);
+            cmd.Parameters.AddWithValue("@direccion_id", dir.id);
+            cmd.Parameters.AddWithValue("@telefono", telefono);
+            cmd.Parameters.AddWithValue("@cliente_id", cliente.id);
+            cmd.Parameters.AddWithValue("@estado_baja", false);
+
+            try
+            {
+                DB_Controller.open();
+                cmd.ExecuteNonQuery();
+                DB_Controller.close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+        }
+
         public static bool editarSucursal(Sucursal suc, Cliente cliente, Direccion dir, long telefono, int estado_baja)
         {
             //Update en la BBDD
