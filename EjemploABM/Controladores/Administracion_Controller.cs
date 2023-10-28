@@ -13,20 +13,18 @@ namespace EjemploABM.Controladores
     {
         //id, cliente_id, sucursal_id, usuario_id,estado_baja
 
-        public static bool crearAdministracion(Cliente cli, Sucursal suc, Usuario usr)
+        public static bool crearAdministracion(Sucursal suc, Usuario usr)
         {
             //Darlo de alta en la BBDD
 
             string query = "insert into dbo.administracion values" +
                "(@id, " +
-               "@cliente, " +
                "@sucursal, " +
-               "@usuario, " +
+               "@usuario " +
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
-            cmd.Parameters.AddWithValue("@cliente", cli.id);
             cmd.Parameters.AddWithValue("@sucursal", suc.id);
             cmd.Parameters.AddWithValue("@usuario", usr.id);
 
@@ -91,7 +89,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    list.Add(new Administracion(reader.GetInt32(0), Cliente_Controller.obtenerPorId(reader.GetInt32(1)), Sucursal_Controller.obtenerPorId(reader.GetInt32(2)), Usuario_Controller.obtenerPorId(reader.GetInt32(3)), reader.GetInt32(4)));
+                    list.Add(new Administracion(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3)));
                     Trace.WriteLine("Adminsitracion encontrado, id: " + reader.GetInt32(0));
                 }
 
@@ -126,7 +124,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    adm = new Administracion(reader.GetInt32(0), Cliente_Controller.obtenerPorId(reader.GetInt32(1)), Sucursal_Controller.obtenerPorId(reader.GetInt32(2)), Usuario_Controller.obtenerPorId(reader.GetInt32(3)), reader.GetInt32(4));
+                    adm = new Administracion(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3));
                     Trace.WriteLine("Administracion encontrado, id: " + reader.GetInt32(0));
                 }
 
@@ -146,11 +144,10 @@ namespace EjemploABM.Controladores
 
         // EDIT / PUT
 
-        public static bool editarAdministracion(Administracion adm, Cliente cli, Sucursal suc, Usuario usr, int estado_baja)
+        public static bool editarAdministracion(Administracion adm, Sucursal suc, Usuario usr, int estado_baja)
         {
             //Update en la BBDD
             string query = "update dbo.administracion set estado_baja  = @estado_baja , " +
-                "cliente_id  = @cliente_id  , " +
                 "sucursal_id = @sucursal_id  , " +
                 "usuario_id = @usuario_id  , " +
                 "where id = @id ;";
@@ -158,7 +155,6 @@ namespace EjemploABM.Controladores
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", adm.id);
             cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
-            cmd.Parameters.AddWithValue("@cliente_id", cli.id);
             cmd.Parameters.AddWithValue("@sucursal_id", suc.id);
             cmd.Parameters.AddWithValue("@usuario_id", usr.id);
 

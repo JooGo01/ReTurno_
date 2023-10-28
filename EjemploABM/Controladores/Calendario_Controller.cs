@@ -106,8 +106,7 @@ namespace EjemploABM.Controladores
                     listIdUsr.Add(reader.GetInt32(2));
                     listDtIni.Add(reader.GetDateTime(3));
                     listDtFin.Add(reader.GetDateTime(4));
-                    listEstado.Add(reader.GetInt32(5));
-                    listEstadoBaja.Add(reader.GetInt32(6));
+                    listEstadoBaja.Add(reader.GetInt32(5));
                     Trace.WriteLine("Turno encontrado, id: " + reader.GetInt32(0));
                 }
 
@@ -125,7 +124,7 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listId.Count; i++)
                 {
-                    list.Add(new Turno(listId[i], listSuc[i], listUsr[i], listDtIni[i], listDtFin[i], listEstado[i], listEstadoBaja[i]));
+                    list.Add(new Turno(listId[i], listSuc[i], listUsr[i], listDtIni[i], listDtFin[i], listEstadoBaja[i]));
                 }
 
                 DB_Controller.close();
@@ -168,8 +167,7 @@ namespace EjemploABM.Controladores
                     listIdUsr.Add(reader.GetInt32(2));
                     listDtIni.Add(reader.GetDateTime(3));
                     listDtFin.Add(reader.GetDateTime(4));
-                    listEstado.Add(reader.GetInt32(5));
-                    listEstadoBaja.Add(reader.GetInt32(6));
+                    listEstadoBaja.Add(reader.GetInt32(5));
                     Trace.WriteLine("Turno encontrado, id: " + reader.GetInt32(0));
                 }
 
@@ -187,7 +185,7 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listId.Count; i++)
                 {
-                    list.Add(new Turno(listId[i], listSuc[i], listUsr[i], listDtIni[i], listDtFin[i], listEstado[i], listEstadoBaja[i]));
+                    list.Add(new Turno(listId[i], listSuc[i], listUsr[i], listDtIni[i], listDtFin[i], listEstadoBaja[i]));
                 }
 
                 DB_Controller.close();
@@ -238,7 +236,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    trn = new Turno(reader.GetInt32(0), suc, usr, reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), reader.GetInt32(6));
+                    trn = new Turno(reader.GetInt32(0), suc, usr, reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 

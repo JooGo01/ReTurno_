@@ -144,7 +144,6 @@
     <Compile Include="Modelo\Categoria.cs" />
     <Compile Include="Modelo\Cliente.cs" />
     <Compile Include="Modelo\Direccion.cs" />
-    <Compile Include="Modelo\Producto.cs" />
     <Compile Include="Modelo\Rubro.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Modelo\Turno.cs" />
