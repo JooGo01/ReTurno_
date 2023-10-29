@@ -69,10 +69,23 @@ namespace EjemploABM
             // Intenta convertir la cadena a un objeto DateTime
             DateTime.TryParseExact(fechaHoraIni, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtIni);
             DateTime.TryParseExact(fechaHoraFin, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtFin);
-                //String dtIni = "";
-                //String dtFin = "";
-                //Formato Fecha 20231018 17:00:00
+            //String dtIni = "";
+            //String dtFin = "";
+            //Formato Fecha 20231018 17:00:00
+            Boolean boolSobreTurno = Calendario_Controller.obtenerPorFecha(dtIni, dtFin, sucursal);
+            if (boolSobreTurno)
+            {
+                DialogResult dialogResult = MessageBox.Show("Ya hay un turno creado dentro de este rango horario en esta fecha ¿Desea crear el turno?", "Crear Turno", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //do something
+                    Calendario_Controller.crearTurno(usr, sucursal, dtIni, dtFin);
+                    MessageBox.Show("Turno Creado", "ReTurno");
+                }
+            }else {
                 Calendario_Controller.crearTurno(usr, sucursal, dtIni, dtFin);
+                MessageBox.Show("Turno Creado", "ReTurno");
+            }
         }
     }
 }

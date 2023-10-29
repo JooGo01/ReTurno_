@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Deployment.Internal;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace EjemploABM.Controladores
                "@id_usr, " +
                "@fecha_ini, " +
                "@fecha_fin, " +
-               "0,0);";
+               "0);";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             //cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
@@ -255,15 +256,16 @@ namespace EjemploABM.Controladores
             return trn;
         }
 
-        public static Boolean obtenerPorFecha(DateTime dt_ini, DateTime dt_fin)
+        public static Boolean obtenerPorFecha(DateTime dt_ini, DateTime dt_fin, Sucursal suc)
         {
             int cantidadTurnos = 0;
             Boolean boolTurno = false;
-            string query = "select * from dbo.turno where fecha_ini >= @fecha and fecha_ini<@fecha_fin;";
+            string query = "select * from dbo.turno where sucursal_id=@suc and ((fecha_ini >= @fecha and fecha_ini<@fecha_fin) or ( fecha_ini >= @fecha and fecha_fin<@fecha_fin) or (fecha_fin >= @fecha and fecha_fin<@fecha_fin));";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@fecha", dt_ini.ToString("yyyyMMdd HH:mm:ss"));
             cmd.Parameters.AddWithValue("@fecha_fin", dt_fin.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@suc", suc.id);
 
             try
             {
@@ -294,11 +296,53 @@ namespace EjemploABM.Controladores
             return boolTurno;
         }
 
+        public static Boolean obtenerPorFechaCambio(DateTime dt_ini, DateTime dt_fin, Sucursal suc)
+        {
+            int cantidadTurnos = 0;
+            Boolean boolTurno = false;
+            string query = "select * from dbo.turno where sucursal_id<>@suc and ((fecha_ini >= @fecha and fecha_ini<@fecha_fin) or ( fecha_ini >= @fecha and fecha_fin<@fecha_fin) or (fecha_fin >= @fecha and fecha_fin<@fecha_fin));";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@fecha", dt_ini.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@fecha_fin", dt_fin.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@suc", suc.id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cantidadTurnos = cantidadTurnos + 1;
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            if (cantidadTurnos > 0)
+            {
+                boolTurno = true;
+            }
+            else
+            {
+                boolTurno = false;
+            }
+
+            return boolTurno;
+        }
+
 
 
         // EDIT / PUT
 
-        public static bool editarTurno(Turno trn, Usuario usr, Sucursal suc, DateTime dt_ini, DateTime dt_fin, int estado, int estado_baja)
+        public static bool editarTurno(Turno trn, Usuario usr, Sucursal suc, DateTime dt_ini, DateTime dt_fin, int estado_baja)
         {
             //Darlo de alta en la BBDD
 
@@ -306,7 +350,6 @@ namespace EjemploABM.Controladores
                 "usuario_id  = @usuario , " +
                 "fecha_ini  = @fecha_ini  , " +
                 "fecha_fin  = @fecha_fin , " +
-                "estado  = @estado , " +
                 "estado_baja  = @estado_baja " +
                 "where id = @id ;";
 
@@ -316,8 +359,32 @@ namespace EjemploABM.Controladores
             cmd.Parameters.AddWithValue("@usuario", usr.id);
             cmd.Parameters.AddWithValue("@fecha_ini", dt_ini);
             cmd.Parameters.AddWithValue("@fecha_fin", dt_fin);
-            cmd.Parameters.AddWithValue("@estado", estado);
             cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
+
+            try
+            {
+                DB_Controller.open();
+                cmd.ExecuteNonQuery();
+                DB_Controller.close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+        }
+
+        public static bool bajarTurno(int id)
+        {
+            //Darlo de alta en la BBDD
+
+            string query = "update dbo.turno set estado_baja  = @estado_baja " +
+                "where id = @id ;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@estado_baja", 1);
 
             try
             {

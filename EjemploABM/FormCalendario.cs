@@ -427,9 +427,11 @@ namespace EjemploABM
 
         private void addUserControl(UserControl uc)
         {
-            uc.Dock = DockStyle.Fill;
-            panel_actividad.Controls.Clear();
-            panel_actividad.Controls.Add(uc);
+            //uc.Dock = DockStyle.Fill;
+            //panel_actividad.Controls.Clear();
+            //panel_actividad.Controls.Add(uc);
+            panel_listado_turno.Controls.Clear();
+            panel_listado_turno.Controls.Add(uc);
             //uc.BringToFront();
         }
 
@@ -438,6 +440,7 @@ namespace EjemploABM
             btnAgrandar.Visible = true;
             panel_actividad.Width = 276;
             btnAchicar.Visible = false;
+            btnAgrandar.BringToFront();
             ajustePanel();
 
         }
@@ -447,7 +450,8 @@ namespace EjemploABM
             btnAchicar.Visible = true;
             panel_actividad.Width = 843;
             btnAgrandar.Visible = false;
-            btnAchicar.Location = new Point(780, 454);
+            btnAchicar.Location = new Point(780,11);
+            btnAchicar.BringToFront();
             ajustePanel();
         }
     }

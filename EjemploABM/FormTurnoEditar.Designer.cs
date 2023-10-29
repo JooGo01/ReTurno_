@@ -199,7 +199,7 @@
             this.btnEditar.Depth = 0;
             this.btnEditar.HighEmphasis = true;
             this.btnEditar.Icon = null;
-            this.btnEditar.Location = new System.Drawing.Point(208, 6);
+            this.btnEditar.Location = new System.Drawing.Point(224, 6);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnEditar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnEditar.Name = "btnEditar";
@@ -210,6 +210,7 @@
             this.btnEditar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnEditar.UseAccentColor = false;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // FormTurnoEditar
             // 

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using EjemploABM.Controladores;
 using EjemploABM.Modelo;
 
+
 namespace EjemploABM.ControlesCalendario
 {
     public partial class Calendario_UC : UserControl
@@ -53,8 +54,8 @@ namespace EjemploABM.ControlesCalendario
         private void btnAgregarEvento_Click(object sender, EventArgs e)
         {
 
-            FormCalendario frmCalendario = new FormCalendario();
-            DialogResult dr = frmCalendario.ShowDialog();
+            FormTurno frmTurno = new FormTurno();
+            DialogResult dr = frmTurno.ShowDialog();
 
             if (dr == DialogResult.OK)
             {
@@ -65,28 +66,30 @@ namespace EjemploABM.ControlesCalendario
         private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
-
-            if (e.ColumnIndex == 7 &&  senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
-            {
-                //eliminar
-                //TODO - Button Clicked - Execute Code Here
-            }
-
-            if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
-            {
-                //editar
-                FormTurnoEditar frmCalendario = new FormTurnoEditar();
-                String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                frmCalendario.cargarTurno(Int32.Parse(id));
-                DialogResult dr = frmCalendario.ShowDialog();
-
-                if (dr == DialogResult.OK)
+            //String id_check = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if ((dgv_evento.Rows[e.RowIndex].Cells[0].Value)!=null) {
+                if (e.ColumnIndex == 7 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
-
+                    //eliminar
+                    String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    Calendario_Controller.bajarTurno(Int32.Parse(id_baja));
+                    MessageBox.Show("Turno dado de baja con exito", "ReTurno");
+                    //TODO - Button Clicked - Execute Code Here
                 }
-                //TODO - Button Clicked - Execute Code Here
+
+                if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                {
+                    //editar
+                    FormTurnoEditar frmCalendario = new FormTurnoEditar();
+                    String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    frmCalendario.cargarTurno(Int32.Parse(id));
+                    DialogResult dr = frmCalendario.ShowDialog();
+
+                    if (dr == DialogResult.OK)
+                    {
+                    }
+                    //TODO - Button Clicked - Execute Code Here
+                }
             }
         }
     }

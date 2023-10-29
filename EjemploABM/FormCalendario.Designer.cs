@@ -40,13 +40,15 @@
             this.panel_semana4 = new System.Windows.Forms.Panel();
             this.panel_semana5 = new System.Windows.Forms.Panel();
             this.panel_actividad = new System.Windows.Forms.Panel();
+            this.btnAchicar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.btnAgrandar = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.panel_control = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSiguiente = new MaterialSkin.Controls.MaterialButton();
             this.btnAnterior = new MaterialSkin.Controls.MaterialButton();
             this.tab_abm = new System.Windows.Forms.TabPage();
-            this.btnAgrandar = new MaterialSkin.Controls.MaterialFloatingActionButton();
-            this.btnAchicar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.panelBotones = new System.Windows.Forms.Panel();
+            this.panel_listado_turno = new System.Windows.Forms.Panel();
             this.lblMensajePanel = new System.Windows.Forms.Label();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
@@ -55,6 +57,8 @@
             this.panel_actividad.SuspendLayout();
             this.panel_control.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panelBotones.SuspendLayout();
+            this.panel_listado_turno.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlCalendario
@@ -167,14 +171,40 @@
             // 
             // panel_actividad
             // 
-            this.panel_actividad.Controls.Add(this.btnAchicar);
-            this.panel_actividad.Controls.Add(this.btnAgrandar);
-            this.panel_actividad.Controls.Add(this.lblMensajePanel);
+            this.panel_actividad.Controls.Add(this.panel_listado_turno);
+            this.panel_actividad.Controls.Add(this.panelBotones);
             this.panel_actividad.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel_actividad.Location = new System.Drawing.Point(848, 44);
             this.panel_actividad.Name = "panel_actividad";
             this.panel_actividad.Size = new System.Drawing.Size(276, 512);
             this.panel_actividad.TabIndex = 1;
+            // 
+            // btnAchicar
+            // 
+            this.btnAchicar.AnimateShowHideButton = true;
+            this.btnAchicar.Depth = 0;
+            this.btnAchicar.Icon = global::EjemploABM.Properties.Resources.flecha_derecha;
+            this.btnAchicar.Location = new System.Drawing.Point(212, 11);
+            this.btnAchicar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAchicar.Name = "btnAchicar";
+            this.btnAchicar.Size = new System.Drawing.Size(60, 65);
+            this.btnAchicar.TabIndex = 1;
+            this.btnAchicar.Text = "materialFloatingActionButton1";
+            this.btnAchicar.UseVisualStyleBackColor = true;
+            this.btnAchicar.Click += new System.EventHandler(this.btnAchicar_Click);
+            // 
+            // btnAgrandar
+            // 
+            this.btnAgrandar.Depth = 0;
+            this.btnAgrandar.Icon = global::EjemploABM.Properties.Resources.flecha_izquierda;
+            this.btnAgrandar.Location = new System.Drawing.Point(6, 11);
+            this.btnAgrandar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgrandar.Name = "btnAgrandar";
+            this.btnAgrandar.Size = new System.Drawing.Size(60, 65);
+            this.btnAgrandar.TabIndex = 0;
+            this.btnAgrandar.Text = "materialFloatingActionButton1";
+            this.btnAgrandar.UseVisualStyleBackColor = true;
+            this.btnAgrandar.Click += new System.EventHandler(this.btnAgrandar_Click);
             // 
             // panel_control
             // 
@@ -247,32 +277,25 @@
             this.tab_abm.Text = "ABM";
             this.tab_abm.UseVisualStyleBackColor = true;
             // 
-            // btnAgrandar
+            // panelBotones
             // 
-            this.btnAgrandar.Depth = 0;
-            this.btnAgrandar.Icon = global::EjemploABM.Properties.Resources.flecha_izquierda;
-            this.btnAgrandar.Location = new System.Drawing.Point(0, 454);
-            this.btnAgrandar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgrandar.Name = "btnAgrandar";
-            this.btnAgrandar.Size = new System.Drawing.Size(60, 65);
-            this.btnAgrandar.TabIndex = 0;
-            this.btnAgrandar.Text = "materialFloatingActionButton1";
-            this.btnAgrandar.UseVisualStyleBackColor = true;
-            this.btnAgrandar.Click += new System.EventHandler(this.btnAgrandar_Click);
+            this.panelBotones.BackColor = System.Drawing.Color.Transparent;
+            this.panelBotones.Controls.Add(this.btnAchicar);
+            this.panelBotones.Controls.Add(this.btnAgrandar);
+            this.panelBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBotones.Location = new System.Drawing.Point(0, 433);
+            this.panelBotones.Name = "panelBotones";
+            this.panelBotones.Size = new System.Drawing.Size(276, 79);
+            this.panelBotones.TabIndex = 5;
             // 
-            // btnAchicar
+            // panel_listado_turno
             // 
-            this.btnAchicar.AnimateShowHideButton = true;
-            this.btnAchicar.Depth = 0;
-            this.btnAchicar.Icon = global::EjemploABM.Properties.Resources.flecha_derecha;
-            this.btnAchicar.Location = new System.Drawing.Point(216, 454);
-            this.btnAchicar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAchicar.Name = "btnAchicar";
-            this.btnAchicar.Size = new System.Drawing.Size(60, 65);
-            this.btnAchicar.TabIndex = 1;
-            this.btnAchicar.Text = "materialFloatingActionButton1";
-            this.btnAchicar.UseVisualStyleBackColor = true;
-            this.btnAchicar.Click += new System.EventHandler(this.btnAchicar_Click);
+            this.panel_listado_turno.Controls.Add(this.lblMensajePanel);
+            this.panel_listado_turno.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_listado_turno.Location = new System.Drawing.Point(0, 0);
+            this.panel_listado_turno.Name = "panel_listado_turno";
+            this.panel_listado_turno.Size = new System.Drawing.Size(276, 433);
+            this.panel_listado_turno.TabIndex = 6;
             // 
             // lblMensajePanel
             // 
@@ -280,8 +303,8 @@
             this.lblMensajePanel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMensajePanel.Location = new System.Drawing.Point(0, 0);
             this.lblMensajePanel.Name = "lblMensajePanel";
-            this.lblMensajePanel.Size = new System.Drawing.Size(276, 512);
-            this.lblMensajePanel.TabIndex = 3;
+            this.lblMensajePanel.Size = new System.Drawing.Size(276, 433);
+            this.lblMensajePanel.TabIndex = 5;
             this.lblMensajePanel.Text = "Haga click en un dia para visualizar la grilla de actividades de esa fecha";
             this.lblMensajePanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -302,6 +325,8 @@
             this.panel_control.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelBotones.ResumeLayout(false);
+            this.panel_listado_turno.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -327,6 +352,8 @@
         public System.Windows.Forms.Panel panel_actividad;
         private MaterialSkin.Controls.MaterialFloatingActionButton btnAchicar;
         private MaterialSkin.Controls.MaterialFloatingActionButton btnAgrandar;
+        private System.Windows.Forms.Panel panel_listado_turno;
         private System.Windows.Forms.Label lblMensajePanel;
+        private System.Windows.Forms.Panel panelBotones;
     }
 }
