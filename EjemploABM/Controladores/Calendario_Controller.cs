@@ -224,20 +224,22 @@ namespace EjemploABM.Controladores
                 {
                     suc_id = reader.GetInt32(1);
                     usr_id = reader.GetInt32(2);
-                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
+                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetInt32(1));
                 }
 
                 reader.Close();
+                DB_Controller.close();
 
                 suc = Sucursal_Controller.obtenerPorId(suc_id);
                 usr = Usuario_Controller.obtenerPorId(usr_id);
 
+                DB_Controller.open();
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     trn = new Turno(reader.GetInt32(0), suc, usr, reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5));
-                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
+                    Trace.WriteLine("Usr encontrado, nombre: " + reader.GetInt32(0));
                 }
 
                 reader.Close();
