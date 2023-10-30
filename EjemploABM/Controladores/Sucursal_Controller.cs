@@ -325,5 +325,30 @@ namespace EjemploABM.Controladores
             }
 
         }
+
+        public static bool bajaSucursal(Sucursal suc, int estado_baja)
+        {
+            //Update en la BBDD
+
+            string query = "update dbo.sucursal set estado_baja  = @estado_baja " +
+                "where id = @id ;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", suc.id);
+            cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
+
+            try
+            {
+                DB_Controller.open();
+                cmd.ExecuteNonQuery();
+                DB_Controller.close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+        }
     }
 }

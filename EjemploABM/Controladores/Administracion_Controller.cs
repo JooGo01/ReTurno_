@@ -18,13 +18,11 @@ namespace EjemploABM.Controladores
             //Darlo de alta en la BBDD
 
             string query = "insert into dbo.administracion values" +
-               "(@id, " +
-               "@sucursal, " +
+               "(@sucursal, " +
                "@usuario " +
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
             cmd.Parameters.AddWithValue("@sucursal", suc.id);
             cmd.Parameters.AddWithValue("@usuario", usr.id);
 
@@ -149,7 +147,7 @@ namespace EjemploABM.Controladores
             //Update en la BBDD
             string query = "update dbo.administracion set estado_baja  = @estado_baja , " +
                 "sucursal_id = @sucursal_id  , " +
-                "usuario_id = @usuario_id  , " +
+                "usuario_id = @usuario_id  " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -157,6 +155,30 @@ namespace EjemploABM.Controladores
             cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
             cmd.Parameters.AddWithValue("@sucursal_id", suc.id);
             cmd.Parameters.AddWithValue("@usuario_id", usr.id);
+
+            try
+            {
+                DB_Controller.open();
+                cmd.ExecuteNonQuery();
+                DB_Controller.close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+        }
+
+        public static bool bajaAdministracion(Administracion adm)
+        {
+            //Update en la BBDD
+            string query = "update dbo.administracion set estado_baja  = @estado_baja " +
+                "where id = @id ;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", adm.id);
+            cmd.Parameters.AddWithValue("@estado_baja", 1);
 
             try
             {
