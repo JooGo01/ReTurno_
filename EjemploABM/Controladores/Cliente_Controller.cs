@@ -11,19 +11,19 @@ namespace EjemploABM.Controladores
 {
     class Cliente_Controller
     {
-        public static bool crearCliente(String rzn_social, Rubro rubro)
+        public static bool crearCliente(String rzn_social, Rubro rubro, String email)
         {
             //Darlo de alta en la BBDD
             // id, razon_social, rubro_id, estado_baja
             string query = "insert into dbo.cliente values" +
-               "(@id, " +
-               "@razon_social, " +
-               "@rubro_id, " +
+               "(@razon_social, " +
+               "@email, " +
+               "@rubro_id " +
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
             cmd.Parameters.AddWithValue("@razon_social", rzn_social);
+            cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@rubro_id", rubro.id);
 
             try
@@ -80,6 +80,7 @@ namespace EjemploABM.Controladores
             List<int> listIdRubro = new List<int>();
             List<Rubro> listRubro = new List<Rubro>();
             List<String> listRazonSocial = new List<String>();
+            List<String> listEmail = new List<String>();
             List<int> listEstadoBaja = new List<int>();
             string query = "select * from dbo.cliente;";
 
@@ -94,8 +95,9 @@ namespace EjemploABM.Controladores
                 {
                     listId.Add(reader.GetInt32(0));
                     listRazonSocial.Add(reader.GetString(1));
-                    listIdRubro.Add(reader.GetInt32(2));
-                    listEstadoBaja.Add(reader.GetInt32(3));
+                    listEmail.Add(reader.GetString(2));
+                    listIdRubro.Add(reader.GetInt32(3));
+                    listEstadoBaja.Add(reader.GetInt32(4));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -108,7 +110,7 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listId.Count; i++)
                 {
-                    list.Add(new Cliente(listId[i], listRazonSocial[i], listRubro[i], listEstadoBaja[i]));
+                    list.Add(new Cliente(listId[i], listRazonSocial[i], listRubro[i], listEmail[i], listEstadoBaja[i]));
                 }
 
                 DB_Controller.close();
@@ -143,7 +145,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    id_rub = reader.GetInt32(2);
+                    id_rub = reader.GetInt32(3);
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -173,7 +175,7 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    cli = new Cliente(reader.GetInt32(0), reader.GetString(1), rub, reader.GetInt32(3));
+                    cli = new Cliente(reader.GetInt32(0), reader.GetString(1), rub, reader.GetString(2), reader.GetInt32(4));
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetString(1));
                 }
 
@@ -193,18 +195,20 @@ namespace EjemploABM.Controladores
 
         // EDIT / PUT
 
-        public static bool editarCliente(Cliente cliente, Rubro rubro, String razon_social, int estado_baja)
+        public static bool editarCliente(Cliente cliente, Rubro rubro, String razon_social, String email, int estado_baja)
         {
             //Update en la BBDD
 
             string query = "update dbo.cliente set rubro_id  = @rubro , " +
                 "razon_social   = @razon_social , " +
+                "email   = @email , " +
                 "estado_baja  = @estado_baja " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", cliente.id);
             cmd.Parameters.AddWithValue("@rubro", rubro.id);
+            cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@razon_social", razon_social);
             cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
 

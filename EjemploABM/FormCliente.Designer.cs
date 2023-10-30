@@ -30,18 +30,17 @@ namespace EjemploABM
         private void InitializeComponent()
         {
             this.panel_contenedor = new System.Windows.Forms.Panel();
-            this.panel_contenedor_boton = new System.Windows.Forms.Panel();
-            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
-            this.panel_direccion = new System.Windows.Forms.Panel();
-            this.panel_contenedor_usuario = new System.Windows.Forms.Panel();
             this.panel_contenedor_cliente = new System.Windows.Forms.Panel();
-            this.cmbTipoUsuario = new MaterialSkin.Controls.MaterialComboBox();
+            this.cmbRubro = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtRazonSocial = new MaterialSkin.Controls.MaterialTextBox();
+            this.panel_contenedor_usuario = new System.Windows.Forms.Panel();
             this.txtDNI = new MaterialSkin.Controls.MaterialTextBox();
             this.txtContrasenia = new MaterialSkin.Controls.MaterialTextBox();
             this.txtTelefono = new MaterialSkin.Controls.MaterialTextBox();
             this.txtEmail = new MaterialSkin.Controls.MaterialTextBox();
             this.txtApellido = new MaterialSkin.Controls.MaterialTextBox();
             this.txtNombre = new MaterialSkin.Controls.MaterialTextBox();
+            this.panel_direccion = new System.Windows.Forms.Panel();
             this.txtCodPos = new MaterialSkin.Controls.MaterialTextBox();
             this.txtDepartamento = new MaterialSkin.Controls.MaterialTextBox();
             this.txtProvincia = new MaterialSkin.Controls.MaterialTextBox();
@@ -49,13 +48,13 @@ namespace EjemploABM
             this.txtCiudad = new MaterialSkin.Controls.MaterialTextBox();
             this.txtAltura = new MaterialSkin.Controls.MaterialTextBox();
             this.txtCalle = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtRazonSocial = new MaterialSkin.Controls.MaterialTextBox();
-            this.cmbRubro = new MaterialSkin.Controls.MaterialComboBox();
+            this.panel_contenedor_boton = new System.Windows.Forms.Panel();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.panel_contenedor.SuspendLayout();
-            this.panel_contenedor_boton.SuspendLayout();
-            this.panel_direccion.SuspendLayout();
-            this.panel_contenedor_usuario.SuspendLayout();
             this.panel_contenedor_cliente.SuspendLayout();
+            this.panel_contenedor_usuario.SuspendLayout();
+            this.panel_direccion.SuspendLayout();
+            this.panel_contenedor_boton.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_contenedor
@@ -70,52 +69,58 @@ namespace EjemploABM
             this.panel_contenedor.Size = new System.Drawing.Size(920, 545);
             this.panel_contenedor.TabIndex = 0;
             // 
-            // panel_contenedor_boton
+            // panel_contenedor_cliente
             // 
-            this.panel_contenedor_boton.Controls.Add(this.btnAgregar);
-            this.panel_contenedor_boton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_contenedor_boton.Location = new System.Drawing.Point(0, 500);
-            this.panel_contenedor_boton.Name = "panel_contenedor_boton";
-            this.panel_contenedor_boton.Size = new System.Drawing.Size(920, 45);
-            this.panel_contenedor_boton.TabIndex = 0;
+            this.panel_contenedor_cliente.Controls.Add(this.cmbRubro);
+            this.panel_contenedor_cliente.Controls.Add(this.txtRazonSocial);
+            this.panel_contenedor_cliente.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_contenedor_cliente.Location = new System.Drawing.Point(2, 0);
+            this.panel_contenedor_cliente.Name = "panel_contenedor_cliente";
+            this.panel_contenedor_cliente.Size = new System.Drawing.Size(306, 500);
+            this.panel_contenedor_cliente.TabIndex = 3;
             // 
-            // btnAgregar
+            // cmbRubro
             // 
-            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnAgregar.Depth = 0;
-            this.btnAgregar.HighEmphasis = true;
-            this.btnAgregar.Icon = null;
-            this.btnAgregar.Location = new System.Drawing.Point(394, 6);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnAgregar.Size = new System.Drawing.Size(129, 36);
-            this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Crear cliente";
-            this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnAgregar.UseAccentColor = false;
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.cmbRubro.AutoResize = false;
+            this.cmbRubro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbRubro.Depth = 0;
+            this.cmbRubro.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbRubro.DropDownHeight = 174;
+            this.cmbRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRubro.DropDownWidth = 121;
+            this.cmbRubro.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbRubro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbRubro.FormattingEnabled = true;
+            this.cmbRubro.IntegralHeight = false;
+            this.cmbRubro.ItemHeight = 43;
+            this.cmbRubro.Location = new System.Drawing.Point(3, 108);
+            this.cmbRubro.MaxDropDownItems = 4;
+            this.cmbRubro.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbRubro.Name = "cmbRubro";
+            this.cmbRubro.Size = new System.Drawing.Size(279, 49);
+            this.cmbRubro.StartIndex = 0;
+            this.cmbRubro.TabIndex = 28;
             // 
-            // panel_direccion
+            // txtRazonSocial
             // 
-            this.panel_direccion.Controls.Add(this.txtCodPos);
-            this.panel_direccion.Controls.Add(this.txtDepartamento);
-            this.panel_direccion.Controls.Add(this.txtProvincia);
-            this.panel_direccion.Controls.Add(this.txtPiso);
-            this.panel_direccion.Controls.Add(this.txtCiudad);
-            this.panel_direccion.Controls.Add(this.txtAltura);
-            this.panel_direccion.Controls.Add(this.txtCalle);
-            this.panel_direccion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_direccion.Location = new System.Drawing.Point(614, 0);
-            this.panel_direccion.Name = "panel_direccion";
-            this.panel_direccion.Size = new System.Drawing.Size(306, 500);
-            this.panel_direccion.TabIndex = 1;
+            this.txtRazonSocial.AnimateReadOnly = false;
+            this.txtRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRazonSocial.Depth = 0;
+            this.txtRazonSocial.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txtRazonSocial.LeadingIcon = null;
+            this.txtRazonSocial.Location = new System.Drawing.Point(3, 51);
+            this.txtRazonSocial.MaxLength = 50;
+            this.txtRazonSocial.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtRazonSocial.Multiline = false;
+            this.txtRazonSocial.Name = "txtRazonSocial";
+            this.txtRazonSocial.Size = new System.Drawing.Size(279, 50);
+            this.txtRazonSocial.TabIndex = 22;
+            this.txtRazonSocial.Text = "Ingrese Razon Social";
+            this.txtRazonSocial.TrailingIcon = null;
+            this.txtRazonSocial.WordWrap = false;
             // 
             // panel_contenedor_usuario
             // 
-            this.panel_contenedor_usuario.Controls.Add(this.cmbTipoUsuario);
             this.panel_contenedor_usuario.Controls.Add(this.txtDNI);
             this.panel_contenedor_usuario.Controls.Add(this.txtContrasenia);
             this.panel_contenedor_usuario.Controls.Add(this.txtTelefono);
@@ -127,38 +132,6 @@ namespace EjemploABM
             this.panel_contenedor_usuario.Name = "panel_contenedor_usuario";
             this.panel_contenedor_usuario.Size = new System.Drawing.Size(306, 500);
             this.panel_contenedor_usuario.TabIndex = 2;
-            // 
-            // panel_contenedor_cliente
-            // 
-            this.panel_contenedor_cliente.Controls.Add(this.cmbRubro);
-            this.panel_contenedor_cliente.Controls.Add(this.txtRazonSocial);
-            this.panel_contenedor_cliente.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_contenedor_cliente.Location = new System.Drawing.Point(2, 0);
-            this.panel_contenedor_cliente.Name = "panel_contenedor_cliente";
-            this.panel_contenedor_cliente.Size = new System.Drawing.Size(306, 500);
-            this.panel_contenedor_cliente.TabIndex = 3;
-            // 
-            // cmbTipoUsuario
-            // 
-            this.cmbTipoUsuario.AutoResize = false;
-            this.cmbTipoUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cmbTipoUsuario.Depth = 0;
-            this.cmbTipoUsuario.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cmbTipoUsuario.DropDownHeight = 174;
-            this.cmbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoUsuario.DropDownWidth = 121;
-            this.cmbTipoUsuario.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cmbTipoUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cmbTipoUsuario.FormattingEnabled = true;
-            this.cmbTipoUsuario.IntegralHeight = false;
-            this.cmbTipoUsuario.ItemHeight = 43;
-            this.cmbTipoUsuario.Location = new System.Drawing.Point(6, 387);
-            this.cmbTipoUsuario.MaxDropDownItems = 4;
-            this.cmbTipoUsuario.MouseState = MaterialSkin.MouseState.OUT;
-            this.cmbTipoUsuario.Name = "cmbTipoUsuario";
-            this.cmbTipoUsuario.Size = new System.Drawing.Size(279, 49);
-            this.cmbTipoUsuario.StartIndex = 0;
-            this.cmbTipoUsuario.TabIndex = 27;
             // 
             // txtDNI
             // 
@@ -262,6 +235,21 @@ namespace EjemploABM
             this.txtNombre.Text = "Ingrese Nombre";
             this.txtNombre.TrailingIcon = null;
             this.txtNombre.WordWrap = false;
+            // 
+            // panel_direccion
+            // 
+            this.panel_direccion.Controls.Add(this.txtCodPos);
+            this.panel_direccion.Controls.Add(this.txtDepartamento);
+            this.panel_direccion.Controls.Add(this.txtProvincia);
+            this.panel_direccion.Controls.Add(this.txtPiso);
+            this.panel_direccion.Controls.Add(this.txtCiudad);
+            this.panel_direccion.Controls.Add(this.txtAltura);
+            this.panel_direccion.Controls.Add(this.txtCalle);
+            this.panel_direccion.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_direccion.Location = new System.Drawing.Point(614, 0);
+            this.panel_direccion.Name = "panel_direccion";
+            this.panel_direccion.Size = new System.Drawing.Size(306, 500);
+            this.panel_direccion.TabIndex = 1;
             // 
             // txtCodPos
             // 
@@ -383,45 +371,34 @@ namespace EjemploABM
             this.txtCalle.TrailingIcon = null;
             this.txtCalle.WordWrap = false;
             // 
-            // txtRazonSocial
+            // panel_contenedor_boton
             // 
-            this.txtRazonSocial.AnimateReadOnly = false;
-            this.txtRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRazonSocial.Depth = 0;
-            this.txtRazonSocial.Font = new System.Drawing.Font("Roboto", 12F);
-            this.txtRazonSocial.LeadingIcon = null;
-            this.txtRazonSocial.Location = new System.Drawing.Point(3, 51);
-            this.txtRazonSocial.MaxLength = 50;
-            this.txtRazonSocial.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtRazonSocial.Multiline = false;
-            this.txtRazonSocial.Name = "txtRazonSocial";
-            this.txtRazonSocial.Size = new System.Drawing.Size(279, 50);
-            this.txtRazonSocial.TabIndex = 22;
-            this.txtRazonSocial.Text = "Ingrese Razon Social";
-            this.txtRazonSocial.TrailingIcon = null;
-            this.txtRazonSocial.WordWrap = false;
+            this.panel_contenedor_boton.Controls.Add(this.btnAgregar);
+            this.panel_contenedor_boton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_contenedor_boton.Location = new System.Drawing.Point(0, 500);
+            this.panel_contenedor_boton.Name = "panel_contenedor_boton";
+            this.panel_contenedor_boton.Size = new System.Drawing.Size(920, 45);
+            this.panel_contenedor_boton.TabIndex = 0;
             // 
-            // cmbRubro
+            // btnAgregar
             // 
-            this.cmbRubro.AutoResize = false;
-            this.cmbRubro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cmbRubro.Depth = 0;
-            this.cmbRubro.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cmbRubro.DropDownHeight = 174;
-            this.cmbRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRubro.DropDownWidth = 121;
-            this.cmbRubro.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cmbRubro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cmbRubro.FormattingEnabled = true;
-            this.cmbRubro.IntegralHeight = false;
-            this.cmbRubro.ItemHeight = 43;
-            this.cmbRubro.Location = new System.Drawing.Point(3, 108);
-            this.cmbRubro.MaxDropDownItems = 4;
-            this.cmbRubro.MouseState = MaterialSkin.MouseState.OUT;
-            this.cmbRubro.Name = "cmbRubro";
-            this.cmbRubro.Size = new System.Drawing.Size(279, 49);
-            this.cmbRubro.StartIndex = 0;
-            this.cmbRubro.TabIndex = 28;
+            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAgregar.Depth = 0;
+            this.btnAgregar.HighEmphasis = true;
+            this.btnAgregar.Icon = null;
+            this.btnAgregar.Location = new System.Drawing.Point(394, 6);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAgregar.Size = new System.Drawing.Size(129, 36);
+            this.btnAgregar.TabIndex = 0;
+            this.btnAgregar.Text = "Crear cliente";
+            this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAgregar.UseAccentColor = false;
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // FormCliente
             // 
@@ -433,11 +410,11 @@ namespace EjemploABM
             this.Text = "Alta Cliente";
             this.Load += new System.EventHandler(this.FormCliente_Load);
             this.panel_contenedor.ResumeLayout(false);
+            this.panel_contenedor_cliente.ResumeLayout(false);
+            this.panel_contenedor_usuario.ResumeLayout(false);
+            this.panel_direccion.ResumeLayout(false);
             this.panel_contenedor_boton.ResumeLayout(false);
             this.panel_contenedor_boton.PerformLayout();
-            this.panel_direccion.ResumeLayout(false);
-            this.panel_contenedor_usuario.ResumeLayout(false);
-            this.panel_contenedor_cliente.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -450,7 +427,6 @@ namespace EjemploABM
         private System.Windows.Forms.Panel panel_contenedor_cliente;
         private System.Windows.Forms.Panel panel_contenedor_usuario;
         private System.Windows.Forms.Panel panel_direccion;
-        private MaterialSkin.Controls.MaterialComboBox cmbTipoUsuario;
         private MaterialSkin.Controls.MaterialTextBox txtDNI;
         private MaterialSkin.Controls.MaterialTextBox txtContrasenia;
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;

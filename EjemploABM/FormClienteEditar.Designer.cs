@@ -34,7 +34,6 @@ namespace EjemploABM
             this.cmbRubro = new MaterialSkin.Controls.MaterialComboBox();
             this.txtRazonSocial = new MaterialSkin.Controls.MaterialTextBox();
             this.panel_contenedor_usuario = new System.Windows.Forms.Panel();
-            this.cmbTipoUsuario = new MaterialSkin.Controls.MaterialComboBox();
             this.txtDNI = new MaterialSkin.Controls.MaterialTextBox();
             this.txtContrasenia = new MaterialSkin.Controls.MaterialTextBox();
             this.txtTelefono = new MaterialSkin.Controls.MaterialTextBox();
@@ -122,7 +121,6 @@ namespace EjemploABM
             // 
             // panel_contenedor_usuario
             // 
-            this.panel_contenedor_usuario.Controls.Add(this.cmbTipoUsuario);
             this.panel_contenedor_usuario.Controls.Add(this.txtDNI);
             this.panel_contenedor_usuario.Controls.Add(this.txtContrasenia);
             this.panel_contenedor_usuario.Controls.Add(this.txtTelefono);
@@ -134,28 +132,6 @@ namespace EjemploABM
             this.panel_contenedor_usuario.Name = "panel_contenedor_usuario";
             this.panel_contenedor_usuario.Size = new System.Drawing.Size(306, 500);
             this.panel_contenedor_usuario.TabIndex = 2;
-            // 
-            // cmbTipoUsuario
-            // 
-            this.cmbTipoUsuario.AutoResize = false;
-            this.cmbTipoUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cmbTipoUsuario.Depth = 0;
-            this.cmbTipoUsuario.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cmbTipoUsuario.DropDownHeight = 174;
-            this.cmbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoUsuario.DropDownWidth = 121;
-            this.cmbTipoUsuario.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cmbTipoUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cmbTipoUsuario.FormattingEnabled = true;
-            this.cmbTipoUsuario.IntegralHeight = false;
-            this.cmbTipoUsuario.ItemHeight = 43;
-            this.cmbTipoUsuario.Location = new System.Drawing.Point(6, 387);
-            this.cmbTipoUsuario.MaxDropDownItems = 4;
-            this.cmbTipoUsuario.MouseState = MaterialSkin.MouseState.OUT;
-            this.cmbTipoUsuario.Name = "cmbTipoUsuario";
-            this.cmbTipoUsuario.Size = new System.Drawing.Size(279, 49);
-            this.cmbTipoUsuario.StartIndex = 0;
-            this.cmbTipoUsuario.TabIndex = 27;
             // 
             // txtDNI
             // 
@@ -416,12 +392,13 @@ namespace EjemploABM
             this.btnEditar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnEditar.Size = new System.Drawing.Size(129, 36);
+            this.btnEditar.Size = new System.Drawing.Size(133, 36);
             this.btnEditar.TabIndex = 0;
             this.btnEditar.Text = "Editar cliente";
             this.btnEditar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnEditar.UseAccentColor = false;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // FormClienteEditar
             // 
@@ -430,7 +407,7 @@ namespace EjemploABM
             this.ClientSize = new System.Drawing.Size(926, 612);
             this.Controls.Add(this.panel_contenedor);
             this.Name = "FormClienteEditar";
-            this.Text = "FormClienteEditar";
+            this.Text = "Editar Cliente";
             this.Load += new System.EventHandler(this.FormClienteEditar_Load);
             this.panel_contenedor.ResumeLayout(false);
             this.panel_contenedor_cliente.ResumeLayout(false);
@@ -449,7 +426,6 @@ namespace EjemploABM
         private MaterialSkin.Controls.MaterialComboBox cmbRubro;
         private MaterialSkin.Controls.MaterialTextBox txtRazonSocial;
         private System.Windows.Forms.Panel panel_contenedor_usuario;
-        private MaterialSkin.Controls.MaterialComboBox cmbTipoUsuario;
         private MaterialSkin.Controls.MaterialTextBox txtDNI;
         private MaterialSkin.Controls.MaterialTextBox txtContrasenia;
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;
