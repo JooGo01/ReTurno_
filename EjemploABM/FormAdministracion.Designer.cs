@@ -30,10 +30,10 @@ namespace EjemploABM
         private void InitializeComponent()
         {
             this.panel_contenedor_adm = new System.Windows.Forms.Panel();
-            this.panel_contenedor_btn = new System.Windows.Forms.Panel();
-            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.cmbSucursal = new MaterialSkin.Controls.MaterialComboBox();
             this.txtEmail = new MaterialSkin.Controls.MaterialTextBox();
+            this.panel_contenedor_btn = new System.Windows.Forms.Panel();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.panel_contenedor_adm.SuspendLayout();
             this.panel_contenedor_btn.SuspendLayout();
             this.SuspendLayout();
@@ -48,34 +48,6 @@ namespace EjemploABM
             this.panel_contenedor_adm.Name = "panel_contenedor_adm";
             this.panel_contenedor_adm.Size = new System.Drawing.Size(586, 217);
             this.panel_contenedor_adm.TabIndex = 0;
-            // 
-            // panel_contenedor_btn
-            // 
-            this.panel_contenedor_btn.Controls.Add(this.btnAgregar);
-            this.panel_contenedor_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_contenedor_btn.Location = new System.Drawing.Point(0, 168);
-            this.panel_contenedor_btn.Name = "panel_contenedor_btn";
-            this.panel_contenedor_btn.Size = new System.Drawing.Size(586, 49);
-            this.panel_contenedor_btn.TabIndex = 0;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnAgregar.Depth = 0;
-            this.btnAgregar.HighEmphasis = true;
-            this.btnAgregar.Icon = null;
-            this.btnAgregar.Location = new System.Drawing.Point(197, 6);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnAgregar.Size = new System.Drawing.Size(214, 36);
-            this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Agregar Administracion";
-            this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnAgregar.UseAccentColor = false;
-            this.btnAgregar.UseVisualStyleBackColor = true;
             // 
             // cmbSucursal
             // 
@@ -115,6 +87,35 @@ namespace EjemploABM
             this.txtEmail.TabIndex = 28;
             this.txtEmail.Text = "Ingrese Email Administrador/Vendedor";
             this.txtEmail.TrailingIcon = null;
+            // 
+            // panel_contenedor_btn
+            // 
+            this.panel_contenedor_btn.Controls.Add(this.btnAgregar);
+            this.panel_contenedor_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_contenedor_btn.Location = new System.Drawing.Point(0, 168);
+            this.panel_contenedor_btn.Name = "panel_contenedor_btn";
+            this.panel_contenedor_btn.Size = new System.Drawing.Size(586, 49);
+            this.panel_contenedor_btn.TabIndex = 0;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAgregar.Depth = 0;
+            this.btnAgregar.HighEmphasis = true;
+            this.btnAgregar.Icon = null;
+            this.btnAgregar.Location = new System.Drawing.Point(197, 6);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAgregar.Size = new System.Drawing.Size(214, 36);
+            this.btnAgregar.TabIndex = 0;
+            this.btnAgregar.Text = "Agregar Administracion";
+            this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAgregar.UseAccentColor = false;
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // FormAdministracion
             // 
