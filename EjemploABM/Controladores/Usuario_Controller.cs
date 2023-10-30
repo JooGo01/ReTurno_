@@ -353,9 +353,29 @@ namespace EjemploABM.Controladores
 
         }
 
-     
+        public static bool bajaUsuario(Usuario usr)
+        {
+            //Darlo de alta en la BBDD
 
+            string query = "update dbo.usuario set estado_baja = @baja " +
+                "where id = @id ;";
 
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", usr.id);
+            cmd.Parameters.AddWithValue("@baja", 1);
 
+            try
+            {
+                DB_Controller.connection.Open();
+                cmd.ExecuteNonQuery();
+                DB_Controller.connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+        }
     }
 }

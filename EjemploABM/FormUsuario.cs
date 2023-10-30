@@ -28,7 +28,7 @@ namespace EjemploABM
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
+            crear();
         }
 
         private void crear() {

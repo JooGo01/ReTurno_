@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using EjemploABM.ControlesCalendario;
+using EjemploABM.ControlesDeUsuario;
 using MaterialSkin;
 
 namespace EjemploABM
@@ -453,6 +454,25 @@ namespace EjemploABM
             btnAchicar.Location = new Point(780,11);
             btnAchicar.BringToFront();
             ajustePanel();
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            ControladorUsuario cu = new ControladorUsuario();
+            addUserControlTabAbm(cu);
+        }
+
+        private void addUserControlTabAbm(UserControl uc)
+        {
+            uc.Dock = DockStyle.Fill;
+            panel_contenedor_abm.Controls.Clear();
+            panel_contenedor_abm.Controls.Add(uc);
+            uc.BringToFront();
         }
     }
 }

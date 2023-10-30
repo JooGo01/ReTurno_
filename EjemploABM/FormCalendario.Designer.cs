@@ -40,25 +40,33 @@
             this.panel_semana4 = new System.Windows.Forms.Panel();
             this.panel_semana5 = new System.Windows.Forms.Panel();
             this.panel_actividad = new System.Windows.Forms.Panel();
-            this.btnAchicar = new MaterialSkin.Controls.MaterialFloatingActionButton();
-            this.btnAgrandar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.panel_listado_turno = new System.Windows.Forms.Panel();
+            this.lblMensajePanel = new System.Windows.Forms.Label();
+            this.panelBotones = new System.Windows.Forms.Panel();
             this.panel_control = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSiguiente = new MaterialSkin.Controls.MaterialButton();
             this.btnAnterior = new MaterialSkin.Controls.MaterialButton();
             this.tab_abm = new System.Windows.Forms.TabPage();
-            this.panelBotones = new System.Windows.Forms.Panel();
-            this.panel_listado_turno = new System.Windows.Forms.Panel();
-            this.lblMensajePanel = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel_contenedor_abm = new System.Windows.Forms.Panel();
+            this.btnCliente = new MaterialSkin.Controls.MaterialButton();
+            this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
+            this.btnAdm = new MaterialSkin.Controls.MaterialButton();
+            this.btnAchicar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.btnAgrandar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
             this.panel_calendario.SuspendLayout();
             this.panel_actividad.SuspendLayout();
+            this.panel_listado_turno.SuspendLayout();
+            this.panelBotones.SuspendLayout();
             this.panel_control.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panelBotones.SuspendLayout();
-            this.panel_listado_turno.SuspendLayout();
+            this.tab_abm.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlCalendario
@@ -179,32 +187,36 @@
             this.panel_actividad.Size = new System.Drawing.Size(276, 512);
             this.panel_actividad.TabIndex = 1;
             // 
-            // btnAchicar
+            // panel_listado_turno
             // 
-            this.btnAchicar.AnimateShowHideButton = true;
-            this.btnAchicar.Depth = 0;
-            this.btnAchicar.Icon = global::EjemploABM.Properties.Resources.flecha_derecha;
-            this.btnAchicar.Location = new System.Drawing.Point(212, 11);
-            this.btnAchicar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAchicar.Name = "btnAchicar";
-            this.btnAchicar.Size = new System.Drawing.Size(60, 65);
-            this.btnAchicar.TabIndex = 1;
-            this.btnAchicar.Text = "materialFloatingActionButton1";
-            this.btnAchicar.UseVisualStyleBackColor = true;
-            this.btnAchicar.Click += new System.EventHandler(this.btnAchicar_Click);
+            this.panel_listado_turno.Controls.Add(this.lblMensajePanel);
+            this.panel_listado_turno.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_listado_turno.Location = new System.Drawing.Point(0, 0);
+            this.panel_listado_turno.Name = "panel_listado_turno";
+            this.panel_listado_turno.Size = new System.Drawing.Size(276, 433);
+            this.panel_listado_turno.TabIndex = 6;
             // 
-            // btnAgrandar
+            // lblMensajePanel
             // 
-            this.btnAgrandar.Depth = 0;
-            this.btnAgrandar.Icon = global::EjemploABM.Properties.Resources.flecha_izquierda;
-            this.btnAgrandar.Location = new System.Drawing.Point(6, 11);
-            this.btnAgrandar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgrandar.Name = "btnAgrandar";
-            this.btnAgrandar.Size = new System.Drawing.Size(60, 65);
-            this.btnAgrandar.TabIndex = 0;
-            this.btnAgrandar.Text = "materialFloatingActionButton1";
-            this.btnAgrandar.UseVisualStyleBackColor = true;
-            this.btnAgrandar.Click += new System.EventHandler(this.btnAgrandar_Click);
+            this.lblMensajePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMensajePanel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensajePanel.Location = new System.Drawing.Point(0, 0);
+            this.lblMensajePanel.Name = "lblMensajePanel";
+            this.lblMensajePanel.Size = new System.Drawing.Size(276, 433);
+            this.lblMensajePanel.TabIndex = 5;
+            this.lblMensajePanel.Text = "Haga click en un dia para visualizar la grilla de actividades de esa fecha";
+            this.lblMensajePanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelBotones
+            // 
+            this.panelBotones.BackColor = System.Drawing.Color.Transparent;
+            this.panelBotones.Controls.Add(this.btnAchicar);
+            this.panelBotones.Controls.Add(this.btnAgrandar);
+            this.panelBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBotones.Location = new System.Drawing.Point(0, 433);
+            this.panelBotones.Name = "panelBotones";
+            this.panelBotones.Size = new System.Drawing.Size(276, 79);
+            this.panelBotones.TabIndex = 5;
             // 
             // panel_control
             // 
@@ -269,6 +281,8 @@
             // 
             // tab_abm
             // 
+            this.tab_abm.Controls.Add(this.panel_contenedor_abm);
+            this.tab_abm.Controls.Add(this.panel2);
             this.tab_abm.Location = new System.Drawing.Point(4, 22);
             this.tab_abm.Name = "tab_abm";
             this.tab_abm.Padding = new System.Windows.Forms.Padding(3);
@@ -277,36 +291,130 @@
             this.tab_abm.Text = "ABM";
             this.tab_abm.UseVisualStyleBackColor = true;
             // 
-            // panelBotones
+            // panel2
             // 
-            this.panelBotones.BackColor = System.Drawing.Color.Transparent;
-            this.panelBotones.Controls.Add(this.btnAchicar);
-            this.panelBotones.Controls.Add(this.btnAgrandar);
-            this.panelBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBotones.Location = new System.Drawing.Point(0, 433);
-            this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(276, 79);
-            this.panelBotones.TabIndex = 5;
+            this.panel2.Controls.Add(this.materialButton1);
+            this.panel2.Controls.Add(this.btnAdm);
+            this.panel2.Controls.Add(this.btnUsuario);
+            this.panel2.Controls.Add(this.btnCliente);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1124, 41);
+            this.panel2.TabIndex = 0;
             // 
-            // panel_listado_turno
+            // panel_contenedor_abm
             // 
-            this.panel_listado_turno.Controls.Add(this.lblMensajePanel);
-            this.panel_listado_turno.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_listado_turno.Location = new System.Drawing.Point(0, 0);
-            this.panel_listado_turno.Name = "panel_listado_turno";
-            this.panel_listado_turno.Size = new System.Drawing.Size(276, 433);
-            this.panel_listado_turno.TabIndex = 6;
+            this.panel_contenedor_abm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_contenedor_abm.Location = new System.Drawing.Point(3, 44);
+            this.panel_contenedor_abm.Name = "panel_contenedor_abm";
+            this.panel_contenedor_abm.Size = new System.Drawing.Size(1124, 515);
+            this.panel_contenedor_abm.TabIndex = 1;
             // 
-            // lblMensajePanel
+            // btnCliente
             // 
-            this.lblMensajePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMensajePanel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensajePanel.Location = new System.Drawing.Point(0, 0);
-            this.lblMensajePanel.Name = "lblMensajePanel";
-            this.lblMensajePanel.Size = new System.Drawing.Size(276, 433);
-            this.lblMensajePanel.TabIndex = 5;
-            this.lblMensajePanel.Text = "Haga click en un dia para visualizar la grilla de actividades de esa fecha";
-            this.lblMensajePanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCliente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCliente.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnCliente.Depth = 0;
+            this.btnCliente.HighEmphasis = true;
+            this.btnCliente.Icon = null;
+            this.btnCliente.Location = new System.Drawing.Point(4, 3);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCliente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnCliente.Size = new System.Drawing.Size(80, 36);
+            this.btnCliente.TabIndex = 0;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnCliente.UseAccentColor = false;
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
+            // 
+            // btnUsuario
+            // 
+            this.btnUsuario.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnUsuario.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnUsuario.Depth = 0;
+            this.btnUsuario.HighEmphasis = true;
+            this.btnUsuario.Icon = null;
+            this.btnUsuario.Location = new System.Drawing.Point(89, 3);
+            this.btnUsuario.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnUsuario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnUsuario.Size = new System.Drawing.Size(83, 36);
+            this.btnUsuario.TabIndex = 1;
+            this.btnUsuario.Text = "Usuario";
+            this.btnUsuario.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnUsuario.UseAccentColor = false;
+            this.btnUsuario.UseVisualStyleBackColor = true;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
+            // 
+            // btnAdm
+            // 
+            this.btnAdm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdm.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAdm.Depth = 0;
+            this.btnAdm.HighEmphasis = true;
+            this.btnAdm.Icon = null;
+            this.btnAdm.Location = new System.Drawing.Point(180, 3);
+            this.btnAdm.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAdm.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAdm.Name = "btnAdm";
+            this.btnAdm.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdm.Size = new System.Drawing.Size(144, 36);
+            this.btnAdm.TabIndex = 2;
+            this.btnAdm.Text = "Administracion";
+            this.btnAdm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdm.UseAccentColor = false;
+            this.btnAdm.UseVisualStyleBackColor = true;
+            // 
+            // btnAchicar
+            // 
+            this.btnAchicar.AnimateShowHideButton = true;
+            this.btnAchicar.Depth = 0;
+            this.btnAchicar.Icon = global::EjemploABM.Properties.Resources.flecha_derecha;
+            this.btnAchicar.Location = new System.Drawing.Point(212, 11);
+            this.btnAchicar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAchicar.Name = "btnAchicar";
+            this.btnAchicar.Size = new System.Drawing.Size(60, 65);
+            this.btnAchicar.TabIndex = 1;
+            this.btnAchicar.Text = "materialFloatingActionButton1";
+            this.btnAchicar.UseVisualStyleBackColor = true;
+            this.btnAchicar.Click += new System.EventHandler(this.btnAchicar_Click);
+            // 
+            // btnAgrandar
+            // 
+            this.btnAgrandar.Depth = 0;
+            this.btnAgrandar.Icon = global::EjemploABM.Properties.Resources.flecha_izquierda;
+            this.btnAgrandar.Location = new System.Drawing.Point(6, 11);
+            this.btnAgrandar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgrandar.Name = "btnAgrandar";
+            this.btnAgrandar.Size = new System.Drawing.Size(60, 65);
+            this.btnAgrandar.TabIndex = 0;
+            this.btnAgrandar.Text = "materialFloatingActionButton1";
+            this.btnAgrandar.UseVisualStyleBackColor = true;
+            this.btnAgrandar.Click += new System.EventHandler(this.btnAgrandar_Click);
+            // 
+            // materialButton1
+            // 
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = null;
+            this.materialButton1.Location = new System.Drawing.Point(332, 3);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(144, 36);
+            this.materialButton1.TabIndex = 3;
+            this.materialButton1.Text = "Sucursal";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
             // 
             // FormCalendario
             // 
@@ -314,6 +422,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1144, 655);
             this.Controls.Add(this.tabControlCalendario);
+            this.DrawerTabControl = this.tabControlCalendario;
             this.Name = "FormCalendario";
             this.Text = "FormCalendario";
             this.Load += new System.EventHandler(this.FormCalendario_Load);
@@ -322,11 +431,14 @@
             this.panel_contenedor_calendario.ResumeLayout(false);
             this.panel_calendario.ResumeLayout(false);
             this.panel_actividad.ResumeLayout(false);
+            this.panel_listado_turno.ResumeLayout(false);
+            this.panelBotones.ResumeLayout(false);
             this.panel_control.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelBotones.ResumeLayout(false);
-            this.panel_listado_turno.ResumeLayout(false);
+            this.tab_abm.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -355,5 +467,11 @@
         private System.Windows.Forms.Panel panel_listado_turno;
         private System.Windows.Forms.Label lblMensajePanel;
         private System.Windows.Forms.Panel panelBotones;
+        private System.Windows.Forms.Panel panel_contenedor_abm;
+        private System.Windows.Forms.Panel panel2;
+        private MaterialSkin.Controls.MaterialButton btnUsuario;
+        private MaterialSkin.Controls.MaterialButton btnCliente;
+        private MaterialSkin.Controls.MaterialButton btnAdm;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }

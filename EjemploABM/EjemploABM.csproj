@@ -79,23 +79,11 @@
     <Compile Include="ControlesCalendario\Calendario_UC.Designer.cs">
       <DependentUpon>Calendario_UC.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlesDeUsuario\Categorias_UC.cs">
+    <Compile Include="ControlesDeUsuario\ControladorUsuario.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlesDeUsuario\Categorias_UC.Designer.cs">
-      <DependentUpon>Categorias_UC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ControlesDeUsuario\Productos_UC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ControlesDeUsuario\Productos_UC.Designer.cs">
-      <DependentUpon>Productos_UC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ControlesDeUsuario\Usuarios_UC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ControlesDeUsuario\Usuarios_UC.Designer.cs">
-      <DependentUpon>Usuarios_UC.cs</DependentUpon>
+    <Compile Include="ControlesDeUsuario\ControladorUsuario.Designer.cs">
+      <DependentUpon>ControladorUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCalendario.cs">
       <SubType>Form</SubType>
@@ -133,11 +121,11 @@
     <Compile Include="FormUsuario.Designer.cs">
       <DependentUpon>FormUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUsuarios.cs">
+    <Compile Include="FormUsuarioEditar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormUsuarios.Designer.cs">
-      <DependentUpon>FormUsuarios.cs</DependentUpon>
+    <Compile Include="FormUsuarioEditar.Designer.cs">
+      <DependentUpon>FormUsuarioEditar.cs</DependentUpon>
     </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
@@ -159,14 +147,8 @@
     <EmbeddedResource Include="ControlesCalendario\Calendario_UC.resx">
       <DependentUpon>Calendario_UC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlesDeUsuario\Categorias_UC.resx">
-      <DependentUpon>Categorias_UC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ControlesDeUsuario\Productos_UC.resx">
-      <DependentUpon>Productos_UC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ControlesDeUsuario\Usuarios_UC.resx">
-      <DependentUpon>Usuarios_UC.cs</DependentUpon>
+    <EmbeddedResource Include="ControlesDeUsuario\ControladorUsuario.resx">
+      <DependentUpon>ControladorUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalendario.resx">
       <DependentUpon>FormCalendario.cs</DependentUpon>
@@ -186,8 +168,8 @@
     <EmbeddedResource Include="FormUsuario.resx">
       <DependentUpon>FormUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormUsuarios.resx">
-      <DependentUpon>FormUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="FormUsuarioEditar.resx">
+      <DependentUpon>FormUsuarioEditar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
