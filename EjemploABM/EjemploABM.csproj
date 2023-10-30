@@ -85,11 +85,29 @@
     <Compile Include="ControlesDeUsuario\ControladorUsuario.Designer.cs">
       <DependentUpon>ControladorUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAdministracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdministracion.Designer.cs">
+      <DependentUpon>FormAdministracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCalendario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCalendario.Designer.cs">
       <DependentUpon>FormCalendario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCliente.Designer.cs">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormClienteEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClienteEditar.Designer.cs">
+      <DependentUpon>FormClienteEditar.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>UserControl</SubType>
@@ -150,8 +168,17 @@
     <EmbeddedResource Include="ControlesDeUsuario\ControladorUsuario.resx">
       <DependentUpon>ControladorUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAdministracion.resx">
+      <DependentUpon>FormAdministracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCalendario.resx">
       <DependentUpon>FormCalendario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCliente.resx">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClienteEditar.resx">
+      <DependentUpon>FormClienteEditar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
