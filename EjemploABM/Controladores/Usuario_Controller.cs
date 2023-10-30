@@ -61,8 +61,7 @@ namespace EjemploABM.Controladores
             //Darlo de alta en la BBDD
 
             string query = "insert into dbo.usuario values" +
-               "(@id, " +
-               "@nombre, " +
+               "(@nombre, " +
                "@apellido, " +
                "@dni, " +
                "@telefono, " +
@@ -72,7 +71,6 @@ namespace EjemploABM.Controladores
                "@direccion_id);";
             //id, nombre, apellido, dni, telefono, email, contrasenia, tipo_usuario, direccion_id, estado_baja
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
             cmd.Parameters.AddWithValue("@nombre", usr.nombre);
             cmd.Parameters.AddWithValue("@apellido", usr.apellido);
             cmd.Parameters.AddWithValue("@dni", usr.dni);
