@@ -73,17 +73,35 @@
     <Compile Include="Controladores\Rubro_Controller.cs" />
     <Compile Include="Controladores\Sucursal_Controller.cs" />
     <Compile Include="Controladores\Usuario_Controller.cs" />
+    <Compile Include="ControlesAdm\ControladorAdm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesAdm\ControladorAdm.Designer.cs">
+      <DependentUpon>ControladorAdm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesCalendario\Calendario_UC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ControlesCalendario\Calendario_UC.Designer.cs">
       <DependentUpon>Calendario_UC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlesCliente\ControladorCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesCliente\ControladorCliente.Designer.cs">
+      <DependentUpon>ControladorCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesDeUsuario\ControladorUsuario.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ControlesDeUsuario\ControladorUsuario.Designer.cs">
       <DependentUpon>ControladorUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesSucursal\ControladorSucursal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesSucursal\ControladorSucursal.Designer.cs">
+      <DependentUpon>ControladorSucursal.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAdministracion.cs">
       <SubType>Form</SubType>
@@ -162,11 +180,20 @@
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ControlesAdm\ControladorAdm.resx">
+      <DependentUpon>ControladorAdm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlesCalendario\Calendario_UC.resx">
       <DependentUpon>Calendario_UC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ControlesCliente\ControladorCliente.resx">
+      <DependentUpon>ControladorCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlesDeUsuario\ControladorUsuario.resx">
       <DependentUpon>ControladorUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesSucursal\ControladorSucursal.resx">
+      <DependentUpon>ControladorSucursal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAdministracion.resx">
       <DependentUpon>FormAdministracion.cs</DependentUpon>
@@ -243,8 +270,6 @@
   <ItemGroup>
     <None Include="img\flecha_izquierda.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ControlesCliente\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
