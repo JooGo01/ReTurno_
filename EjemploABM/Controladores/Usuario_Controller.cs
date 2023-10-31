@@ -116,17 +116,19 @@ namespace EjemploABM.Controladores
                "@email, " +
                "@contrasenia, " +
                "@tipo_usuario, " +
-               "@direccion_id);";
+               "@direccion_id," +
+               "@estado_baja);";
             //id, nombre, apellido, dni, telefono, email, contrasenia, tipo_usuario, direccion_id, estado_baja
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@nombre", usr.nombre);
-            cmd.Parameters.AddWithValue("@apellido", usr.apellido);
-            cmd.Parameters.AddWithValue("@dni", usr.dni);
-            cmd.Parameters.AddWithValue("@telefono", usr.telefono);
-            cmd.Parameters.AddWithValue("@email", usr.email);
-            cmd.Parameters.AddWithValue("@contrasenia", usr.contrasenia);
-            cmd.Parameters.AddWithValue("@tipo_usuario", usr.tipo_usuario);
-            cmd.Parameters.AddWithValue("@direccion_id", usr.direccion.id);
+            cmd.Parameters.AddWithValue("@nombre", usr.nombre.ToString());
+            cmd.Parameters.AddWithValue("@apellido", usr.apellido.ToString());
+            cmd.Parameters.AddWithValue("@dni", usr.dni.ToString());
+            cmd.Parameters.AddWithValue("@telefono", usr.telefono.ToString());
+            cmd.Parameters.AddWithValue("@email", usr.email.ToString());
+            cmd.Parameters.AddWithValue("@contrasenia", usr.contrasenia.ToString());
+            cmd.Parameters.AddWithValue("@tipo_usuario", usr.tipo_usuario.ToString());
+            cmd.Parameters.AddWithValue("@direccion_id", Int32.Parse(usr.direccion.id.ToString()));
+            cmd.Parameters.AddWithValue("@estado_baja", 0);
 
             try
             {
