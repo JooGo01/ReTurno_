@@ -96,5 +96,25 @@ namespace EjemploABM.ControlesSucursal
                 }
             }
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+            {
+                //agregar
+                FormSucursales frmSuc= new FormSucursales();
+
+                DialogResult dr = frmSuc.ShowDialog();
+
+                if (dr == DialogResult.OK)
+                {
+                }
+                //TODO - Button Clicked - Execute Code Here
+            }
+            else
+            {
+                MessageBox.Show("No cuenta con los permisos suficientes para realizar el alta de la sucursal", "ReTurno");
+            }
+        }
     }
 }

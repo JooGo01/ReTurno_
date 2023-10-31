@@ -24,6 +24,7 @@ namespace EjemploABM
             cmbTipoUsuario.Items.Add("1- Vendedor");
             cmbTipoUsuario.Items.Add("2- Administrador");
             cmbTipoUsuario.Items.Add("3- Cliente");
+            cmbTipoUsuario.SelectedIndex = 0;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
