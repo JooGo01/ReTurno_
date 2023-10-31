@@ -76,28 +76,23 @@ namespace EjemploABM.ControlesSucursal
                 {
                     if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
                     {
-                        String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        Sucursal suc_baja = new Sucursal();
-                        suc_baja = Sucursal_Controller.obtenerPorId(Int32.Parse(id_baja));
-                        Sucursal_Controller.bajaSucursal(suc_baja, 1);
-                        MessageBox.Show("Sucursal dado de baja con exito", "ReTurno");
+                        //editar
+                        String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Sucursal suc = new Sucursal();
+                        suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id));
+                        FormSucursalEditar frmSucEdit = new FormSucursalEditar(suc);
+
+                        DialogResult dr = frmSucEdit.ShowDialog();
+
+                        if (dr == DialogResult.OK)
+                        {
+                        }
+                        //TODO - Button Clicked - Execute Code Here
                     }
                     else
                     {
-                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar la edicion de la sucursal", "ReTurno");
                     }
-                    //editar
-                    /*String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Cliente cli = new Cliente();
-                    cli = Cliente_Controller.obtenerPorId(Int32.Parse(id));
-                    FormClienteEditar frmCliEdit = new FormClienteEditar();
-
-                    DialogResult dr = frmCliEdit.ShowDialog();
-
-                    if (dr == DialogResult.OK)
-                    {
-                    }*/
-                    //TODO - Button Clicked - Execute Code Here
                 }
             }
         }
