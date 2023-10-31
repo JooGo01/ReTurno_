@@ -160,7 +160,7 @@ namespace EjemploABM.Controladores
                 "piso   = @piso , " +
                 "provincia   = @provincia , " +
                 "ciudad   = @ciudad , " +
-                "departamento   = @departamento , " +
+                "departamento   = @departamento " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);

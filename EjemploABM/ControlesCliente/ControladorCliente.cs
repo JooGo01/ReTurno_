@@ -64,7 +64,7 @@ namespace EjemploABM.ControlesCliente
                     String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
                     Cliente cli = new Cliente();
                     cli = Cliente_Controller.obtenerPorId(Int32.Parse(id));
-                    FormClienteEditar frmCliEdit = new FormClienteEditar();
+                    FormClienteEditar frmCliEdit = new FormClienteEditar(cli);
 
                     DialogResult dr = frmCliEdit.ShowDialog();
 
