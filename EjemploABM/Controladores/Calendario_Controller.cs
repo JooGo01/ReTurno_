@@ -139,7 +139,7 @@ namespace EjemploABM.Controladores
             return list;
         }
 
-        public static List<Turno> obtenerPorFecha(DateTime fecha) {
+        public static List<Turno> obtenerPorFecha(DateTime fecha, Sucursal suc) {
             List<Turno> list = new List<Turno>();
             List<int> listId = new List<int>();
             List<int> listIdSuc = new List<int>();
@@ -150,11 +150,12 @@ namespace EjemploABM.Controladores
             List<int> listEstadoBaja = new List<int>();
             List<Sucursal> listSuc = new List<Sucursal>();
             List<Usuario> listUsr = new List<Usuario>();
-            string query = "select * from dbo.turno where fecha_ini >= @fecha and fecha_fin<@fecha_fin;";
+            string query = "select * from dbo.turno where sucursal_id=@suc_id and (fecha_ini >= @fecha and fecha_fin<@fecha_fin);";
             
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@fecha", fecha.ToString("yyyyMMdd"));
             cmd.Parameters.AddWithValue("@fecha_fin", fecha.AddDays(1).ToString("yyyyMMdd"));
+            cmd.Parameters.AddWithValue("@suc_id", suc.id);
 
             try
             {
@@ -398,6 +399,76 @@ namespace EjemploABM.Controladores
                 throw new Exception("Hay un error en la query: " + ex.Message);
             }
 
+        }
+
+        public static List<DateTime> obtenerListadoActividad(DateTime dt_ini, DateTime dt_fin, Sucursal suc)
+        {
+            int cantidadTurnos = 0;
+            Boolean boolTurno = false;
+            DateTime dt_ini_data = DateTime.Now;
+            List<DateTime> fecha = new List<DateTime>();
+            string query = "select cast(fecha_ini as date) as fecha, count(*) as cantidad from turno where sucursal_id=@suc and ( fecha_ini >= @fecha and fecha_fin<=@fecha_fin) GROUP BY CAST(fecha_ini AS DATE) order by fecha;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@fecha", dt_ini.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@fecha_fin", dt_fin.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@suc", suc.id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dt_ini_data = reader.GetDateTime(0);
+                    fecha.Add(dt_ini_data);
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return fecha;
+        }
+
+        public static List<int> obtenerListadoCantActividad(DateTime dt_ini, DateTime dt_fin, Sucursal suc)
+        {
+            int cantidadTurnos = 0;
+            Boolean boolTurno = false;
+            DateTime dt_ini_data = DateTime.Now;
+            List<int> cantidad = new List<int>();
+            string query = "select cast(fecha_ini as date) as fecha, count(*) as cantidad from turno where sucursal_id=@suc and ( fecha_ini >= @fecha and fecha_fin<=@fecha_fin) GROUP BY CAST(fecha_ini AS DATE) order by fecha;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@fecha", dt_ini.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@fecha_fin", dt_fin.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@suc", suc.id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    cantidadTurnos = reader.GetInt32(1);
+                    cantidad.Add(cantidadTurnos);
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return cantidad;
         }
     }
 }

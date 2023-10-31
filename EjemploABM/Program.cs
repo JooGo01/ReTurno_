@@ -13,7 +13,7 @@ namespace EjemploABM
     {
 
         public static Usuario logueado;
-
+        public static Cliente cli;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -32,7 +32,7 @@ namespace EjemploABM
 
 
             // Application.Run(new Form1());
-            Application.Run(new FormCalendario());
+            Application.Run(new frmLogin());
         }
 
         public static bool validateConnection()

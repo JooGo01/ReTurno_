@@ -24,15 +24,22 @@ namespace EjemploABM
 
         private void FormTurno_Load(object sender, EventArgs e)
         {
-            cli = Cliente_Controller.obtenerPorId(1);
             Direccion dire = new Direccion();
-            List<Sucursal> listSucursal= Sucursal_Controller.obtenerTodosSucCliente(cli);
+            List<Sucursal> listSucursal = new List<Sucursal>();
+            if (Program.logueado.tipo_usuario == "S")
+            {
+                listSucursal = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
+            }
+            else {
+                listSucursal = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
+            }
             foreach (Sucursal suc in listSucursal)
             {
                 dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
                 String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
                 cmbSucursal.Items.Add(textoSucursal);
             }
+            cmbSucursal.SelectedIndex = 0;
         }
 
         private void materialLabel2_Click(object sender, EventArgs e)
@@ -86,6 +93,11 @@ namespace EjemploABM
                 Calendario_Controller.crearTurno(usr, sucursal, dtIni, dtFin);
                 MessageBox.Show("Turno Creado", "ReTurno");
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -22,7 +22,7 @@ namespace EjemploABM
 
         private void FormAdministracion_Load(object sender, EventArgs e)
         {
-            cli = Cliente_Controller.obtenerPorId(1);
+            cli = Cliente_Controller.obtenerPorId(Program.cli.id);
             Direccion dire = new Direccion();
             List<Sucursal> listSucursal = Sucursal_Controller.obtenerTodosSucCliente(cli);
             foreach (Sucursal suc in listSucursal)
@@ -31,11 +31,13 @@ namespace EjemploABM
                 String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
                 cmbSucursal.Items.Add(textoSucursal);
             }
+            cmbSucursal.SelectedIndex = 0;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             agregar();
+            MessageBox.Show("Administracion Creado", "ReTurno");
         }
 
         private void agregar() {

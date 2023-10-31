@@ -24,7 +24,13 @@ namespace EjemploABM.ControlesDeUsuario
         private void cargarUsuarios(int opcUsuario)
         {
 
-            usuarios = Usuario_Controller.obtenerTodos();
+            if (Program.logueado.tipo_usuario == "S")
+            {
+                usuarios = Usuario_Controller.obtenerTodosAdmCliente(Program.cli);
+            }
+            else {
+                usuarios = Usuario_Controller.obtenerTodosAdmSuc(Program.logueado);
+            }
             dgv_evento.Rows.Clear();
             foreach (Usuario usr in usuarios)
             {

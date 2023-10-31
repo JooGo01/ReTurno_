@@ -33,16 +33,28 @@ namespace EjemploABM
             Turno turno = Calendario_Controller.obtenerPorId(id_turno);
             idTurnoEditar = id_turno;
             txtDni.Text = turno.usuario.dni.ToString();
-            cli = Cliente_Controller.obtenerPorId(1);
             Direccion dire = new Direccion();
-            List<Sucursal> listSucursal = Sucursal_Controller.obtenerTodosSucCliente(cli);
+            List<Sucursal> listSucursal = new List<Sucursal>();
+            int index = 0;
+            if (Program.logueado.tipo_usuario == "S")
+            {
+                listSucursal = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
+            }
+            else
+            {
+                listSucursal = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
+            }
             foreach (Sucursal suc in listSucursal)
             {
                 dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
                 String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
                 cmbSucursal.Items.Add(textoSucursal);
+                if (turno.sucursal.id == suc.id) {
+                    cmbSucursal.SelectedIndex = index;
+                }
+                index = index + 1;
             }
-            cmbSucursal.SelectedIndex=cmbSucursal.FindStringExact(turno.sucursal.id.ToString() + "- ");
+            //cmbSucursal.SelectedIndex=cmbSucursal.FindStringExact(turno.sucursal.id.ToString() + "- ");
             dtFechaIni.Value=turno.fecha_ini;
             dtHoraIni.Value= turno.fecha_ini;
             dtFechaFin.Value = turno.fecha_fin;

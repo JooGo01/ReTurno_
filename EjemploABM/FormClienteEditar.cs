@@ -29,7 +29,7 @@ namespace EjemploABM
             Direccion dire = new Direccion();
             Rubro rub_cli = new Rubro();
             rub_cli = cli.rubro;
-            usr = Usuario_Controller.obtenerPorMail(cli.email);
+            usr = cli.usr;
             usr_pub=usr;
             dire = usr.direccion;
             txtRazonSocial.Text=cli.razon_social.ToString();
@@ -103,12 +103,11 @@ namespace EjemploABM
         }
 
         private void editarCliente() {
-            String email = txtEmail.Text;
             String rzn_social = txtRazonSocial.Text;
             String[] id_rub = cmbRubro.Text.Split('-');
             Rubro rub = new Rubro();
             rub = Rubro_Controller.obtenerPorId(Int32.Parse(id_rub[0]));
-            Cliente_Controller.editarCliente(cli_pub, rub, rzn_social, email, 0);
+            Cliente_Controller.editarCliente(cli_pub, rub, rzn_social, 0);
         }
     }
 }

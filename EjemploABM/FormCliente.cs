@@ -70,12 +70,15 @@ namespace EjemploABM
         }
 
         private void crearCliente() {
-            String email = txtEmail.Text;
+            Usuario usr = new Usuario();
+            int id_usr = 0;
+            id_usr = Usuario_Controller.obtenerMaxId();
+            usr=Usuario_Controller.obtenerPorId(id_usr);
             String razon_social = txtRazonSocial.Text;
             String[] rubro_seleccionado = cmbRubro.Text.Split('-');
             Rubro rub = new Rubro();
             rub = Rubro_Controller.obtenerPorId(Int32.Parse(rubro_seleccionado[0]));
-            Cliente_Controller.crearCliente(razon_social, rub, email);
+            Cliente_Controller.crearCliente(razon_social, rub, usr);
         }
     }
 }

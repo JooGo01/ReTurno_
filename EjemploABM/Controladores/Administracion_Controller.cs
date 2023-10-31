@@ -19,13 +19,13 @@ namespace EjemploABM.Controladores
 
             string query = "insert into dbo.administracion values" +
                "(@sucursal, " +
-               "@usuario " +
-               ");";
+               "@usuario, " +
+               "@estado_baja);";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@sucursal", suc.id);
             cmd.Parameters.AddWithValue("@usuario", usr.id);
-
+            cmd.Parameters.AddWithValue("@estado_baja", 0);
             try
             {
                 DB_Controller.open();
@@ -67,6 +67,7 @@ namespace EjemploABM.Controladores
             catch (Exception ex)
             {
                 throw new Exception("Hay un error en la query: " + ex.Message);
+                //return 0;
             }
         }
 
@@ -89,6 +90,60 @@ namespace EjemploABM.Controladores
                 {
                     list.Add(new Administracion(reader.GetInt32(0), Sucursal_Controller.obtenerPorId(reader.GetInt32(1)), Usuario_Controller.obtenerPorId(reader.GetInt32(2)), reader.GetInt32(3)));
                     Trace.WriteLine("Adminsitracion encontrado, id: " + reader.GetInt32(0));
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return list;
+        }
+
+        public static List<Administracion> obtenerTodosCliente(Cliente cli)
+        {
+            List<Administracion> list = new List<Administracion>();
+            List<Sucursal> sucursal = new List<Sucursal>();
+            List<Usuario> usuario = new List<Usuario>();
+            List<int> listId = new List<int>();
+            List<int> listIdSuc = new List<int>();
+            List<int> listIdUsuario = new List<int>();
+            List<int> listEstadoBaja = new List<int>();
+            string query = "select a.* from administracion a join sucursal s on a.sucursal_id=s.id join cliente c on s.cliente_id=c.id where s.estado_baja=0 and a.estado_baja=0 and c.id= @id;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", cli.id);
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listId.Add(reader.GetInt32(0));
+                    listIdSuc.Add(reader.GetInt32(1));
+                    listIdUsuario.Add(reader.GetInt32(2));
+                    listEstadoBaja.Add(reader.GetInt32(3));
+                    Trace.WriteLine("Adminsitracion encontrado, id: " + reader.GetInt32(0));
+                }
+
+                for (int i = 0; i < listIdSuc.Count; i++)
+                {
+                    sucursal.Add(Sucursal_Controller.obtenerPorId(listIdSuc[i]));
+                }
+
+                for (int i = 0; i < listIdUsuario.Count; i++)
+                {
+                    usuario.Add(Usuario_Controller.obtenerPorId(listIdUsuario[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    list.Add(new Administracion(listId[i], sucursal[i], usuario[i], listEstadoBaja[i]));
                 }
 
                 reader.Close();

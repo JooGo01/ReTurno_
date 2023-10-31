@@ -17,6 +17,32 @@ namespace EjemploABM.ControlesSucursal
         public ControladorSucursal()
         {
             InitializeComponent();
+            cargarSucursales();
+        }
+
+        private void cargarSucursales()
+        {
+            List<Sucursal> sucursales = new List<Sucursal>();
+            if (Program.logueado.tipo_usuario == "S")
+            {
+                sucursales = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
+            }
+            else
+            {
+                sucursales = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
+            }
+            dgv_evento.Rows.Clear();
+            foreach (Sucursal suc in sucursales)
+            {
+                int rowIndex = dgv_evento.Rows.Add();
+
+                dgv_evento.Rows[rowIndex].Cells[0].Value = suc.id.ToString();
+                dgv_evento.Rows[rowIndex].Cells[1].Value = suc.direccion.calle.ToString();
+                dgv_evento.Rows[rowIndex].Cells[2].Value = suc.direccion.provincia.ToString();
+                dgv_evento.Rows[rowIndex].Cells[3].Value = suc.direccion.ciudad.ToString();
+                dgv_evento.Rows[rowIndex].Cells[4].Value = "Editar";
+                dgv_evento.Rows[rowIndex].Cells[5].Value = "Eliminar";
+            }
         }
 
         private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)

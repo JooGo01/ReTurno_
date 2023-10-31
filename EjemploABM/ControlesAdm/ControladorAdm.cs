@@ -17,6 +17,7 @@ namespace EjemploABM.ControlesAdm
         public ControladorAdm()
         {
             InitializeComponent();
+            cargarAdminsitracion();
         }
 
         private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -35,6 +36,39 @@ namespace EjemploABM.ControlesAdm
                     MessageBox.Show("Administracion dado de baja con exito", "ReTurno");
                     //TODO - Button Clicked - Execute Code Here
                 }
+            }
+        }
+
+        private void cargarAdminsitracion()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            List<Administracion> administra = new List<Administracion>();
+
+            administra = Administracion_Controller.obtenerTodosCliente(Program.cli);
+            dgv_evento.Rows.Clear();
+            foreach (Administracion adm in administra)
+            {
+                int rowIndex = dgv_evento.Rows.Add();
+
+                dgv_evento.Rows[rowIndex].Cells[0].Value = adm.id.ToString();
+                dgv_evento.Rows[rowIndex].Cells[1].Value = adm.suc.id.ToString();
+                dgv_evento.Rows[rowIndex].Cells[2].Value = adm.suc.direccion.calle.ToString();
+                dgv_evento.Rows[rowIndex].Cells[3].Value = adm.suc.direccion.provincia.ToString();
+                dgv_evento.Rows[rowIndex].Cells[4].Value = adm.suc.direccion.ciudad.ToString();
+                dgv_evento.Rows[rowIndex].Cells[5].Value = adm.usuario.id.ToString();
+                dgv_evento.Rows[rowIndex].Cells[6].Value = adm.usuario.email.ToString();
+                dgv_evento.Rows[rowIndex].Cells[7].Value = "Eliminar";
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            FormAdministracion frmAdm = new FormAdministracion();
+            DialogResult dr = frmAdm.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+
             }
         }
     }

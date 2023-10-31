@@ -127,12 +127,6 @@
     <Compile Include="FormClienteEditar.Designer.cs">
       <DependentUpon>FormClienteEditar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormLogin.Designer.cs">
-      <DependentUpon>FormLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormSucursales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +156,12 @@
     </Compile>
     <Compile Include="FormUsuarioEditar.Designer.cs">
       <DependentUpon>FormUsuarioEditar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
@@ -207,9 +207,6 @@
     <EmbeddedResource Include="FormClienteEditar.resx">
       <DependentUpon>FormClienteEditar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
-      <DependentUpon>FormLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormSucursales.resx">
       <DependentUpon>FormSucursales.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuarioEditar.resx">
       <DependentUpon>FormUsuarioEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>

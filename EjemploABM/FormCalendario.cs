@@ -12,7 +12,13 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using EjemploABM.ControlesCalendario;
 using EjemploABM.ControlesDeUsuario;
+using EjemploABM.ControlesCliente;
+using EjemploABM.ControlesAdm;
+using EjemploABM.Modelo;
 using MaterialSkin;
+using EjemploABM.Controladores;
+using System.Net;
+using EjemploABM.ControlesSucursal;
 
 namespace EjemploABM
 {
@@ -31,13 +37,36 @@ namespace EjemploABM
             ajustePanel();
             _infoCalendario = new InfoMesCalendario(10,2023);
             llenarCalendario();
-            pruebaEventos();
+            //pruebaEventos();
             //Calendario_UC calendarioUC = new Calendario_UC();
             //addUserControl(calendarioUC);
             MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT; // or .DARK
             MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Blue400, Primary.Blue500, Primary.Blue300, Accent.Red400, TextShade.WHITE);
             btnAchicar.Visible=false;
 
+            List<Sucursal> list = new List<Sucursal>();
+            Direccion dire = new Direccion();
+            if (Program.logueado.tipo_usuario == "S") {
+                list = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
+                foreach (Sucursal suc in list)
+                {
+                    dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
+                    String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
+                    cmbSucursal.Items.Add(textoSucursal);
+                    cmbSucursal.SelectedIndex = 0;
+                }
+            }
+            else {
+                list = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
+                foreach (Sucursal suc in list)
+                {
+                    dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
+                    String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
+                    cmbSucursal.Items.Add(textoSucursal);
+                    cmbSucursal.SelectedIndex = 0;
+                }
+            }
+            //descripcionEventos();
         }
 
         private void crearDias() {
@@ -97,7 +126,10 @@ namespace EjemploABM
             int fila = Int32.Parse(filacol.Substring(0,1));
             int col = Int32.Parse(filacol.Substring(1, 1));
             DateTime fecha = _infoCalendario.diaGrilla(fila,col);
-            Calendario_UC calendarioUC = new Calendario_UC(fecha);
+            Sucursal suc = new Sucursal();
+            String[] id_suc = cmbSucursal.Text.Split('-');
+            suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
+            Calendario_UC calendarioUC = new Calendario_UC(fecha,suc);
             addUserControl(calendarioUC);
             lblMensajePanel.Visible = false;
             btnAchicar.BringToFront();
@@ -276,22 +308,26 @@ namespace EjemploABM
             return nombre;
         }
 
-        private void pruebaEventos() { 
+        private void descripcionEventos() { 
             List<DateTime> fechas = new List<DateTime>();
             List<String> eventos = new List<String>();
+            List<int> cantEventos = new List<int>();
+            Sucursal suc = new Sucursal();
+            String[] id_suc = cmbSucursal.Text.Split('-');
+            suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
             int col;
             int fila;
             Panel pnl;
             Label lbl;
             String pnlNombre;
-
-            fechas.Add(new DateTime(2023, 10, 7));
-            fechas.Add(new DateTime(2023, 10, 8));
-            fechas.Add(new DateTime(2023, 11, 1));
-
-            eventos.Add("TP Parte 1");
-            eventos.Add("TP Parte 2");
-            eventos.Add("TP Parte 3");
+            DateTime primer_dia = _infoCalendario.diaGrilla(0, 0);
+            DateTime ultimo_dia = _infoCalendario.diaGrilla(5, 6);
+            fechas = Calendario_Controller.obtenerListadoActividad(primer_dia,ultimo_dia,suc);
+            cantEventos = Calendario_Controller.obtenerListadoCantActividad(primer_dia, ultimo_dia, suc);
+            for (int i = 0; i < fechas.Count; i++)
+            {
+                eventos.Add("Cantidad Eventos: " + cantEventos[i].ToString());
+            }
 
             for (int i = 0; i < fechas.Count; i++) {
                 if (_infoCalendario.fechaExistente(fechas[i]))
@@ -364,7 +400,7 @@ namespace EjemploABM
             _infoCalendario.setAnio(anio_nuevo);
             _infoCalendario = new InfoMesCalendario(mes_nuevo, anio_nuevo);
             llenarCalendario();
-            pruebaEventos();
+            descripcionEventos();
         }
 
         private void validacionCambioAnioSiguiente()
@@ -384,7 +420,7 @@ namespace EjemploABM
             _infoCalendario.setAnio(anio_nuevo);
             _infoCalendario = new InfoMesCalendario(mes_nuevo, anio_nuevo);
             llenarCalendario();
-            pruebaEventos();
+            descripcionEventos();
         }
 
         private void limpiezaEventos()
@@ -458,7 +494,8 @@ namespace EjemploABM
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-
+            ControladorCliente cc = new ControladorCliente();
+            addUserControlTabAbm(cc);
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
@@ -473,6 +510,26 @@ namespace EjemploABM
             panel_contenedor_abm.Controls.Clear();
             panel_contenedor_abm.Controls.Add(uc);
             uc.BringToFront();
+        }
+
+        private void cmbSucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _infoCalendario = new InfoMesCalendario(10, 2023);
+            limpiezaEventos();
+            llenarCalendario();
+            descripcionEventos();
+        }
+
+        private void btnAdm_Click(object sender, EventArgs e)
+        {
+            ControladorAdm ca = new ControladorAdm();
+            addUserControlTabAbm(ca);
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            ControladorSucursal cs = new ControladorSucursal();
+            addUserControlTabAbm(cs);
         }
     }
 }

@@ -43,19 +43,21 @@
             this.panel_listado_turno = new System.Windows.Forms.Panel();
             this.lblMensajePanel = new System.Windows.Forms.Label();
             this.panelBotones = new System.Windows.Forms.Panel();
+            this.btnAchicar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.btnAgrandar = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.panel_control = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSiguiente = new MaterialSkin.Controls.MaterialButton();
             this.btnAnterior = new MaterialSkin.Controls.MaterialButton();
             this.tab_abm = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel_contenedor_abm = new System.Windows.Forms.Panel();
-            this.btnCliente = new MaterialSkin.Controls.MaterialButton();
-            this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
-            this.btnAdm = new MaterialSkin.Controls.MaterialButton();
-            this.btnAchicar = new MaterialSkin.Controls.MaterialFloatingActionButton();
-            this.btnAgrandar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.btnAdm = new MaterialSkin.Controls.MaterialButton();
+            this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
+            this.btnCliente = new MaterialSkin.Controls.MaterialButton();
+            this.panel_combo = new System.Windows.Forms.Panel();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
@@ -67,6 +69,7 @@
             this.panel1.SuspendLayout();
             this.tab_abm.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel_combo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlCalendario
@@ -218,8 +221,36 @@
             this.panelBotones.Size = new System.Drawing.Size(276, 79);
             this.panelBotones.TabIndex = 5;
             // 
+            // btnAchicar
+            // 
+            this.btnAchicar.AnimateShowHideButton = true;
+            this.btnAchicar.Depth = 0;
+            this.btnAchicar.Icon = global::EjemploABM.Properties.Resources.flecha_derecha;
+            this.btnAchicar.Location = new System.Drawing.Point(212, 11);
+            this.btnAchicar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAchicar.Name = "btnAchicar";
+            this.btnAchicar.Size = new System.Drawing.Size(60, 65);
+            this.btnAchicar.TabIndex = 1;
+            this.btnAchicar.Text = "materialFloatingActionButton1";
+            this.btnAchicar.UseVisualStyleBackColor = true;
+            this.btnAchicar.Click += new System.EventHandler(this.btnAchicar_Click);
+            // 
+            // btnAgrandar
+            // 
+            this.btnAgrandar.Depth = 0;
+            this.btnAgrandar.Icon = global::EjemploABM.Properties.Resources.flecha_izquierda;
+            this.btnAgrandar.Location = new System.Drawing.Point(6, 11);
+            this.btnAgrandar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgrandar.Name = "btnAgrandar";
+            this.btnAgrandar.Size = new System.Drawing.Size(60, 65);
+            this.btnAgrandar.TabIndex = 0;
+            this.btnAgrandar.Text = "materialFloatingActionButton1";
+            this.btnAgrandar.UseVisualStyleBackColor = true;
+            this.btnAgrandar.Click += new System.EventHandler(this.btnAgrandar_Click);
+            // 
             // panel_control
             // 
+            this.panel_control.Controls.Add(this.panel_combo);
             this.panel_control.Controls.Add(this.panel1);
             this.panel_control.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_control.Location = new System.Drawing.Point(0, 0);
@@ -291,6 +322,14 @@
             this.tab_abm.Text = "ABM";
             this.tab_abm.UseVisualStyleBackColor = true;
             // 
+            // panel_contenedor_abm
+            // 
+            this.panel_contenedor_abm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_contenedor_abm.Location = new System.Drawing.Point(3, 44);
+            this.panel_contenedor_abm.Name = "panel_contenedor_abm";
+            this.panel_contenedor_abm.Size = new System.Drawing.Size(1124, 515);
+            this.panel_contenedor_abm.TabIndex = 1;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.materialButton1);
@@ -303,33 +342,45 @@
             this.panel2.Size = new System.Drawing.Size(1124, 41);
             this.panel2.TabIndex = 0;
             // 
-            // panel_contenedor_abm
+            // materialButton1
             // 
-            this.panel_contenedor_abm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_contenedor_abm.Location = new System.Drawing.Point(3, 44);
-            this.panel_contenedor_abm.Name = "panel_contenedor_abm";
-            this.panel_contenedor_abm.Size = new System.Drawing.Size(1124, 515);
-            this.panel_contenedor_abm.TabIndex = 1;
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = null;
+            this.materialButton1.Location = new System.Drawing.Point(332, 3);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(95, 36);
+            this.materialButton1.TabIndex = 3;
+            this.materialButton1.Text = "Sucursal";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
             // 
-            // btnCliente
+            // btnAdm
             // 
-            this.btnCliente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCliente.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnCliente.Depth = 0;
-            this.btnCliente.HighEmphasis = true;
-            this.btnCliente.Icon = null;
-            this.btnCliente.Location = new System.Drawing.Point(4, 3);
-            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCliente.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCliente.Name = "btnCliente";
-            this.btnCliente.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnCliente.Size = new System.Drawing.Size(80, 36);
-            this.btnCliente.TabIndex = 0;
-            this.btnCliente.Text = "Cliente";
-            this.btnCliente.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnCliente.UseAccentColor = false;
-            this.btnCliente.UseVisualStyleBackColor = true;
-            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
+            this.btnAdm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdm.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAdm.Depth = 0;
+            this.btnAdm.HighEmphasis = true;
+            this.btnAdm.Icon = null;
+            this.btnAdm.Location = new System.Drawing.Point(180, 3);
+            this.btnAdm.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAdm.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAdm.Name = "btnAdm";
+            this.btnAdm.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdm.Size = new System.Drawing.Size(144, 36);
+            this.btnAdm.TabIndex = 2;
+            this.btnAdm.Text = "Administracion";
+            this.btnAdm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdm.UseAccentColor = false;
+            this.btnAdm.UseVisualStyleBackColor = true;
+            this.btnAdm.Click += new System.EventHandler(this.btnAdm_Click);
             // 
             // btnUsuario
             // 
@@ -351,70 +402,43 @@
             this.btnUsuario.UseVisualStyleBackColor = true;
             this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
             // 
-            // btnAdm
+            // btnCliente
             // 
-            this.btnAdm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAdm.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnAdm.Depth = 0;
-            this.btnAdm.HighEmphasis = true;
-            this.btnAdm.Icon = null;
-            this.btnAdm.Location = new System.Drawing.Point(180, 3);
-            this.btnAdm.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAdm.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAdm.Name = "btnAdm";
-            this.btnAdm.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnAdm.Size = new System.Drawing.Size(144, 36);
-            this.btnAdm.TabIndex = 2;
-            this.btnAdm.Text = "Administracion";
-            this.btnAdm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnAdm.UseAccentColor = false;
-            this.btnAdm.UseVisualStyleBackColor = true;
+            this.btnCliente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCliente.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnCliente.Depth = 0;
+            this.btnCliente.HighEmphasis = true;
+            this.btnCliente.Icon = null;
+            this.btnCliente.Location = new System.Drawing.Point(4, 3);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCliente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnCliente.Size = new System.Drawing.Size(80, 36);
+            this.btnCliente.TabIndex = 0;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnCliente.UseAccentColor = false;
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
-            // btnAchicar
+            // panel_combo
             // 
-            this.btnAchicar.AnimateShowHideButton = true;
-            this.btnAchicar.Depth = 0;
-            this.btnAchicar.Icon = global::EjemploABM.Properties.Resources.flecha_derecha;
-            this.btnAchicar.Location = new System.Drawing.Point(212, 11);
-            this.btnAchicar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAchicar.Name = "btnAchicar";
-            this.btnAchicar.Size = new System.Drawing.Size(60, 65);
-            this.btnAchicar.TabIndex = 1;
-            this.btnAchicar.Text = "materialFloatingActionButton1";
-            this.btnAchicar.UseVisualStyleBackColor = true;
-            this.btnAchicar.Click += new System.EventHandler(this.btnAchicar_Click);
+            this.panel_combo.Controls.Add(this.cmbSucursal);
+            this.panel_combo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_combo.Location = new System.Drawing.Point(574, 0);
+            this.panel_combo.Name = "panel_combo";
+            this.panel_combo.Size = new System.Drawing.Size(274, 44);
+            this.panel_combo.TabIndex = 1;
             // 
-            // btnAgrandar
+            // cmbSucursal
             // 
-            this.btnAgrandar.Depth = 0;
-            this.btnAgrandar.Icon = global::EjemploABM.Properties.Resources.flecha_izquierda;
-            this.btnAgrandar.Location = new System.Drawing.Point(6, 11);
-            this.btnAgrandar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgrandar.Name = "btnAgrandar";
-            this.btnAgrandar.Size = new System.Drawing.Size(60, 65);
-            this.btnAgrandar.TabIndex = 0;
-            this.btnAgrandar.Text = "materialFloatingActionButton1";
-            this.btnAgrandar.UseVisualStyleBackColor = true;
-            this.btnAgrandar.Click += new System.EventHandler(this.btnAgrandar_Click);
-            // 
-            // materialButton1
-            // 
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(332, 3);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(144, 36);
-            this.materialButton1.TabIndex = 3;
-            this.materialButton1.Text = "Sucursal";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(4, 13);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(264, 21);
+            this.cmbSucursal.TabIndex = 0;
+            this.cmbSucursal.SelectedIndexChanged += new System.EventHandler(this.cmbSucursal_SelectedIndexChanged);
             // 
             // FormCalendario
             // 
@@ -439,6 +463,7 @@
             this.tab_abm.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel_combo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -473,5 +498,7 @@
         private MaterialSkin.Controls.MaterialButton btnCliente;
         private MaterialSkin.Controls.MaterialButton btnAdm;
         private MaterialSkin.Controls.MaterialButton materialButton1;
+        private System.Windows.Forms.Panel panel_combo;
+        private System.Windows.Forms.ComboBox cmbSucursal;
     }
 }
