@@ -311,7 +311,7 @@ namespace EjemploABM.Controladores
             List<int> listIdDireccion = new List<int>();
             List<Direccion> listDireccion = new List<Direccion>();
             List<int> listEstadoBaja = new List<int>();
-            string query = "select u.* from usuario u join administracion a on a.usuario_id=u.id join sucursal s on a.sucursal_id=s.id join cliente c on c.id=s.cliente_id where a.estado_baja=0 and u.tipo_usuario<>'S' and u.tipo_usuario<>'A' and s.id in (select * from usuario u join administracion a on u.id=a.usuario_id join sucursal s on s.id=a.sucursal_id where u.id=@id_usuario);";
+            string query = "select u.* from usuario u join administracion a on a.usuario_id=u.id join sucursal s on a.sucursal_id=s.id join cliente c on c.id=s.cliente_id where a.estado_baja=0 and u.tipo_usuario<>'S' and u.tipo_usuario<>'A' and s.id in (select a.sucursal_id from usuario u join administracion a on u.id=a.usuario_id join sucursal s on s.id=a.sucursal_id where u.id=@id_usuario);";
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id_usuario", us.id);
             //id, nombre, apellido, dni, telefono, email, contrasenia, tipo_usuario, direccion_id, estado_baja

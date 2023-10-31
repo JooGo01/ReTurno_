@@ -73,22 +73,36 @@ namespace EjemploABM.ControlesCalendario
                 if (e.ColumnIndex == 7 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //eliminar
-                    String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Calendario_Controller.bajarTurno(Int32.Parse(id_baja));
-                    MessageBox.Show("Turno dado de baja con exito", "ReTurno");
-                    //TODO - Button Clicked - Execute Code Here
+                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+                    {
+                        String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Calendario_Controller.bajarTurno(Int32.Parse(id_baja));
+                        MessageBox.Show("Turno dado de baja con exito", "ReTurno");
+                        //TODO - Button Clicked - Execute Code Here
+                    }
+                    else
+                    {
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
+                    }
                 }
 
                 if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //editar
-                    FormTurnoEditar frmCalendario = new FormTurnoEditar();
-                    String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    frmCalendario.cargarTurno(Int32.Parse(id));
-                    DialogResult dr = frmCalendario.ShowDialog();
-
-                    if (dr == DialogResult.OK)
+                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
                     {
+                        FormTurnoEditar frmCalendario = new FormTurnoEditar();
+                        String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        frmCalendario.cargarTurno(Int32.Parse(id));
+                        DialogResult dr = frmCalendario.ShowDialog();
+
+                        if (dr == DialogResult.OK)
+                        {
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
                     }
                     //TODO - Button Clicked - Execute Code Here
                 }

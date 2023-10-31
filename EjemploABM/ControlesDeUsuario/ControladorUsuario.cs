@@ -67,25 +67,39 @@ namespace EjemploABM.ControlesDeUsuario
                 if (e.ColumnIndex == 7 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //eliminar
-                    String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Usuario usrBaja = Usuario_Controller.obtenerPorId(Int32.Parse(id_baja));
-                    Usuario_Controller.bajaUsuario(usrBaja);
-                    MessageBox.Show("Usuario dado de baja con exito", "ReTurno");
+                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+                    {
+                        String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Usuario usrBaja = Usuario_Controller.obtenerPorId(Int32.Parse(id_baja));
+                        Usuario_Controller.bajaUsuario(usrBaja);
+                        MessageBox.Show("Usuario dado de baja con exito", "ReTurno");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
+                    }
                     //TODO - Button Clicked - Execute Code Here
                 }
 
                 if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
-                    //editar
-                    String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Usuario usr = new Usuario();
-                    usr = Usuario_Controller.obtenerPorId(Int32.Parse(id));
-                    FormUsuarioEditar frmUsrEdit = new FormUsuarioEditar(usr);
-                    
-                    DialogResult dr = frmUsrEdit.ShowDialog();
-
-                    if (dr == DialogResult.OK)
+                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
                     {
+                        //editar
+                        String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Usuario usr = new Usuario();
+                        usr = Usuario_Controller.obtenerPorId(Int32.Parse(id));
+                        FormUsuarioEditar frmUsrEdit = new FormUsuarioEditar(usr);
+
+                        DialogResult dr = frmUsrEdit.ShowDialog();
+
+                        if (dr == DialogResult.OK)
+                        {
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
                     }
                     //TODO - Button Clicked - Execute Code Here
                 }

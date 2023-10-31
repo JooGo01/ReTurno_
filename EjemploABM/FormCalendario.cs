@@ -32,6 +32,24 @@ namespace EjemploABM
 
         private void FormCalendario_Load(object sender, EventArgs e)
         {
+            if (Program.logueado.tipo_usuario == "S")
+            {
+                btnCliente.Enabled = true;
+                btnUsuario.Enabled = true;
+                btnAdm.Enabled = true;
+                btnSuc.Enabled = true;
+            }
+            else if (Program.logueado.tipo_usuario == "A") {
+                btnCliente.Enabled = false;
+                btnUsuario.Enabled = true;
+                btnAdm.Enabled = true;
+                btnSuc.Enabled = true;
+            } else if (Program.logueado.tipo_usuario == "V") {
+                btnCliente.Enabled = false;
+                btnUsuario.Enabled = true;
+                btnAdm.Enabled = false;
+                btnSuc.Enabled = false;
+            }
             crearDias();
             diasSemana();
             ajustePanel();
@@ -526,7 +544,7 @@ namespace EjemploABM
             addUserControlTabAbm(ca);
         }
 
-        private void materialButton1_Click(object sender, EventArgs e)
+        private void btnSuc_Click(object sender, EventArgs e)
         {
             ControladorSucursal cs = new ControladorSucursal();
             addUserControlTabAbm(cs);

@@ -52,7 +52,7 @@
             this.tab_abm = new System.Windows.Forms.TabPage();
             this.panel_contenedor_abm = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.btnSuc = new MaterialSkin.Controls.MaterialButton();
             this.btnAdm = new MaterialSkin.Controls.MaterialButton();
             this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
             this.btnCliente = new MaterialSkin.Controls.MaterialButton();
@@ -332,7 +332,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.materialButton1);
+            this.panel2.Controls.Add(this.btnSuc);
             this.panel2.Controls.Add(this.btnAdm);
             this.panel2.Controls.Add(this.btnUsuario);
             this.panel2.Controls.Add(this.btnCliente);
@@ -342,25 +342,25 @@
             this.panel2.Size = new System.Drawing.Size(1124, 41);
             this.panel2.TabIndex = 0;
             // 
-            // materialButton1
+            // btnSuc
             // 
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(332, 3);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(95, 36);
-            this.materialButton1.TabIndex = 3;
-            this.materialButton1.Text = "Sucursal";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            this.btnSuc.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSuc.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnSuc.Depth = 0;
+            this.btnSuc.HighEmphasis = true;
+            this.btnSuc.Icon = null;
+            this.btnSuc.Location = new System.Drawing.Point(332, 3);
+            this.btnSuc.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSuc.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSuc.Name = "btnSuc";
+            this.btnSuc.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnSuc.Size = new System.Drawing.Size(95, 36);
+            this.btnSuc.TabIndex = 3;
+            this.btnSuc.Text = "Sucursal";
+            this.btnSuc.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnSuc.UseAccentColor = false;
+            this.btnSuc.UseVisualStyleBackColor = true;
+            this.btnSuc.Click += new System.EventHandler(this.btnSuc_Click);
             // 
             // btnAdm
             // 
@@ -497,7 +497,7 @@
         private MaterialSkin.Controls.MaterialButton btnUsuario;
         private MaterialSkin.Controls.MaterialButton btnCliente;
         private MaterialSkin.Controls.MaterialButton btnAdm;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton btnSuc;
         private System.Windows.Forms.Panel panel_combo;
         private System.Windows.Forms.ComboBox cmbSucursal;
     }

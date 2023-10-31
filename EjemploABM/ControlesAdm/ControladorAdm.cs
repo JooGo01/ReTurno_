@@ -18,24 +18,33 @@ namespace EjemploABM.ControlesAdm
         {
             InitializeComponent();
             cargarAdminsitracion();
+            if (Program.logueado.tipo_usuario == "V") {
+                btnAgregar.Enabled = false;
+            }
         }
 
         private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
             //String id_check = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if ((dgv_evento.Rows[e.RowIndex].Cells[0].Value) != null)
+            if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
             {
-                if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                if ((dgv_evento.Rows[e.RowIndex].Cells[0].Value) != null)
                 {
-                    //eliminar
-                    String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Administracion adm = new Administracion();
-                    adm = Administracion_Controller.obtenerPorId(Int32.Parse(id_baja));
-                    Administracion_Controller.bajaAdministracion(adm);
-                    MessageBox.Show("Administracion dado de baja con exito", "ReTurno");
-                    //TODO - Button Clicked - Execute Code Here
+                    if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                    {
+                        //eliminar
+                        String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Administracion adm = new Administracion();
+                        adm = Administracion_Controller.obtenerPorId(Int32.Parse(id_baja));
+                        Administracion_Controller.bajaAdministracion(adm);
+                        MessageBox.Show("Administracion dado de baja con exito", "ReTurno");
+                        //TODO - Button Clicked - Execute Code Here
+                    }
                 }
+            }
+            else {
+                MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
             }
         }
 

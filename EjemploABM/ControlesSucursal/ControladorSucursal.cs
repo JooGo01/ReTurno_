@@ -18,6 +18,9 @@ namespace EjemploABM.ControlesSucursal
         {
             InitializeComponent();
             cargarSucursales();
+            if (Program.logueado.tipo_usuario == "V") {
+                btnAgregar.Enabled = false;
+            }
         }
 
         private void cargarSucursales()
@@ -54,16 +57,35 @@ namespace EjemploABM.ControlesSucursal
                 if (e.ColumnIndex == 5 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //eliminar
-                    String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Sucursal suc_baja = new Sucursal();
-                    suc_baja = Sucursal_Controller.obtenerPorId(Int32.Parse(id_baja));
-                    Sucursal_Controller.bajaSucursal(suc_baja, 1);
-                    MessageBox.Show("Sucursal dado de baja con exito", "ReTurno");
+                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+                    {
+                        String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Sucursal suc_baja = new Sucursal();
+                        suc_baja = Sucursal_Controller.obtenerPorId(Int32.Parse(id_baja));
+                        Sucursal_Controller.bajaSucursal(suc_baja, 1);
+                        MessageBox.Show("Sucursal dado de baja con exito", "ReTurno");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
+                    }
                     //TODO - Button Clicked - Execute Code Here
                 }
 
                 if (e.ColumnIndex == 4 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
+                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+                    {
+                        String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Sucursal suc_baja = new Sucursal();
+                        suc_baja = Sucursal_Controller.obtenerPorId(Int32.Parse(id_baja));
+                        Sucursal_Controller.bajaSucursal(suc_baja, 1);
+                        MessageBox.Show("Sucursal dado de baja con exito", "ReTurno");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
+                    }
                     //editar
                     /*String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
                     Cliente cli = new Cliente();
