@@ -72,12 +72,19 @@ namespace EjemploABM.ControlesAdm
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormAdministracion frmAdm = new FormAdministracion();
-            DialogResult dr = frmAdm.ShowDialog();
-
-            if (dr == DialogResult.OK)
+            if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
             {
+                FormAdministracion frmAdm = new FormAdministracion();
+                DialogResult dr = frmAdm.ShowDialog();
 
+                if (dr == DialogResult.OK)
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
             }
         }
     }

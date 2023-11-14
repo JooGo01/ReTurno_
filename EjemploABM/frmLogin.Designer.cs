@@ -60,7 +60,7 @@
             this.txtContrasenia.AnimateReadOnly = false;
             this.txtContrasenia.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContrasenia.Depth = 0;
-            this.txtContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtContrasenia.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtContrasenia.LeadingIcon = null;
             this.txtContrasenia.Location = new System.Drawing.Point(197, 151);
             this.txtContrasenia.MaxLength = 50;
@@ -77,7 +77,7 @@
             this.txtEmail.AnimateReadOnly = false;
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEmail.Depth = 0;
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtEmail.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtEmail.LeadingIcon = null;
             this.txtEmail.Location = new System.Drawing.Point(197, 76);
             this.txtEmail.MaxLength = 50;
@@ -120,7 +120,7 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.btnLogin);
             this.Name = "frmLogin";
-            this.Text = "frmLogin";
+            this.Text = "Inicio Sesion";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.ResumeLayout(false);
 

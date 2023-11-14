@@ -17,18 +17,16 @@ namespace EjemploABM.Controladores
             //Darlo de alta en la BBDD
 
             string query = "insert into dbo.direccion values" +
-               "(@id, " +
-               "@calle, " +
+               "(@calle, " +
                "@altura, " +
                "@codigo_postal, " +
                "@piso, " +
                "@provincia, " +
                "@ciudad, " +
-               "@departamento, " +
+               "@departamento " +
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
             cmd.Parameters.AddWithValue("@calle", calle);
             cmd.Parameters.AddWithValue("@altura", altura);
             cmd.Parameters.AddWithValue("@codigo_postal", cod_pos);
@@ -162,7 +160,7 @@ namespace EjemploABM.Controladores
                 "piso   = @piso , " +
                 "provincia   = @provincia , " +
                 "ciudad   = @ciudad , " +
-                "departamento   = @departamento , " +
+                "departamento   = @departamento " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);

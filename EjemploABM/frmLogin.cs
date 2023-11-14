@@ -54,6 +54,5 @@ namespace EjemploABM
                 MessageBox.Show("No se pudo iniciar sesion, vuelva a intentar", "ReTurno");
             }
         }
-
     }
 }

@@ -67,6 +67,7 @@ namespace EjemploABM
         private void btnEditar_Click(object sender, EventArgs e)
         {
             editar();
+            MessageBox.Show("Cliente editado con exito", "ReTurno");
         }
 
         private void editar()

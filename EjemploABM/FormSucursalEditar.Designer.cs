@@ -1,6 +1,7 @@
-﻿namespace EjemploABM
+﻿
+namespace EjemploABM
 {
-    partial class FormSucursales
+    partial class FormSucursalEditar
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +30,7 @@
         private void InitializeComponent()
         {
             this.panel_contenedor = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtTelefono = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtRazonSocial = new MaterialSkin.Controls.MaterialTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtCodPos = new MaterialSkin.Controls.MaterialTextBox();
             this.txtDepartamento = new MaterialSkin.Controls.MaterialTextBox();
@@ -40,12 +39,14 @@
             this.txtCiudad = new MaterialSkin.Controls.MaterialTextBox();
             this.txtAltura = new MaterialSkin.Controls.MaterialTextBox();
             this.txtCalle = new MaterialSkin.Controls.MaterialTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtTelefono = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtRazonSocial = new MaterialSkin.Controls.MaterialTextBox();
+            this.btnEditar = new MaterialSkin.Controls.MaterialButton();
             this.panel_contenedor.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_contenedor
@@ -56,54 +57,17 @@
             this.panel_contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_contenedor.Location = new System.Drawing.Point(3, 64);
             this.panel_contenedor.Name = "panel_contenedor";
-            this.panel_contenedor.Size = new System.Drawing.Size(794, 476);
-            this.panel_contenedor.TabIndex = 1;
+            this.panel_contenedor.Size = new System.Drawing.Size(794, 464);
+            this.panel_contenedor.TabIndex = 0;
             // 
-            // panel2
+            // panel1
             // 
-            this.panel2.Controls.Add(this.txtTelefono);
-            this.panel2.Controls.Add(this.txtRazonSocial);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(-35, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(424, 426);
-            this.panel2.TabIndex = 3;
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.AnimateReadOnly = false;
-            this.txtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTelefono.Depth = 0;
-            this.txtTelefono.Font = new System.Drawing.Font("Roboto", 12F);
-            this.txtTelefono.LeadingIcon = null;
-            this.txtTelefono.Location = new System.Drawing.Point(38, 66);
-            this.txtTelefono.MaxLength = 50;
-            this.txtTelefono.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtTelefono.Multiline = false;
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(345, 50);
-            this.txtTelefono.TabIndex = 11;
-            this.txtTelefono.Text = "Ingrese telefono";
-            this.txtTelefono.TrailingIcon = null;
-            // 
-            // txtRazonSocial
-            // 
-            this.txtRazonSocial.AnimateReadOnly = false;
-            this.txtRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRazonSocial.Depth = 0;
-            this.txtRazonSocial.Enabled = false;
-            this.txtRazonSocial.Font = new System.Drawing.Font("Roboto", 12F);
-            this.txtRazonSocial.LeadingIcon = null;
-            this.txtRazonSocial.Location = new System.Drawing.Point(38, 10);
-            this.txtRazonSocial.MaxLength = 50;
-            this.txtRazonSocial.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtRazonSocial.Multiline = false;
-            this.txtRazonSocial.Name = "txtRazonSocial";
-            this.txtRazonSocial.Size = new System.Drawing.Size(345, 50);
-            this.txtRazonSocial.TabIndex = 10;
-            this.txtRazonSocial.Text = "Ingrese razon social";
-            this.txtRazonSocial.TrailingIcon = null;
-            this.txtRazonSocial.WordWrap = false;
+            this.panel1.Controls.Add(this.btnEditar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 414);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(794, 50);
+            this.panel1.TabIndex = 0;
             // 
             // panel3
             // 
@@ -117,7 +81,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(389, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(405, 426);
+            this.panel3.Size = new System.Drawing.Size(405, 414);
             this.panel3.TabIndex = 2;
             // 
             // txtCodPos
@@ -240,49 +204,86 @@
             this.txtCalle.TrailingIcon = null;
             this.txtCalle.WordWrap = false;
             // 
-            // panel1
+            // panel2
             // 
-            this.panel1.Controls.Add(this.btnAgregar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 426);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 50);
-            this.panel1.TabIndex = 0;
+            this.panel2.Controls.Add(this.txtTelefono);
+            this.panel2.Controls.Add(this.txtRazonSocial);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(-35, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(424, 414);
+            this.panel2.TabIndex = 3;
             // 
-            // btnAgregar
+            // txtTelefono
             // 
-            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnAgregar.Depth = 0;
-            this.btnAgregar.HighEmphasis = true;
-            this.btnAgregar.Icon = null;
-            this.btnAgregar.Location = new System.Drawing.Point(310, 6);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnAgregar.Size = new System.Drawing.Size(158, 36);
-            this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Agregar Sucursal";
-            this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnAgregar.UseAccentColor = false;
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.txtTelefono.AnimateReadOnly = false;
+            this.txtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTelefono.Depth = 0;
+            this.txtTelefono.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txtTelefono.LeadingIcon = null;
+            this.txtTelefono.Location = new System.Drawing.Point(38, 66);
+            this.txtTelefono.MaxLength = 50;
+            this.txtTelefono.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtTelefono.Multiline = false;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(345, 50);
+            this.txtTelefono.TabIndex = 11;
+            this.txtTelefono.Text = "Ingrese telefono";
+            this.txtTelefono.TrailingIcon = null;
             // 
-            // FormSucursales
+            // txtRazonSocial
+            // 
+            this.txtRazonSocial.AnimateReadOnly = false;
+            this.txtRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRazonSocial.Depth = 0;
+            this.txtRazonSocial.Enabled = false;
+            this.txtRazonSocial.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txtRazonSocial.LeadingIcon = null;
+            this.txtRazonSocial.Location = new System.Drawing.Point(38, 10);
+            this.txtRazonSocial.MaxLength = 50;
+            this.txtRazonSocial.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtRazonSocial.Multiline = false;
+            this.txtRazonSocial.Name = "txtRazonSocial";
+            this.txtRazonSocial.Size = new System.Drawing.Size(345, 50);
+            this.txtRazonSocial.TabIndex = 10;
+            this.txtRazonSocial.Text = "Ingrese razon social";
+            this.txtRazonSocial.TrailingIcon = null;
+            this.txtRazonSocial.WordWrap = false;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnEditar.Depth = 0;
+            this.btnEditar.HighEmphasis = true;
+            this.btnEditar.Icon = null;
+            this.btnEditar.Location = new System.Drawing.Point(309, 6);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnEditar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnEditar.Size = new System.Drawing.Size(158, 36);
+            this.btnEditar.TabIndex = 0;
+            this.btnEditar.Text = "Editar Sucursal";
+            this.btnEditar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnEditar.UseAccentColor = false;
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // FormSucursalEditar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 543);
+            this.ClientSize = new System.Drawing.Size(800, 531);
             this.Controls.Add(this.panel_contenedor);
-            this.Name = "FormSucursales";
-            this.Text = "Alta Sucursal";
-            this.Load += new System.EventHandler(this.FormSucursales_Load);
+            this.Name = "FormSucursalEditar";
+            this.Text = "Editar Sucursal";
+            this.Load += new System.EventHandler(this.FormSucursalEditar_Load);
             this.panel_contenedor.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -290,6 +291,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel_contenedor;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;
         private MaterialSkin.Controls.MaterialTextBox txtRazonSocial;
@@ -301,7 +303,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtCiudad;
         private MaterialSkin.Controls.MaterialTextBox txtAltura;
         private MaterialSkin.Controls.MaterialTextBox txtCalle;
-        private System.Windows.Forms.Panel panel1;
-        private MaterialSkin.Controls.MaterialButton btnAgregar;
+        private MaterialSkin.Controls.MaterialButton btnEditar;
     }
 }

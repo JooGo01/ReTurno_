@@ -11,20 +11,20 @@ namespace EjemploABM.Controladores
 {
     class Sucursal_Controller
     {
-        public static bool crearCliente(String rzn_social, Rubro rubro)
+        public static bool crearSucursal(Sucursal suc)
         {
             //Darlo de alta en la BBDD
 
             string query = "insert into dbo.sucursal values" +
-               "(@id, " +
-               "@razon_social, " +
-               "@rubro_id, " +
-               ");";
-
+               "(@cliente_id , " +
+               "@direccion_id, " +
+               "@telefono, " +
+               "@estado_baja);";
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
-            cmd.Parameters.AddWithValue("@razon_social", rzn_social);
-            cmd.Parameters.AddWithValue("@rubro_id", rubro.id);
+            cmd.Parameters.AddWithValue("@cliente_id", Int32.Parse(suc.cliente.id.ToString()));
+            cmd.Parameters.AddWithValue("@direccion_id", Int32.Parse(suc.direccion.id.ToString()));
+            cmd.Parameters.AddWithValue("@telefono", suc.telefono.ToString());
+            cmd.Parameters.AddWithValue("@estado_baja", 0);
 
             try
             {
@@ -260,40 +260,6 @@ namespace EjemploABM.Controladores
             return suc;
         }
 
-
-
-        // EDIT / PUT
-
-        public static bool crearSucursal(Sucursal suc, Cliente cliente, Direccion dir, long telefono)
-        {
-            //Update en la BBDD
-
-            string query = "insert dbo.sucursal set cliente_id  = @cliente_id , " +
-                "direccion_id   = @direccion_id , " +
-                "telefono   = @telefono , " +
-                "estado_baja  = @estado_baja " +
-                "where id = @id ;";
-
-            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", suc.id);
-            cmd.Parameters.AddWithValue("@direccion_id", dir.id);
-            cmd.Parameters.AddWithValue("@telefono", telefono);
-            cmd.Parameters.AddWithValue("@cliente_id", cliente.id);
-            cmd.Parameters.AddWithValue("@estado_baja", false);
-
-            try
-            {
-                DB_Controller.open();
-                cmd.ExecuteNonQuery();
-                DB_Controller.close();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Hay un error en la query: " + ex.Message);
-            }
-
-        }
 
         public static bool editarSucursal(Sucursal suc, Cliente cliente, Direccion dir, long telefono, int estado_baja)
         {

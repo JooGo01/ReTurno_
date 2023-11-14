@@ -27,6 +27,7 @@ namespace EjemploABM
                 String textoRubro = rub.id.ToString() + "- " + rub.nombre.ToString();
                 cmbRubro.Items.Add(textoRubro);
             }
+            cmbRubro.SelectedIndex = 0;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
