@@ -171,11 +171,14 @@
     </Compile>
     <Compile Include="InfoMesCalendario.cs" />
     <Compile Include="Modelo\Administracion.cs" />
-    <Compile Include="Modelo\Categoria.cs" />
+    <Compile Include="Modelo\Atencion.cs" />
     <Compile Include="Modelo\Cliente.cs" />
+    <Compile Include="Modelo\Dia.cs" />
     <Compile Include="Modelo\Direccion.cs" />
     <Compile Include="Modelo\Rubro.cs" />
+    <Compile Include="Modelo\Servicio.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
+    <Compile Include="Modelo\SucursalServicio.cs" />
     <Compile Include="Modelo\Turno.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Program.cs" />

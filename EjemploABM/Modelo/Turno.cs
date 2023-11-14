@@ -19,7 +19,9 @@ namespace EjemploABM.Modelo
 
         public int estado_baja { get; set; }
 
-        public Turno(int p_id, Sucursal p_sucursal, Usuario p_usuario, DateTime p_fecha_ini, DateTime p_fecha_fin, int p_estado_baja)
+        public Servicio servicio { get; set; }
+
+        public Turno(int p_id, Sucursal p_sucursal, Usuario p_usuario, DateTime p_fecha_ini, DateTime p_fecha_fin, int p_estado_baja, Servicio p_servicio)
         {
             id = p_id;
             sucursal = p_sucursal;
@@ -27,6 +29,7 @@ namespace EjemploABM.Modelo
             fecha_ini = p_fecha_ini;
             fecha_fin = p_fecha_fin;
             estado_baja = p_estado_baja;
+            servicio = p_servicio;
         }
 
         public Turno() { }
