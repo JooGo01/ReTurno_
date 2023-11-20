@@ -66,11 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controladores\Administracion_Controller.cs" />
+    <Compile Include="Controladores\Atencion_Controller.cs" />
     <Compile Include="Controladores\Calendario_Controller.cs" />
     <Compile Include="Controladores\Cliente_Controller.cs" />
     <Compile Include="Controladores\DB_Controller.cs" />
     <Compile Include="Controladores\Direccion_Controller.cs" />
     <Compile Include="Controladores\Rubro_Controller.cs" />
+    <Compile Include="Controladores\Servicio_Controller.cs" />
+    <Compile Include="Controladores\SucServ_Controller.cs" />
     <Compile Include="Controladores\Sucursal_Controller.cs" />
     <Compile Include="Controladores\Usuario_Controller.cs" />
     <Compile Include="ControlesAdm\ControladorAdm.cs">
@@ -169,6 +172,12 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServicio.Designer.cs">
+      <DependentUpon>frmServicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServicio.resx">
+      <DependentUpon>frmServicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>

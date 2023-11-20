@@ -17,6 +17,7 @@ namespace EjemploABM
     {
 
         public Cliente cli = new Cliente();
+        public SucursalServicio sucursalServicio = new SucursalServicio();
         public FormTurno()
         {
             InitializeComponent();
@@ -61,7 +62,7 @@ namespace EjemploABM
             sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
             DateTime horaIni = dtHoraIni.Value;
             DateTime horaFin = dtHoraFin.Value;
-            DateTime fechaIni = dtFechaIni.Value;
+            DateTime fechaIni = dtFecha.Value;
             DateTime fechaFin = dtFechaFin.Value;
             String fechaHoraIni = "";
             String fechaHoraFin = "";
@@ -98,6 +99,29 @@ namespace EjemploABM
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void llenadoHora(Atencion atencion)
+        {
+            int hora_inicio = atencion.hora_apertura;
+            int hora_fin = atencion.hora_cierre;
+            int intervalo = sucursalServicio.tiempo_servicio;
+            int indHora = 0;
+            int indMin = 0;
+            String horaFormateada = "";
+            cbHoraIni.Items.Clear();
+            for (indHora = hora_inicio; indHora <= hora_fin; indHora++) {
+                for (indMin = 0; indMin < 60; indMin += intervalo) {
+                    horaFormateada = $"{indHora:D2}:{indMin:D2}:00";
+                    cbHoraIni.Items.Add(horaFormateada);
+                }
+            }
+            cbHoraIni.SelectedIndex = 0;
+        }
+
+        private void cbHoraIni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int intervalo = sucursalServicio.tiempo_servicio;
         }
     }
 }

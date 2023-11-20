@@ -114,5 +114,25 @@ namespace EjemploABM
 
             }
         }
+
+        private void llenadoHora(Atencion atencion, SucursalServicio sucursalServicio)
+        {
+            int hora_inicio = atencion.hora_apertura;
+            int hora_fin = atencion.hora_cierre;
+            int intervalo = sucursalServicio.tiempo_servicio;
+            int indHora = 0;
+            int indMin = 0;
+            String horaFormateada = "";
+            cbHoraIni.Items.Clear();
+            for (indHora = hora_inicio; indHora <= hora_fin; indHora++)
+            {
+                for (indMin = 0; indMin < 60; indMin += intervalo)
+                {
+                    horaFormateada = $"{indHora:D2}:{indMin:D2}:00";
+                    cbHoraIni.Items.Add(horaFormateada);
+                }
+            }
+            cbHoraIni.SelectedIndex = 0;
+        }
     }
 }

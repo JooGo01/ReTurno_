@@ -29,32 +29,36 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbServicio = new MaterialSkin.Controls.MaterialComboBox();
+            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.cmbSucursal = new MaterialSkin.Controls.MaterialComboBox();
-            this.dtHoraFin = new System.Windows.Forms.DateTimePicker();
-            this.dtHoraIni = new System.Windows.Forms.DateTimePicker();
-            this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.dtFechaIni = new System.Windows.Forms.DateTimePicker();
             this.txtDni = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnEditar = new MaterialSkin.Controls.MaterialButton();
+            this.lblHoraFin = new MaterialSkin.Controls.MaterialLabel();
+            this.cbHoraIni = new MaterialSkin.Controls.MaterialComboBox();
+            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.dtFecha = new System.Windows.Forms.DateTimePicker();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cmbSucursal);
-            this.panel1.Controls.Add(this.dtHoraFin);
-            this.panel1.Controls.Add(this.dtHoraIni);
-            this.panel1.Controls.Add(this.dtFechaFin);
-            this.panel1.Controls.Add(this.dtFechaIni);
-            this.panel1.Controls.Add(this.txtDni);
-            this.panel1.Controls.Add(this.materialLabel3);
+            this.panel1.Controls.Add(this.lblHoraFin);
+            this.panel1.Controls.Add(this.cbHoraIni);
+            this.panel1.Controls.Add(this.materialLabel6);
+            this.panel1.Controls.Add(this.dtFecha);
             this.panel1.Controls.Add(this.materialLabel4);
+            this.panel1.Controls.Add(this.materialLabel7);
+            this.panel1.Controls.Add(this.cbServicio);
+            this.panel1.Controls.Add(this.materialLabel5);
+            this.panel1.Controls.Add(this.cmbSucursal);
+            this.panel1.Controls.Add(this.txtDni);
             this.panel1.Controls.Add(this.materialLabel2);
             this.panel1.Controls.Add(this.materialLabel1);
             this.panel1.Controls.Add(this.panel2);
@@ -63,6 +67,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(583, 424);
             this.panel1.TabIndex = 0;
+            // 
+            // cbServicio
+            // 
+            this.cbServicio.AutoResize = false;
+            this.cbServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbServicio.Depth = 0;
+            this.cbServicio.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbServicio.DropDownHeight = 174;
+            this.cbServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbServicio.DropDownWidth = 121;
+            this.cbServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbServicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbServicio.FormattingEnabled = true;
+            this.cbServicio.IntegralHeight = false;
+            this.cbServicio.ItemHeight = 43;
+            this.cbServicio.Location = new System.Drawing.Point(149, 121);
+            this.cbServicio.MaxDropDownItems = 4;
+            this.cbServicio.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbServicio.Name = "cbServicio";
+            this.cbServicio.Size = new System.Drawing.Size(198, 49);
+            this.cbServicio.StartIndex = 0;
+            this.cbServicio.TabIndex = 26;
+            // 
+            // materialLabel5
+            // 
+            this.materialLabel5.AutoSize = true;
+            this.materialLabel5.Depth = 0;
+            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel5.Location = new System.Drawing.Point(12, 134);
+            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel5.Name = "materialLabel5";
+            this.materialLabel5.Size = new System.Drawing.Size(99, 19);
+            this.materialLabel5.TabIndex = 25;
+            this.materialLabel5.Text = "Tipo de turno:";
             // 
             // cmbSucursal
             // 
@@ -86,38 +124,6 @@
             this.cmbSucursal.StartIndex = 0;
             this.cmbSucursal.TabIndex = 24;
             // 
-            // dtHoraFin
-            // 
-            this.dtHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtHoraFin.Location = new System.Drawing.Point(353, 214);
-            this.dtHoraFin.Name = "dtHoraFin";
-            this.dtHoraFin.Size = new System.Drawing.Size(198, 20);
-            this.dtHoraFin.TabIndex = 23;
-            // 
-            // dtHoraIni
-            // 
-            this.dtHoraIni.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtHoraIni.Location = new System.Drawing.Point(353, 156);
-            this.dtHoraIni.Name = "dtHoraIni";
-            this.dtHoraIni.Size = new System.Drawing.Size(198, 20);
-            this.dtHoraIni.TabIndex = 22;
-            // 
-            // dtFechaFin
-            // 
-            this.dtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFechaFin.Location = new System.Drawing.Point(149, 214);
-            this.dtFechaFin.Name = "dtFechaFin";
-            this.dtFechaFin.Size = new System.Drawing.Size(198, 20);
-            this.dtFechaFin.TabIndex = 21;
-            // 
-            // dtFechaIni
-            // 
-            this.dtFechaIni.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFechaIni.Location = new System.Drawing.Point(149, 156);
-            this.dtFechaIni.Name = "dtFechaIni";
-            this.dtFechaIni.Size = new System.Drawing.Size(198, 20);
-            this.dtFechaIni.TabIndex = 20;
-            // 
             // txtDni
             // 
             this.txtDni.AnimateReadOnly = false;
@@ -134,30 +140,6 @@
             this.txtDni.TabIndex = 19;
             this.txtDni.Text = "";
             this.txtDni.TrailingIcon = null;
-            // 
-            // materialLabel3
-            // 
-            this.materialLabel3.AutoSize = true;
-            this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(12, 215);
-            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(74, 19);
-            this.materialLabel3.TabIndex = 18;
-            this.materialLabel3.Text = "Fecha Fin:";
-            // 
-            // materialLabel4
-            // 
-            this.materialLabel4.AutoSize = true;
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel4.Location = new System.Drawing.Point(12, 156);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(90, 19);
-            this.materialLabel4.TabIndex = 17;
-            this.materialLabel4.Text = "Fecha Inicio:";
             // 
             // materialLabel2
             // 
@@ -212,6 +194,83 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
+            // lblHoraFin
+            // 
+            this.lblHoraFin.AutoSize = true;
+            this.lblHoraFin.Depth = 0;
+            this.lblHoraFin.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblHoraFin.Location = new System.Drawing.Point(146, 301);
+            this.lblHoraFin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblHoraFin.Name = "lblHoraFin";
+            this.lblHoraFin.Size = new System.Drawing.Size(1, 0);
+            this.lblHoraFin.TabIndex = 34;
+            // 
+            // cbHoraIni
+            // 
+            this.cbHoraIni.AutoResize = false;
+            this.cbHoraIni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbHoraIni.Depth = 0;
+            this.cbHoraIni.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbHoraIni.DropDownHeight = 174;
+            this.cbHoraIni.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHoraIni.DropDownWidth = 121;
+            this.cbHoraIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbHoraIni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbHoraIni.FormattingEnabled = true;
+            this.cbHoraIni.IntegralHeight = false;
+            this.cbHoraIni.ItemHeight = 43;
+            this.cbHoraIni.Location = new System.Drawing.Point(149, 227);
+            this.cbHoraIni.MaxDropDownItems = 4;
+            this.cbHoraIni.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbHoraIni.Name = "cbHoraIni";
+            this.cbHoraIni.Size = new System.Drawing.Size(198, 49);
+            this.cbHoraIni.StartIndex = 0;
+            this.cbHoraIni.TabIndex = 33;
+            // 
+            // materialLabel6
+            // 
+            this.materialLabel6.AutoSize = true;
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel6.Location = new System.Drawing.Point(12, 240);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(81, 19);
+            this.materialLabel6.TabIndex = 32;
+            this.materialLabel6.Text = "Hora Inicio:";
+            // 
+            // dtFecha
+            // 
+            this.dtFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFecha.Location = new System.Drawing.Point(149, 191);
+            this.dtFecha.Name = "dtFecha";
+            this.dtFecha.Size = new System.Drawing.Size(198, 20);
+            this.dtFecha.TabIndex = 29;
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel4.Location = new System.Drawing.Point(12, 301);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(65, 19);
+            this.materialLabel4.TabIndex = 28;
+            this.materialLabel4.Text = "Hora Fin:";
+            // 
+            // materialLabel7
+            // 
+            this.materialLabel7.AutoSize = true;
+            this.materialLabel7.Depth = 0;
+            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel7.Location = new System.Drawing.Point(12, 191);
+            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel7.Name = "materialLabel7";
+            this.materialLabel7.Size = new System.Drawing.Size(48, 19);
+            this.materialLabel7.TabIndex = 27;
+            this.materialLabel7.Text = "Fecha:";
+            // 
             // FormTurnoEditar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,14 +294,16 @@
         private System.Windows.Forms.Panel panel2;
         private MaterialSkin.Controls.MaterialButton btnEditar;
         private MaterialSkin.Controls.MaterialComboBox cmbSucursal;
-        private System.Windows.Forms.DateTimePicker dtHoraFin;
-        private System.Windows.Forms.DateTimePicker dtHoraIni;
-        private System.Windows.Forms.DateTimePicker dtFechaFin;
-        private System.Windows.Forms.DateTimePicker dtFechaIni;
         private MaterialSkin.Controls.MaterialTextBox txtDni;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialComboBox cbServicio;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialLabel lblHoraFin;
+        private MaterialSkin.Controls.MaterialComboBox cbHoraIni;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private System.Windows.Forms.DateTimePicker dtFecha;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
     }
 }
