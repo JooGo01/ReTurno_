@@ -70,6 +70,7 @@
     <Compile Include="Controladores\Calendario_Controller.cs" />
     <Compile Include="Controladores\Cliente_Controller.cs" />
     <Compile Include="Controladores\DB_Controller.cs" />
+    <Compile Include="Controladores\Dia_Contoller.cs" />
     <Compile Include="Controladores\Direccion_Controller.cs" />
     <Compile Include="Controladores\Rubro_Controller.cs" />
     <Compile Include="Controladores\Servicio_Controller.cs" />
