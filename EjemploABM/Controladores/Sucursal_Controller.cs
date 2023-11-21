@@ -295,10 +295,9 @@ namespace EjemploABM.Controladores
         public static bool bajaSucursal(Sucursal suc, int estado_baja)
         {
             //Update en la BBDD
-
+            SucServ_Controller.bajaSucServicioSuc(suc);
             string query = "update dbo.sucursal set estado_baja  = @estado_baja " +
                 "where id = @id ;";
-
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", suc.id);
             cmd.Parameters.AddWithValue("@estado_baja", estado_baja);
