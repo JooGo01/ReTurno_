@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.pnael_contenedor = new System.Windows.Forms.Panel();
+            this.pnl_contenedor_suc = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.txtServicio = new MaterialSkin.Controls.MaterialTextBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pnl_contenedor_suc = new System.Windows.Forms.Panel();
             this.pnael_contenedor.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,24 @@
             this.pnael_contenedor.Name = "pnael_contenedor";
             this.pnael_contenedor.Size = new System.Drawing.Size(536, 411);
             this.pnael_contenedor.TabIndex = 0;
+            // 
+            // pnl_contenedor_suc
+            // 
+            this.pnl_contenedor_suc.AutoScroll = true;
+            this.pnl_contenedor_suc.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_contenedor_suc.Location = new System.Drawing.Point(0, 71);
+            this.pnl_contenedor_suc.Name = "pnl_contenedor_suc";
+            this.pnl_contenedor_suc.Size = new System.Drawing.Size(536, 284);
+            this.pnl_contenedor_suc.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnAgregar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 355);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(536, 56);
+            this.panel1.TabIndex = 12;
             // 
             // btnAgregar
             // 
@@ -74,7 +92,7 @@
             this.txtServicio.AnimateReadOnly = false;
             this.txtServicio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtServicio.Depth = 0;
-            this.txtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtServicio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtServicio.LeadingIcon = null;
             this.txtServicio.Location = new System.Drawing.Point(94, 15);
             this.txtServicio.MaxLength = 50;
@@ -97,23 +115,6 @@
             this.materialLabel2.Size = new System.Drawing.Size(61, 19);
             this.materialLabel2.TabIndex = 10;
             this.materialLabel2.Text = "Servicio:";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnAgregar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 355);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(536, 56);
-            this.panel1.TabIndex = 12;
-            // 
-            // pnl_contenedor_suc
-            // 
-            this.pnl_contenedor_suc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_contenedor_suc.Location = new System.Drawing.Point(0, 71);
-            this.pnl_contenedor_suc.Name = "pnl_contenedor_suc";
-            this.pnl_contenedor_suc.Size = new System.Drawing.Size(536, 284);
-            this.pnl_contenedor_suc.TabIndex = 13;
             // 
             // frmServicio
             // 
