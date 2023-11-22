@@ -53,7 +53,7 @@ namespace EjemploABM
             crearDias();
             diasSemana();
             ajustePanel();
-            _infoCalendario = new InfoMesCalendario(10,2023);
+            _infoCalendario = new InfoMesCalendario(DateTime.Now.Month, DateTime.Now.Year);
             llenarCalendario();
             //pruebaEventos();
             //Calendario_UC calendarioUC = new Calendario_UC();

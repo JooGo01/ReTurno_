@@ -89,6 +89,12 @@
     <Compile Include="ControlesCalendario\Calendario_UC.Designer.cs">
       <DependentUpon>Calendario_UC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlesCalendario\GrillaHoraria_UC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesCalendario\GrillaHoraria_UC.Designer.cs">
+      <DependentUpon>GrillaHoraria_UC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesCliente\ControladorCliente.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesCalendario\Calendario_UC.resx">
       <DependentUpon>Calendario_UC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesCalendario\GrillaHoraria_UC.resx">
+      <DependentUpon>GrillaHoraria_UC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesCliente\ControladorCliente.resx">
       <DependentUpon>ControladorCliente.cs</DependentUpon>
