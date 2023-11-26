@@ -183,8 +183,6 @@ namespace EjemploABM.Controladores
                     list.Add(sucServ);
                 }
 
-                Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
-
                 reader.Close();
                 DB_Controller.close();
 

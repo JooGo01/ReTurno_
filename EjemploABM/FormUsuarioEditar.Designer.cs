@@ -86,7 +86,7 @@
             this.cmbTipoUsuario.Name = "cmbTipoUsuario";
             this.cmbTipoUsuario.Size = new System.Drawing.Size(343, 49);
             this.cmbTipoUsuario.StartIndex = 0;
-            this.cmbTipoUsuario.TabIndex = 20;
+            this.cmbTipoUsuario.TabIndex = 7;
             // 
             // txtDNI
             // 
@@ -101,7 +101,7 @@
             this.txtDNI.Multiline = false;
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(343, 50);
-            this.txtDNI.TabIndex = 19;
+            this.txtDNI.TabIndex = 3;
             this.txtDNI.Text = "Ingrese DNI";
             this.txtDNI.TrailingIcon = null;
             // 
@@ -118,7 +118,7 @@
             this.txtContrasenia.Multiline = false;
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.Size = new System.Drawing.Size(343, 50);
-            this.txtContrasenia.TabIndex = 18;
+            this.txtContrasenia.TabIndex = 6;
             this.txtContrasenia.Text = "Ingrese Contraseña";
             this.txtContrasenia.TrailingIcon = null;
             // 
@@ -135,7 +135,7 @@
             this.txtTelefono.Multiline = false;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(343, 50);
-            this.txtTelefono.TabIndex = 17;
+            this.txtTelefono.TabIndex = 4;
             this.txtTelefono.Text = "Ingrese Telefono";
             this.txtTelefono.TrailingIcon = null;
             // 
@@ -152,7 +152,7 @@
             this.txtEmail.Multiline = false;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(345, 50);
-            this.txtEmail.TabIndex = 16;
+            this.txtEmail.TabIndex = 5;
             this.txtEmail.Text = "Ingrese Email";
             this.txtEmail.TrailingIcon = null;
             // 
@@ -169,7 +169,7 @@
             this.txtApellido.Multiline = false;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(345, 50);
-            this.txtApellido.TabIndex = 15;
+            this.txtApellido.TabIndex = 2;
             this.txtApellido.Text = "Ingrese Apellido";
             this.txtApellido.TrailingIcon = null;
             // 
@@ -186,7 +186,7 @@
             this.txtNombre.Multiline = false;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(345, 50);
-            this.txtNombre.TabIndex = 14;
+            this.txtNombre.TabIndex = 1;
             this.txtNombre.Text = "Ingrese Nombre";
             this.txtNombre.TrailingIcon = null;
             this.txtNombre.WordWrap = false;
@@ -219,7 +219,7 @@
             this.txtCodPos.Multiline = false;
             this.txtCodPos.Name = "txtCodPos";
             this.txtCodPos.Size = new System.Drawing.Size(343, 50);
-            this.txtCodPos.TabIndex = 14;
+            this.txtCodPos.TabIndex = 12;
             this.txtCodPos.Text = "Ingrese Codigo Postal";
             this.txtCodPos.TrailingIcon = null;
             // 
@@ -236,7 +236,7 @@
             this.txtDepartamento.Multiline = false;
             this.txtDepartamento.Name = "txtDepartamento";
             this.txtDepartamento.Size = new System.Drawing.Size(343, 50);
-            this.txtDepartamento.TabIndex = 13;
+            this.txtDepartamento.TabIndex = 10;
             this.txtDepartamento.Text = "Ingrese departamento";
             this.txtDepartamento.TrailingIcon = null;
             // 
@@ -253,7 +253,7 @@
             this.txtProvincia.Multiline = false;
             this.txtProvincia.Name = "txtProvincia";
             this.txtProvincia.Size = new System.Drawing.Size(343, 50);
-            this.txtProvincia.TabIndex = 12;
+            this.txtProvincia.TabIndex = 14;
             this.txtProvincia.Text = "Ingrese provincia";
             this.txtProvincia.TrailingIcon = null;
             // 
@@ -287,7 +287,7 @@
             this.txtCiudad.Multiline = false;
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.Size = new System.Drawing.Size(345, 50);
-            this.txtCiudad.TabIndex = 10;
+            this.txtCiudad.TabIndex = 13;
             this.txtCiudad.Text = "Ingrese ciudad";
             this.txtCiudad.TrailingIcon = null;
             // 
@@ -347,8 +347,8 @@
             this.btnEditar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnEditar.Size = new System.Drawing.Size(153, 36);
-            this.btnEditar.TabIndex = 0;
+            this.btnEditar.Size = new System.Drawing.Size(136, 36);
+            this.btnEditar.TabIndex = 15;
             this.btnEditar.Text = "Editar Usuario";
             this.btnEditar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnEditar.UseAccentColor = false;

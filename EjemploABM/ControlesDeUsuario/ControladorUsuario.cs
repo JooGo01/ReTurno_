@@ -18,13 +18,22 @@ namespace EjemploABM.ControlesDeUsuario
         public ControladorUsuario()
         {
             InitializeComponent();
-            cargarUsuarios(0);
+            if (Program.logueado.tipo_usuario == "V")
+            {
+                dgv_evento.Columns["Editar"].Visible = false;
+                dgv_evento.Columns["Eliminar"].Visible = false;
+            }
+            cargarUsuarios();
         }
 
-        private void cargarUsuarios(int opcUsuario)
+        private void cargarUsuarios()
         {
 
             if (Program.logueado.tipo_usuario == "S")
+            {
+                usuarios = Usuario_Controller.obtenerTodos();
+            }
+            else if (Program.logueado.tipo_usuario == "A")
             {
                 usuarios = Usuario_Controller.obtenerTodosAdmCliente(Program.cli);
             }
@@ -56,6 +65,7 @@ namespace EjemploABM.ControlesDeUsuario
             {
 
             }
+            cargarUsuarios();
         }
 
         private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -73,6 +83,7 @@ namespace EjemploABM.ControlesDeUsuario
                         Usuario usrBaja = Usuario_Controller.obtenerPorId(Int32.Parse(id_baja));
                         Usuario_Controller.bajaUsuario(usrBaja);
                         MessageBox.Show("Usuario dado de baja con exito", "ReTurno");
+                        cargarUsuarios();
                     }
                     else
                     {
@@ -96,6 +107,7 @@ namespace EjemploABM.ControlesDeUsuario
                         if (dr == DialogResult.OK)
                         {
                         }
+                        cargarUsuarios();
                     }
                     else
                     {

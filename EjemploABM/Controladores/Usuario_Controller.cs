@@ -84,7 +84,7 @@ namespace EjemploABM.Controladores
                 DB_Controller.close();
                 Program.logueado = user;
                 Cliente cliente = new Cliente();
-                if (user.tipo_usuario == "S")
+                if (user.tipo_usuario == "A")
                 {
                     Program.cli = Cliente_Controller.obtenerPorIdUsuario(user.id);
                 }

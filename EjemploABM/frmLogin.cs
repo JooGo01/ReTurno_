@@ -23,12 +23,6 @@ namespace EjemploABM
 
         }
 
-        private void btnCrearCliente_Click(object sender, EventArgs e)
-        {
-            FormCliente frmCliente = new FormCliente();
-            DialogResult dr = frmCliente.ShowDialog();
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             String usuario=txtEmail.Text;
@@ -53,6 +47,16 @@ namespace EjemploABM
             else {
                 MessageBox.Show("No se pudo iniciar sesion, vuelva a intentar", "ReTurno");
             }
+        }
+
+        private void txtEmail_GotFocus(object sender, EventArgs e)
+        {
+            txtEmail.Text = String.Empty;
+        }
+
+        private void txtContrasenia_GotFocus(object sender, EventArgs e)
+        {
+            txtContrasenia.Text = String.Empty;
         }
     }
 }

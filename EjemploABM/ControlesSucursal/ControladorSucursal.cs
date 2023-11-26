@@ -19,14 +19,14 @@ namespace EjemploABM.ControlesSucursal
             InitializeComponent();
             cargarSucursales();
             if (Program.logueado.tipo_usuario == "V") {
-                btnAgregar.Enabled = false;
+                btnAgregar.Visible = false;
             }
         }
 
         private void cargarSucursales()
         {
             List<Sucursal> sucursales = new List<Sucursal>();
-            if (Program.logueado.tipo_usuario == "S")
+            if (Program.logueado.tipo_usuario == "A")
             {
                 sucursales = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
             }
@@ -57,13 +57,14 @@ namespace EjemploABM.ControlesSucursal
                 if (e.ColumnIndex == 5 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //eliminar
-                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+                    if (Program.logueado.tipo_usuario == "A")
                     {
                         String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
                         Sucursal suc_baja = new Sucursal();
                         suc_baja = Sucursal_Controller.obtenerPorId(Int32.Parse(id_baja));
                         Sucursal_Controller.bajaSucursal(suc_baja, 1);
                         MessageBox.Show("Sucursal dado de baja con exito", "ReTurno");
+                        cargarSucursales();
                     }
                     else
                     {
@@ -74,7 +75,7 @@ namespace EjemploABM.ControlesSucursal
 
                 if (e.ColumnIndex == 4 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
-                    if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+                    if (Program.logueado.tipo_usuario == "A")
                     {
                         //editar
                         String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -87,6 +88,7 @@ namespace EjemploABM.ControlesSucursal
                         if (dr == DialogResult.OK)
                         {
                         }
+                        cargarSucursales();
                         //TODO - Button Clicked - Execute Code Here
                     }
                     else
@@ -99,7 +101,7 @@ namespace EjemploABM.ControlesSucursal
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
+            if (Program.logueado.tipo_usuario == "A")
             {
                 //agregar
                 FormSucursales frmSuc= new FormSucursales();
@@ -109,6 +111,7 @@ namespace EjemploABM.ControlesSucursal
                 if (dr == DialogResult.OK)
                 {
                 }
+                cargarSucursales();
                 //TODO - Button Clicked - Execute Code Here
             }
             else

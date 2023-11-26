@@ -24,13 +24,11 @@ namespace EjemploABM
         {
             Direccion dire = new Direccion();
             List<Sucursal> listSucursal = new List<Sucursal>();
-            if (Program.logueado.tipo_usuario=="S") {
+            if (Program.logueado.tipo_usuario=="A") {
                 cli = Cliente_Controller.obtenerPorId(Program.cli.id);
                 listSucursal = Sucursal_Controller.obtenerTodosSucCliente(cli);
             }
-            else if(Program.logueado.tipo_usuario == "A") {
-                listSucursal = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
-            }
+            
             foreach (Sucursal suc in listSucursal)
             {
                 dire = Direccion_Controller.obtenerPorId(suc.direccion.id);

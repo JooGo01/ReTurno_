@@ -37,55 +37,68 @@ namespace EjemploABM
             {
                 btnCliente.Enabled = true;
                 btnUsuario.Enabled = true;
-                btnAdm.Enabled = true;
-                btnSuc.Enabled = true;
+                btnAdm.Visible = false;
+                btnSuc.Visible = false;
+                btnServicio.Visible = false;
             }
             else if (Program.logueado.tipo_usuario == "A") {
-                btnCliente.Enabled = false;
+                btnCliente.Enabled = true;
                 btnUsuario.Enabled = true;
                 btnAdm.Enabled = true;
                 btnSuc.Enabled = true;
+                btnServicio.Visible = false;
             } else if (Program.logueado.tipo_usuario == "V") {
-                btnCliente.Enabled = false;
+                btnCliente.Visible = false;
                 btnUsuario.Enabled = true;
-                btnAdm.Enabled = false;
-                btnSuc.Enabled = false;
+                btnAdm.Visible = false;
+                btnSuc.Visible = false;
+                btnServicio.Visible = false;
             }
-            crearDias();
-            diasSemana();
-            ajustePanel();
-            _infoCalendario = new InfoMesCalendario(DateTime.Now.Month, DateTime.Now.Year);
-            llenarCalendario();
-            //pruebaEventos();
-            //Calendario_UC calendarioUC = new Calendario_UC();
-            //addUserControl(calendarioUC);
+
             MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT; // or .DARK
             MaterialSkinManager.Instance.ColorScheme = new ColorScheme(Primary.Blue400, Primary.Blue500, Primary.Blue300, Accent.Red400, TextShade.WHITE);
-            btnAchicar.Visible=false;
 
-            List<Sucursal> list = new List<Sucursal>();
-            Direccion dire = new Direccion();
-            if (Program.logueado.tipo_usuario == "S") {
-                list = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
-                foreach (Sucursal suc in list)
+            if (Program.logueado.tipo_usuario == "V" || Program.logueado.tipo_usuario == "A")
+            {
+                crearDias();
+                diasSemana();
+                ajustePanel();
+                _infoCalendario = new InfoMesCalendario(DateTime.Now.Month, DateTime.Now.Year);
+                llenarCalendario();
+                //pruebaEventos();
+                //Calendario_UC calendarioUC = new Calendario_UC();
+                //addUserControl(calendarioUC);
+                btnAchicar.Visible = false;
+
+                List<Sucursal> list = new List<Sucursal>();
+                Direccion dire = new Direccion();
+                if (Program.logueado.tipo_usuario == "A")
                 {
-                    dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
-                    String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
-                    cmbSucursal.Items.Add(textoSucursal);
-                    cmbSucursal.SelectedIndex = 0;
+                    list = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
+                    foreach (Sucursal suc in list)
+                    {
+                        dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
+                        String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
+                        cmbSucursal.Items.Add(textoSucursal);
+                        cmbSucursal.SelectedIndex = 0;
+                    }
                 }
+                else if (Program.logueado.tipo_usuario == "V")
+                {
+                    list = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
+                    foreach (Sucursal suc in list)
+                    {
+                        dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
+                        String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
+                        cmbSucursal.Items.Add(textoSucursal);
+                        cmbSucursal.SelectedIndex = 0;
+                    }
+                }
+                //descripcionEventos();
             }
             else {
-                list = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
-                foreach (Sucursal suc in list)
-                {
-                    dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
-                    String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
-                    cmbSucursal.Items.Add(textoSucursal);
-                    cmbSucursal.SelectedIndex = 0;
-                }
+                tabControlCalendario.TabPages.Remove(tab_calendario);
             }
-            //descripcionEventos();
         }
 
         private void crearDias() {

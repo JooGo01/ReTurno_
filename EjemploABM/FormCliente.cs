@@ -53,7 +53,7 @@ namespace EjemploABM
             String tel = txtTelefono.Text;
             String email = txtEmail.Text;
             String pass = txtContrasenia.Text;
-            String tipoUsuario = "S";
+            String tipoUsuario = "A";
             Usuario usr = new Usuario((id_usr + 1), nombre, apellido, dni, tel, email, pass, tipoUsuario, dire, 0);
             Usuario_Controller.crearUsuario(usr);
         }

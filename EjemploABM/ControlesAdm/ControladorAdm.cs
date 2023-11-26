@@ -39,6 +39,7 @@ namespace EjemploABM.ControlesAdm
                         adm = Administracion_Controller.obtenerPorId(Int32.Parse(id_baja));
                         Administracion_Controller.bajaAdministracion(adm);
                         MessageBox.Show("Administracion dado de baja con exito", "ReTurno");
+                        cargarAdminsitracion();
                         //TODO - Button Clicked - Execute Code Here
                     }
                 }
@@ -81,6 +82,7 @@ namespace EjemploABM.ControlesAdm
                 {
 
                 }
+                cargarAdminsitracion();
             }
             else
             {

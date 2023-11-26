@@ -24,12 +24,20 @@ namespace EjemploABM
             cmbTipoUsuario.Items.Add("1- Vendedor");
             cmbTipoUsuario.Items.Add("2- Administrador");
             cmbTipoUsuario.Items.Add("3- Cliente");
-            cmbTipoUsuario.SelectedIndex = 0;
+            if (Program.logueado.tipo_usuario == "V")
+            {
+                cmbTipoUsuario.Enabled = false;
+                cmbTipoUsuario.SelectedIndex = 2;
+            }
+            else {
+                cmbTipoUsuario.SelectedIndex = 0;
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             crear();
+            MessageBox.Show("Usuario Creado", "ReTurno");
         }
 
         private void crear() {
@@ -56,8 +64,27 @@ namespace EjemploABM
             } else if (id_tipoUsuario[0] == "3") {
                 tipoUsuario = "C";
             }
+
             Usuario usr = new Usuario((id_usr + 1), nombre, apellido, dni, tel, email, pass, tipoUsuario, dire, 0);
             Usuario_Controller.crearUsuario(usr);
+
+            List<Sucursal> sucursal = new List<Sucursal>();
+            if (Program.logueado.tipo_usuario == "A")
+            {
+                sucursal = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
+                foreach (Sucursal suc in sucursal)
+                {
+                    Administracion_Controller.crearAdministracion(suc, usr);
+                }
+            }
+            else if (Program.logueado.tipo_usuario == "V")
+            {
+                sucursal = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
+                foreach (Sucursal suc in sucursal)
+                {
+                    Administracion_Controller.crearAdministracion(suc, usr);
+                }
+            }
         }
 
         private void crearDireccion() {
