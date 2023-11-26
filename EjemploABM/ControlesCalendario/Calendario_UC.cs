@@ -22,12 +22,14 @@ namespace EjemploABM.ControlesCalendario
         List<Turno> turnos;
         public DateTime dt_seleccionado;
         public Sucursal suc_seleccionado;
+        public Servicio ser_seleccionado;
         public Calendario_UC(DateTime dt, Sucursal suc, Servicio ser)
         {
             InitializeComponent();
             cargarTurno(dt, suc, ser);
             dt_seleccionado = dt;
             suc_seleccionado = suc;
+            ser_seleccionado = ser;
         }
 
         private void cargarTurno(DateTime dt, Sucursal suc, Servicio ser)
@@ -63,6 +65,7 @@ namespace EjemploABM.ControlesCalendario
             {
 
             }
+            cargarTurno(dt_seleccionado,suc_seleccionado,ser_seleccionado);
         }
 
         private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -79,6 +82,7 @@ namespace EjemploABM.ControlesCalendario
                         Calendario_Controller.bajarTurno(Int32.Parse(id_baja));
                         MessageBox.Show("Turno dado de baja con exito", "ReTurno");
                         //TODO - Button Clicked - Execute Code Here
+                        cargarTurno(dt_seleccionado, suc_seleccionado, ser_seleccionado);
                     }
                     else
                     {
@@ -99,6 +103,7 @@ namespace EjemploABM.ControlesCalendario
                         if (dr == DialogResult.OK)
                         {
                         }
+                        cargarTurno(dt_seleccionado, suc_seleccionado, ser_seleccionado);
                     }
                     else
                     {

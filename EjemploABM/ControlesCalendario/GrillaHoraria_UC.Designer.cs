@@ -37,7 +37,7 @@
             this.panel_contenedor_grillahor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_contenedor_grillahor.Location = new System.Drawing.Point(0, 0);
             this.panel_contenedor_grillahor.Name = "panel_contenedor_grillahor";
-            this.panel_contenedor_grillahor.Size = new System.Drawing.Size(843, 512);
+            this.panel_contenedor_grillahor.Size = new System.Drawing.Size(276, 433);
             this.panel_contenedor_grillahor.TabIndex = 0;
             this.panel_contenedor_grillahor.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_contenedor_grillahor_Paint);
             // 
@@ -47,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel_contenedor_grillahor);
             this.Name = "GrillaHoraria_UC";
-            this.Size = new System.Drawing.Size(843, 512);
+            this.Size = new System.Drawing.Size(276, 433);
             this.ResumeLayout(false);
 
         }

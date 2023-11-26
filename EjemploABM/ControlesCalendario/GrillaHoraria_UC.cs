@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,30 +62,32 @@ namespace EjemploABM.ControlesCalendario
         {
             int hora_inicial;
             int hora_final;
+            Boolean boolHoraLim;
+            boolHoraLim = false;
             DateTime dia_hora = dt_seleccionado;
+            DateTime dia_hora_lim = dt_seleccionado;
+            panel_contenedor_grillahor.Controls.Clear();
             if (atencion != null)
             {
                 hora_inicial = atencion.hora_apertura;
-                dia_hora.AddHours(hora_inicial);
+                dia_hora = dia_hora.AddHours(hora_inicial);
                 hora_final = atencion.hora_cierre;
+                dia_hora_lim = dia_hora_lim.AddHours(hora_final);
                 intervalo_minutos = atencion.sucursal_servicio_id.tiempo_servicio;
-                while (hora_inicial <= hora_final)
-                {
-                    AgregarPanelFila(dia_hora.ToString("HH:mm"), dia_hora);
-                    dia_hora = dia_hora.AddMinutes(intervalo_minutos);
+                agregarInfoFunc();
+                while (!boolHoraLim) {
+                    if (dia_hora <= dia_hora_lim)
+                    {
+                        AgregarPanelFila(dia_hora.ToString("HH:mm:ss"), dia_hora);
+                        dia_hora = dia_hora.AddMinutes(intervalo_minutos);
+                    }
+                    else {
+                        boolHoraLim = true;
+                    }
                 }
             }
             else {
-                hora_inicial = 7;
-                dia_hora=dia_hora.AddHours(hora_inicial);
-                hora_final = 20;
-                intervalo_minutos = 60;
-                for(int i = hora_inicial;  i <= hora_final; i++)
-                {
-                    AgregarPanelFila(dia_hora.ToString("HH:mm"), dia_hora);
-                    dia_hora = dia_hora.AddMinutes(intervalo_minutos);
-                }
-                MessageBox.Show("Cargado");
+                agregarInfo();
             }
         }
 
@@ -128,10 +131,78 @@ namespace EjemploABM.ControlesCalendario
             panel_contenedor_grillahor.Controls.Add(panelFila);
         }
 
+        private void agregarInfo() {
+            Panel panelFila = new Panel
+            {
+                Size = new Size(panel_contenedor_grillahor.Width, panel_contenedor_grillahor.Height),
+                BorderStyle = BorderStyle.FixedSingle,
+                Dock = DockStyle.Top
+            };
+            // Añade un Label al panel para mostrar la hora
+
+            Label labelInfo = new Label
+            {
+                Text = "No hay atencion de este servicio durante este dia",
+                TextAlign = ContentAlignment.MiddleCenter,
+                Font = new Font("Calibri", 18),
+                Dock = DockStyle.Fill,
+                ForeColor= Color.Red
+            };
+        
+            // Añade el Label al panel
+            panelFila.Controls.Add(labelInfo);
+
+            // Añade el panel al panel principal (contenedor de la grilla)
+            panel_contenedor_grillahor.Controls.Add(panelFila);
+        }
+
+        private void agregarInfoFunc()
+        {
+            Panel panelFila = new Panel
+            {
+                Size = new Size(panel_contenedor_grillahor.Width, 100),
+                BorderStyle = BorderStyle.FixedSingle,
+                Dock = DockStyle.Top
+            };
+            // Añade un Label al panel para mostrar la hora
+
+            Label labelInfo = new Label
+            {
+                Text = "Haga click sobre una de las grillas horarias para ver los turnos en esa hora y/o agregar algun turno.",
+                TextAlign = ContentAlignment.MiddleCenter,
+                Font = new Font("Calibri", 14),
+                Dock = DockStyle.Fill,
+                ForeColor = Color.Black
+            };
+
+            // Añade el Label al panel
+            panelFila.Controls.Add(labelInfo);
+
+            // Añade el panel al panel principal (contenedor de la grilla)
+            panel_contenedor_grillahor.Controls.Add(panelFila);
+        }
+
         private void labelHora_Click(object sender, EventArgs e)
         {
             Label dia = sender as Label;
             //MessageBox.Show(dia.Name);
+            DateTime dtSeleccionado = new DateTime();
+            String horaSeleccionada = "";
+            String fechaSeleccionada = "";
+            String strFecha = "";
+            fechaSeleccionada = dt_seleccionado.ToString("dd-MM-yyyy");
+            horaSeleccionada=dia.Name.ToString().Substring(dia.Name.ToString().Length - 8);
+            string formato = "dd-MM-yyyy HH:mm:ss";
+            strFecha = fechaSeleccionada + " " + horaSeleccionada;
+            DateTime.TryParseExact(strFecha, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtSeleccionado);
+            frmVisualizarTurno frmTurnos = new frmVisualizarTurno(suc_seleccionado,ser_seleccionado, dtSeleccionado);
+            DialogResult dr = frmTurnos.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+
+            }
+            GenerarGrilla();
         }
     }
 }

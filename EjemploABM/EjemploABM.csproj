@@ -209,6 +209,12 @@
     <Compile Include="frmServicio.Designer.cs">
       <DependentUpon>frmServicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVisualizarTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVisualizarTurno.Designer.cs">
+      <DependentUpon>frmVisualizarTurno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicio.resx">
       <DependentUpon>frmServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVisualizarTurno.resx">
+      <DependentUpon>frmVisualizarTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
