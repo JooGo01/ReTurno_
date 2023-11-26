@@ -39,18 +39,20 @@
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
-            this.materialComboBox2 = new MaterialSkin.Controls.MaterialComboBox();
-            this.materialComboBox3 = new MaterialSkin.Controls.MaterialComboBox();
+            this.cmbHoraIni = new MaterialSkin.Controls.MaterialComboBox();
+            this.cmbHoraFin = new MaterialSkin.Controls.MaterialComboBox();
+            this.cmbCantPersonal = new MaterialSkin.Controls.MaterialComboBox();
+            this.pnl_contenedor_dia = new System.Windows.Forms.Panel();
             this.pnael_contenedor.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnael_contenedor
             // 
-            this.pnael_contenedor.Controls.Add(this.materialComboBox3);
-            this.pnael_contenedor.Controls.Add(this.materialComboBox2);
-            this.pnael_contenedor.Controls.Add(this.materialComboBox1);
+            this.pnael_contenedor.Controls.Add(this.pnl_contenedor_dia);
+            this.pnael_contenedor.Controls.Add(this.cmbCantPersonal);
+            this.pnael_contenedor.Controls.Add(this.cmbHoraFin);
+            this.pnael_contenedor.Controls.Add(this.cmbHoraIni);
             this.pnael_contenedor.Controls.Add(this.materialLabel5);
             this.pnael_contenedor.Controls.Add(this.materialLabel4);
             this.pnael_contenedor.Controls.Add(this.materialLabel3);
@@ -63,23 +65,23 @@
             this.pnael_contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnael_contenedor.Location = new System.Drawing.Point(3, 64);
             this.pnael_contenedor.Name = "pnael_contenedor";
-            this.pnael_contenedor.Size = new System.Drawing.Size(684, 469);
+            this.pnael_contenedor.Size = new System.Drawing.Size(684, 574);
             this.pnael_contenedor.TabIndex = 0;
             // 
             // pnl_contenedor_suc
             // 
             this.pnl_contenedor_suc.AutoScroll = true;
             this.pnl_contenedor_suc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_contenedor_suc.Location = new System.Drawing.Point(0, 307);
+            this.pnl_contenedor_suc.Location = new System.Drawing.Point(0, 399);
             this.pnl_contenedor_suc.Name = "pnl_contenedor_suc";
-            this.pnl_contenedor_suc.Size = new System.Drawing.Size(684, 106);
+            this.pnl_contenedor_suc.Size = new System.Drawing.Size(684, 119);
             this.pnl_contenedor_suc.TabIndex = 13;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnAgregar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 413);
+            this.panel1.Location = new System.Drawing.Point(0, 518);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(684, 56);
             this.panel1.TabIndex = 12;
@@ -102,6 +104,7 @@
             this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnAgregar.UseAccentColor = false;
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtServicio
             // 
@@ -197,77 +200,85 @@
             this.materialLabel5.TabIndex = 20;
             this.materialLabel5.Text = "Cantidad Personal:";
             // 
-            // materialComboBox1
+            // cmbHoraIni
             // 
-            this.materialComboBox1.AutoResize = false;
-            this.materialComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox1.Depth = 0;
-            this.materialComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox1.DropDownHeight = 174;
-            this.materialComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox1.DropDownWidth = 121;
-            this.materialComboBox1.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox1.FormattingEnabled = true;
-            this.materialComboBox1.IntegralHeight = false;
-            this.materialComboBox1.ItemHeight = 43;
-            this.materialComboBox1.Location = new System.Drawing.Point(183, 128);
-            this.materialComboBox1.MaxDropDownItems = 4;
-            this.materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox1.Name = "materialComboBox1";
-            this.materialComboBox1.Size = new System.Drawing.Size(134, 49);
-            this.materialComboBox1.StartIndex = 0;
-            this.materialComboBox1.TabIndex = 22;
+            this.cmbHoraIni.AutoResize = false;
+            this.cmbHoraIni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbHoraIni.Depth = 0;
+            this.cmbHoraIni.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbHoraIni.DropDownHeight = 174;
+            this.cmbHoraIni.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHoraIni.DropDownWidth = 121;
+            this.cmbHoraIni.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbHoraIni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbHoraIni.FormattingEnabled = true;
+            this.cmbHoraIni.IntegralHeight = false;
+            this.cmbHoraIni.ItemHeight = 43;
+            this.cmbHoraIni.Location = new System.Drawing.Point(183, 128);
+            this.cmbHoraIni.MaxDropDownItems = 4;
+            this.cmbHoraIni.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbHoraIni.Name = "cmbHoraIni";
+            this.cmbHoraIni.Size = new System.Drawing.Size(134, 49);
+            this.cmbHoraIni.StartIndex = 0;
+            this.cmbHoraIni.TabIndex = 22;
             // 
-            // materialComboBox2
+            // cmbHoraFin
             // 
-            this.materialComboBox2.AutoResize = false;
-            this.materialComboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox2.Depth = 0;
-            this.materialComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox2.DropDownHeight = 174;
-            this.materialComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox2.DropDownWidth = 121;
-            this.materialComboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox2.FormattingEnabled = true;
-            this.materialComboBox2.IntegralHeight = false;
-            this.materialComboBox2.ItemHeight = 43;
-            this.materialComboBox2.Location = new System.Drawing.Point(183, 184);
-            this.materialComboBox2.MaxDropDownItems = 4;
-            this.materialComboBox2.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox2.Name = "materialComboBox2";
-            this.materialComboBox2.Size = new System.Drawing.Size(134, 49);
-            this.materialComboBox2.StartIndex = 0;
-            this.materialComboBox2.TabIndex = 23;
+            this.cmbHoraFin.AutoResize = false;
+            this.cmbHoraFin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbHoraFin.Depth = 0;
+            this.cmbHoraFin.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbHoraFin.DropDownHeight = 174;
+            this.cmbHoraFin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHoraFin.DropDownWidth = 121;
+            this.cmbHoraFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbHoraFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbHoraFin.FormattingEnabled = true;
+            this.cmbHoraFin.IntegralHeight = false;
+            this.cmbHoraFin.ItemHeight = 43;
+            this.cmbHoraFin.Location = new System.Drawing.Point(183, 184);
+            this.cmbHoraFin.MaxDropDownItems = 4;
+            this.cmbHoraFin.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbHoraFin.Name = "cmbHoraFin";
+            this.cmbHoraFin.Size = new System.Drawing.Size(134, 49);
+            this.cmbHoraFin.StartIndex = 0;
+            this.cmbHoraFin.TabIndex = 23;
             // 
-            // materialComboBox3
+            // cmbCantPersonal
             // 
-            this.materialComboBox3.AutoResize = false;
-            this.materialComboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox3.Depth = 0;
-            this.materialComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox3.DropDownHeight = 174;
-            this.materialComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox3.DropDownWidth = 121;
-            this.materialComboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox3.FormattingEnabled = true;
-            this.materialComboBox3.IntegralHeight = false;
-            this.materialComboBox3.ItemHeight = 43;
-            this.materialComboBox3.Location = new System.Drawing.Point(183, 239);
-            this.materialComboBox3.MaxDropDownItems = 4;
-            this.materialComboBox3.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox3.Name = "materialComboBox3";
-            this.materialComboBox3.Size = new System.Drawing.Size(134, 49);
-            this.materialComboBox3.StartIndex = 0;
-            this.materialComboBox3.TabIndex = 24;
+            this.cmbCantPersonal.AutoResize = false;
+            this.cmbCantPersonal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbCantPersonal.Depth = 0;
+            this.cmbCantPersonal.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbCantPersonal.DropDownHeight = 174;
+            this.cmbCantPersonal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCantPersonal.DropDownWidth = 121;
+            this.cmbCantPersonal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbCantPersonal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbCantPersonal.FormattingEnabled = true;
+            this.cmbCantPersonal.IntegralHeight = false;
+            this.cmbCantPersonal.ItemHeight = 43;
+            this.cmbCantPersonal.Location = new System.Drawing.Point(183, 239);
+            this.cmbCantPersonal.MaxDropDownItems = 4;
+            this.cmbCantPersonal.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbCantPersonal.Name = "cmbCantPersonal";
+            this.cmbCantPersonal.Size = new System.Drawing.Size(134, 49);
+            this.cmbCantPersonal.StartIndex = 0;
+            this.cmbCantPersonal.TabIndex = 24;
+            // 
+            // pnl_contenedor_dia
+            // 
+            this.pnl_contenedor_dia.AutoScroll = true;
+            this.pnl_contenedor_dia.Location = new System.Drawing.Point(0, 317);
+            this.pnl_contenedor_dia.Name = "pnl_contenedor_dia";
+            this.pnl_contenedor_dia.Size = new System.Drawing.Size(683, 82);
+            this.pnl_contenedor_dia.TabIndex = 25;
             // 
             // frmServicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 536);
+            this.ClientSize = new System.Drawing.Size(690, 641);
             this.Controls.Add(this.pnael_contenedor);
             this.Name = "frmServicio";
             this.Text = "Alta Servicio";
@@ -293,8 +304,9 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialTextBox txtTiempo;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox3;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox2;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private MaterialSkin.Controls.MaterialComboBox cmbCantPersonal;
+        private MaterialSkin.Controls.MaterialComboBox cmbHoraFin;
+        private MaterialSkin.Controls.MaterialComboBox cmbHoraIni;
+        private System.Windows.Forms.Panel pnl_contenedor_dia;
     }
 }

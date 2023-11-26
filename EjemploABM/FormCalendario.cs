@@ -18,6 +18,7 @@ using EjemploABM.Modelo;
 using MaterialSkin;
 using EjemploABM.Controladores;
 using System.Net;
+using EjemploABM.ControlesServicio;
 using EjemploABM.ControlesSucursal;
 
 namespace EjemploABM
@@ -548,6 +549,12 @@ namespace EjemploABM
         private void btnSuc_Click(object sender, EventArgs e)
         {
             ControladorSucursal cs = new ControladorSucursal();
+            addUserControlTabAbm(cs);
+        }
+
+        private void btnServicio_Click(object sender, EventArgs e)
+        {
+            ControlServicio cs = new ControlServicio();
             addUserControlTabAbm(cs);
         }
     }

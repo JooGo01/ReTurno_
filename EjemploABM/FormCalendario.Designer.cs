@@ -55,11 +55,11 @@
             this.tab_abm = new System.Windows.Forms.TabPage();
             this.panel_contenedor_abm = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnServicio = new MaterialSkin.Controls.MaterialButton();
             this.btnSuc = new MaterialSkin.Controls.MaterialButton();
             this.btnAdm = new MaterialSkin.Controls.MaterialButton();
             this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
             this.btnCliente = new MaterialSkin.Controls.MaterialButton();
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
@@ -361,7 +361,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.materialButton1);
+            this.panel2.Controls.Add(this.btnServicio);
             this.panel2.Controls.Add(this.btnSuc);
             this.panel2.Controls.Add(this.btnAdm);
             this.panel2.Controls.Add(this.btnUsuario);
@@ -371,6 +371,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1124, 41);
             this.panel2.TabIndex = 0;
+            // 
+            // btnServicio
+            // 
+            this.btnServicio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnServicio.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnServicio.Depth = 0;
+            this.btnServicio.HighEmphasis = true;
+            this.btnServicio.Icon = null;
+            this.btnServicio.Location = new System.Drawing.Point(435, 3);
+            this.btnServicio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnServicio.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnServicio.Name = "btnServicio";
+            this.btnServicio.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnServicio.Size = new System.Drawing.Size(85, 36);
+            this.btnServicio.TabIndex = 4;
+            this.btnServicio.Text = "SERVICIO";
+            this.btnServicio.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnServicio.UseAccentColor = false;
+            this.btnServicio.UseVisualStyleBackColor = true;
+            this.btnServicio.Click += new System.EventHandler(this.btnServicio_Click);
             // 
             // btnSuc
             // 
@@ -452,25 +472,6 @@
             this.btnCliente.UseVisualStyleBackColor = true;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
-            // materialButton1
-            // 
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(435, 3);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(83, 36);
-            this.materialButton1.TabIndex = 4;
-            this.materialButton1.Text = "SERVICIO";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            // 
             // FormCalendario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,6 +533,6 @@
         private System.Windows.Forms.Panel panel_combo;
         private System.Windows.Forms.ComboBox cmbSucursal;
         private System.Windows.Forms.ComboBox cbServicio;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton btnServicio;
     }
 }

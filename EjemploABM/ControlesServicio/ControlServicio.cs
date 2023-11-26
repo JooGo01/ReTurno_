@@ -34,21 +34,23 @@ namespace EjemploABM.ControlesServicio
             sucServicio = SucServ_Controller.obtenerTodosActivos(cli);
             
             dgv_evento.Rows.Clear();
-            foreach (SucursalServicio sucServ in sucServicio)
-            {
-                int rowIndex = dgv_evento.Rows.Add();
+            if (sucServicio != null) {
+                foreach (SucursalServicio sucServ in sucServicio)
+                {
+                    int rowIndex = dgv_evento.Rows.Add();
 
-                dgv_evento.Rows[rowIndex].Cells[0].Value = sucServ.id.ToString();
-                dgv_evento.Rows[rowIndex].Cells[1].Value = sucServ.id_sucursal.id.ToString();
-                dgv_evento.Rows[rowIndex].Cells[2].Value = sucServ.id_servicio.id.ToString();
-                dgv_evento.Rows[rowIndex].Cells[3].Value = "Editar";
-                dgv_evento.Rows[rowIndex].Cells[4].Value = "Eliminar";
+                    dgv_evento.Rows[rowIndex].Cells[0].Value = sucServ.id.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[1].Value = sucServ.id_sucursal.id.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[2].Value = sucServ.id_servicio.id.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[3].Value = "Editar";
+                    dgv_evento.Rows[rowIndex].Cells[4].Value = "Eliminar";
+                }
             }
         }
 
         private void dgv_evento_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var senderGrid = (DataGridView)sender;
+            /*var senderGrid = (DataGridView)sender;
             //String id_check = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
             if ((dgv_evento.Rows[e.RowIndex].Cells[0].Value) != null)
             {
@@ -58,10 +60,10 @@ namespace EjemploABM.ControlesServicio
                     if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
                     {
                         String id_baja = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        Sucursal suc_baja = new Sucursal();
-                        suc_baja = Sucursal_Controller.obtenerPorId(Int32.Parse(id_baja));
-                        Sucursal_Controller.bajaSucursal(suc_baja, 1);
-                        MessageBox.Show("Sucursal dado de baja con exito", "ReTurno");
+                        SucursalServicio sucServ_baja = new SucursalServicio();
+                        sucServ_baja = SucServ_Controller.obtenerPorId(Int32.Parse(id_baja));
+                        SucServ_Controller.bajaSucServicio(sucServ_baja, 1);
+                        MessageBox.Show("Servicio dado de baja con exito", "ReTurno");
                     }
                     else
                     {
@@ -76,8 +78,8 @@ namespace EjemploABM.ControlesServicio
                     {
                         //editar
                         String id = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        Sucursal suc = new Sucursal();
-                        suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id));
+                        SucursalServicio suc = new SucursalServicio();
+                        suc = SucServ_Controller.obtenerPorId(Int32.Parse(id));
                         FormSucursalEditar frmSucEdit = new FormSucursalEditar(suc);
 
                         DialogResult dr = frmSucEdit.ShowDialog();
@@ -92,7 +94,7 @@ namespace EjemploABM.ControlesServicio
                         MessageBox.Show("No cuenta con los permisos suficientes para realizar la edicion de la sucursal", "ReTurno");
                     }
                 }
-            }
+            }*/
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -100,9 +102,9 @@ namespace EjemploABM.ControlesServicio
             if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
             {
                 //agregar
-                FormSucursales frmSuc = new FormSucursales();
+                frmServicio frmSer = new frmServicio();
 
-                DialogResult dr = frmSuc.ShowDialog();
+                DialogResult dr = frmSer.ShowDialog();
 
                 if (dr == DialogResult.OK)
                 {
@@ -115,5 +117,4 @@ namespace EjemploABM.ControlesServicio
             }
         }
     }
-}
 }

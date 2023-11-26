@@ -30,13 +30,13 @@
         {
             this.panel_contenedor = new System.Windows.Forms.Panel();
             this.dgv_evento = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.panel_contenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_evento)).BeginInit();
             this.panel1.SuspendLayout();
@@ -68,6 +68,31 @@
             this.dgv_evento.TabIndex = 3;
             this.dgv_evento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_evento_CellContentClick);
             // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+            // id_sucursal
+            // 
+            this.id_sucursal.HeaderText = "Sucursal";
+            this.id_sucursal.Name = "id_sucursal";
+            // 
+            // id_servicio
+            // 
+            this.id_servicio.HeaderText = "Servicio";
+            this.id_servicio.Name = "id_servicio";
+            // 
+            // Editar
+            // 
+            this.Editar.HeaderText = "Editar";
+            this.Editar.Name = "Editar";
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnAgregar);
@@ -96,31 +121,7 @@
             this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnAgregar.UseAccentColor = false;
             this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // id_sucursal
-            // 
-            this.id_sucursal.HeaderText = "Sucursal";
-            this.id_sucursal.Name = "id_sucursal";
-            // 
-            // id_servicio
-            // 
-            this.id_servicio.HeaderText = "Servicio";
-            this.id_servicio.Name = "id_servicio";
-            // 
-            // Editar
-            // 
-            this.Editar.HeaderText = "Editar";
-            this.Editar.Name = "Editar";
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // ControlServicio
             // 

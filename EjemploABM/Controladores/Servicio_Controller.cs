@@ -64,7 +64,7 @@ namespace EjemploABM.Controladores
             }
             catch (Exception ex)
             {
-                throw new Exception("Hay un error en la query: " + ex.Message);
+                return MaxId;
             }
         }
 
@@ -168,6 +168,37 @@ namespace EjemploABM.Controladores
             catch (Exception ex)
             {
                 throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return srv;
+        }
+
+        public static Servicio obtenerPorNombre(String nom_ser)
+        {
+            Servicio srv = new Servicio();
+            string query = "select * from dbo.servicio where lcase(nombre_servicio) = @nombre;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@nombre", nom_ser);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    srv = new Servicio(reader.GetInt32(0), reader.GetString(1));
+                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
 
             return srv;
