@@ -33,6 +33,7 @@
             // 
             // panel_contenedor_grillahor
             // 
+            this.panel_contenedor_grillahor.AutoScroll = true;
             this.panel_contenedor_grillahor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_contenedor_grillahor.Location = new System.Drawing.Point(0, 0);
             this.panel_contenedor_grillahor.Name = "panel_contenedor_grillahor";

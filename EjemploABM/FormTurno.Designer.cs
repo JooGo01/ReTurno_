@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblHoraFin = new MaterialSkin.Controls.MaterialLabel();
+            this.cbHoraIni = new MaterialSkin.Controls.MaterialComboBox();
+            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.cbServicio = new MaterialSkin.Controls.MaterialComboBox();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.cmbSucursal = new MaterialSkin.Controls.MaterialComboBox();
@@ -40,9 +43,6 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
-            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            this.cbHoraIni = new MaterialSkin.Controls.MaterialComboBox();
-            this.lblHoraFin = new MaterialSkin.Controls.MaterialLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,52 @@
             this.panel1.Size = new System.Drawing.Size(582, 422);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // lblHoraFin
+            // 
+            this.lblHoraFin.AutoSize = true;
+            this.lblHoraFin.Depth = 0;
+            this.lblHoraFin.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblHoraFin.Location = new System.Drawing.Point(144, 297);
+            this.lblHoraFin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblHoraFin.Name = "lblHoraFin";
+            this.lblHoraFin.Size = new System.Drawing.Size(1, 0);
+            this.lblHoraFin.TabIndex = 19;
+            // 
+            // cbHoraIni
+            // 
+            this.cbHoraIni.AutoResize = false;
+            this.cbHoraIni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbHoraIni.Depth = 0;
+            this.cbHoraIni.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbHoraIni.DropDownHeight = 174;
+            this.cbHoraIni.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHoraIni.DropDownWidth = 121;
+            this.cbHoraIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbHoraIni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbHoraIni.FormattingEnabled = true;
+            this.cbHoraIni.IntegralHeight = false;
+            this.cbHoraIni.ItemHeight = 43;
+            this.cbHoraIni.Location = new System.Drawing.Point(147, 223);
+            this.cbHoraIni.MaxDropDownItems = 4;
+            this.cbHoraIni.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbHoraIni.Name = "cbHoraIni";
+            this.cbHoraIni.Size = new System.Drawing.Size(198, 49);
+            this.cbHoraIni.StartIndex = 0;
+            this.cbHoraIni.TabIndex = 18;
+            this.cbHoraIni.SelectedIndexChanged += new System.EventHandler(this.cbHoraIni_SelectedIndexChanged);
+            // 
+            // materialLabel6
+            // 
+            this.materialLabel6.AutoSize = true;
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel6.Location = new System.Drawing.Point(10, 236);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(81, 19);
+            this.materialLabel6.TabIndex = 17;
+            this.materialLabel6.Text = "Hora Inicio:";
             // 
             // cbServicio
             // 
@@ -124,6 +170,7 @@
             this.cmbSucursal.Size = new System.Drawing.Size(198, 49);
             this.cmbSucursal.StartIndex = 0;
             this.cmbSucursal.TabIndex = 14;
+            this.cmbSucursal.SelectedIndexChanged += new System.EventHandler(this.cmbSucursal_SelectedIndexChanged);
             // 
             // dtFecha
             // 
@@ -132,6 +179,7 @@
             this.dtFecha.Name = "dtFecha";
             this.dtFecha.Size = new System.Drawing.Size(198, 20);
             this.dtFecha.TabIndex = 10;
+            this.dtFecha.ValueChanged += new System.EventHandler(this.dtFecha_ValueChanged);
             // 
             // txtDni
             // 
@@ -228,52 +276,6 @@
             this.btnAgregar.UseAccentColor = false;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // materialLabel6
-            // 
-            this.materialLabel6.AutoSize = true;
-            this.materialLabel6.Depth = 0;
-            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.Location = new System.Drawing.Point(10, 236);
-            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(81, 19);
-            this.materialLabel6.TabIndex = 17;
-            this.materialLabel6.Text = "Hora Inicio:";
-            // 
-            // cbHoraIni
-            // 
-            this.cbHoraIni.AutoResize = false;
-            this.cbHoraIni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbHoraIni.Depth = 0;
-            this.cbHoraIni.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbHoraIni.DropDownHeight = 174;
-            this.cbHoraIni.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbHoraIni.DropDownWidth = 121;
-            this.cbHoraIni.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbHoraIni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbHoraIni.FormattingEnabled = true;
-            this.cbHoraIni.IntegralHeight = false;
-            this.cbHoraIni.ItemHeight = 43;
-            this.cbHoraIni.Location = new System.Drawing.Point(147, 223);
-            this.cbHoraIni.MaxDropDownItems = 4;
-            this.cbHoraIni.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbHoraIni.Name = "cbHoraIni";
-            this.cbHoraIni.Size = new System.Drawing.Size(198, 49);
-            this.cbHoraIni.StartIndex = 0;
-            this.cbHoraIni.TabIndex = 18;
-            this.cbHoraIni.SelectedIndexChanged += new System.EventHandler(this.cbHoraIni_SelectedIndexChanged);
-            // 
-            // lblHoraFin
-            // 
-            this.lblHoraFin.AutoSize = true;
-            this.lblHoraFin.Depth = 0;
-            this.lblHoraFin.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblHoraFin.Location = new System.Drawing.Point(144, 297);
-            this.lblHoraFin.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblHoraFin.Name = "lblHoraFin";
-            this.lblHoraFin.Size = new System.Drawing.Size(1, 0);
-            this.lblHoraFin.TabIndex = 19;
             // 
             // FormTurno
             // 

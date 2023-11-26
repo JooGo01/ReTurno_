@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace EjemploABM
 
         public Cliente cli = new Cliente();
         public SucursalServicio sucursalServicio = new SucursalServicio();
+        public int intervalo_tiempo;
         public FormTurno()
         {
             InitializeComponent();
@@ -56,30 +58,30 @@ namespace EjemploABM
         private void crear() {
             String dni = txtDni.Text;
             String[] id_suc = cmbSucursal.Text.Split('-');
+            String[] id_ser = cbServicio.Text.Split('-');
             Usuario usr = new Usuario();
             Servicio ser = new Servicio();
             usr = Usuario_Controller.obtenerPorDni(dni);
+            ser = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
             Sucursal sucursal = new Sucursal();
             sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
-            /*DateTime horaIni = dtHoraIni.Value;
-            DateTime horaFin = dtHoraFin.Value;
-            DateTime fechaIni = dtFecha.Value;
-            DateTime fechaFin = dtFechaFin.Value;*/
-            String fechaHoraIni = "";
-            String fechaHoraFin = "";
+            DateTime fecha = new DateTime();
+            fecha = dtFecha.Value;
+            String fechaIni = fecha.ToString("dd-MM-yyyy");
+            String fechaFin = fecha.ToString("dd-MM-yyyy");
+            String horaIni = cbHoraIni.ToString();
+            String horaFin = lblHoraFin.Text.ToString();
+            String fechaHoraIni = fechaIni + " " + horaIni;
+            String fechaHoraFin = fechaFin + " " + horaFin;
             DateTime dtIni = new DateTime();
             DateTime dtFin = new DateTime();
             //string fechaString = "22-10-2023 15:30:45"; // Reemplaza esto con tu cadena de fecha
 
             // Define el formato esperado
             string formato = "dd-MM-yyyy HH:mm:ss";
-            /*fechaHoraIni = fechaIni.ToString("dd-MM-yyyy") + " " + horaIni.ToString().Substring(horaIni.ToString().Length - 8);
-            fechaHoraFin = fechaFin.ToString("dd-MM-yyyy") + " " + horaFin.ToString().Substring(horaFin.ToString().Length - 8);*/
             // Intenta convertir la cadena a un objeto DateTime
             DateTime.TryParseExact(fechaHoraIni, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtIni);
             DateTime.TryParseExact(fechaHoraFin, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtFin);
-            //String dtIni = "";
-            //String dtFin = "";
             //Formato Fecha 20231018 17:00:00
             Boolean boolSobreTurno = Calendario_Controller.obtenerPorFecha(dtIni, dtFin, sucursal);
             if (boolSobreTurno)
@@ -122,7 +124,72 @@ namespace EjemploABM
 
         private void cbHoraIni_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int intervalo = sucursalServicio.tiempo_servicio;
+            String horaFormateada = "";
+            DateTime fecha = new DateTime();
+            fecha = dtFecha.Value;
+            String fechaIni = fecha.ToString("dd-MM-yyyy");
+            horaFormateada = cbHoraIni.Text;
+            String fechahora = fechaIni + " " + horaFormateada;
+            DateTime fechaInicial = new DateTime();
+            string formato = "dd-MM-yyyy HH:mm:ss";
+            DateTime.TryParseExact(fechahora, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaInicial);
+            DateTime horaFinal = new DateTime();
+            horaFinal = fechaInicial.AddMinutes(intervalo_tiempo);
+            String hora_final = horaFinal.ToString().Substring(horaFinal.ToString().Length - 8);
+            lblHoraFin.Text = hora_final;
+        }
+
+        private void cmbSucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<SucursalServicio> listSucServ = new List<SucursalServicio> ();
+            String[] id_suc = cmbSucursal.Text.Split('-');
+            Sucursal sucursal = new Sucursal();
+            sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
+            listSucServ = SucServ_Controller.obtenerTodosActivosSucursal(sucursal);
+            cbServicio.Items.Clear();
+            foreach (SucursalServicio sucServ in listSucServ)
+            {
+                String textoTipoTurno = sucServ.id_servicio.id.ToString() + "- " + sucServ.id_servicio.nombre_servicio;
+                cbServicio.Items.Add(textoTipoTurno);
+            }
+            cbServicio.SelectedIndex = 0;
+        }
+
+        private void dtFecha_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = dtFecha.Value;
+            DayOfWeek diaDeLaSemana = fechaSeleccionada.DayOfWeek;
+            String[] id_suc = cmbSucursal.Text.Split('-');
+            String[] id_ser = cbServicio.Text.Split('-');
+            Servicio ser = new Servicio();
+            ser = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
+            Sucursal sucursal = new Sucursal();
+            sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
+            int valorDia = 0;
+            valorDia = (int)diaDeLaSemana;
+            if (valorDia == 0) {
+                valorDia = 7;
+            }
+            validacionDia(valorDia, sucursal, ser);
+        }
+
+        private void validacionDia(int dia, Sucursal suc, Servicio ser) {
+            Dia obj_dia = new Dia();
+            obj_dia = Dia_Contoller.obtenerPorId(dia);
+            List<Atencion> listAtencion = new List<Atencion>();
+            listAtencion=Atencion_Controller.obtenerTodosSucSer(suc,ser,obj_dia);
+            if (listAtencion.Count > 0)
+            {
+                btnAgregar.Enabled = true;
+                foreach (Atencion atencion in listAtencion)
+                {
+                    llenadoHora(atencion);
+                    intervalo_tiempo = atencion.sucursal_servicio_id.tiempo_servicio;
+                }
+            }
+            else {
+                btnAgregar.Enabled = false;
+            }
         }
     }
 }

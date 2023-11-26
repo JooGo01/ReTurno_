@@ -189,13 +189,20 @@ namespace EjemploABM
             DateTime fecha = _infoCalendario.diaGrilla(fila,col);
             Sucursal suc = new Sucursal();
             String[] id_suc = cmbSucursal.Text.Split('-');
+            String[] id_ser = cbServicio.Text.Split('-');
             suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
             Servicio ser = new Servicio();
-            Calendario_UC calendarioUC = new Calendario_UC(fecha,suc, ser);
-            addUserControl(calendarioUC);
-            lblMensajePanel.Visible = false;
-            btnAchicar.BringToFront();
-            btnAgrandar.BringToFront();
+            ser = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
+            /*Calendario_UC calendarioUC = new Calendario_UC(fecha,suc, ser);
+            addUserControl(calendarioUC);*/
+            if (ser != null && suc!=null)
+            {
+                GrillaHoraria_UC calendarioUC = new GrillaHoraria_UC(fecha, suc, ser);
+                addUserControl(calendarioUC);
+                lblMensajePanel.Visible = false;
+                btnAchicar.BringToFront();
+                btnAgrandar.BringToFront();
+            }
         }
 
         private void ajustePanel()

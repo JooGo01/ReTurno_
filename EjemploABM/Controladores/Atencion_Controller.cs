@@ -132,7 +132,131 @@ namespace EjemploABM.Controladores
                     list.Add(atencion);
                 }
 
-                Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return list;
+        }
+
+        public static List<Atencion> obtenerTodosSuc(Sucursal suc)
+        {
+            List<Atencion> list = new List<Atencion>();
+            List<SucursalServicio> listSucServ = new List<SucursalServicio>();
+            List<Dia> listDia = new List<Dia>();
+            List<int> listId = new List<int>();
+            List<int> listSucServId = new List<int>();
+            List<int> listDiaId = new List<int>();
+            List<int> listHoraIni = new List<int>();
+            List<int> listHoraFin = new List<int>();
+            List<int> listPersonal = new List<int>();
+            List<int> listEstado = new List<int>();
+
+            string query = "SELECT a.* FROM atencion a JOIN sucursal_servicio ss ON a.sucursal_servicio_id=ss.id JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where ss.sucursal_id=@sucursal_id;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@sucursal_id", suc.id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listId.Add(reader.GetInt32(0));
+                    listDiaId.Add(reader.GetInt32(1));
+                    listSucServId.Add(reader.GetInt32(2));
+                    listHoraIni.Add(reader.GetInt32(3));
+                    listHoraFin.Add(reader.GetInt32(4));
+                    listPersonal.Add(reader.GetInt32(5));
+                    listEstado.Add(reader.GetInt32(5));
+                }
+
+                for (int i = 0; i < listSucServId.Count; i++)
+                {
+                    listSucServ.Add(SucServ_Controller.obtenerPorId(listSucServId[i]));
+                }
+
+                for (int i = 0; i < listDiaId.Count; i++)
+                {
+                    listDia.Add(Dia_Contoller.obtenerPorId(listDiaId[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    Atencion atencion = new Atencion(listId[i], listDia[i], listSucServ[i], listHoraIni[i], listHoraFin[i], listPersonal[i], listEstado[i]);
+                    list.Add(atencion);
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return list;
+        }
+
+        public static List<Atencion> obtenerTodosSucSer(Sucursal suc, Servicio ser, Dia dia)
+        {
+            List<Atencion> list = new List<Atencion>();
+            List<SucursalServicio> listSucServ = new List<SucursalServicio>();
+            List<Dia> listDia = new List<Dia>();
+            List<int> listId = new List<int>();
+            List<int> listSucServId = new List<int>();
+            List<int> listDiaId = new List<int>();
+            List<int> listHoraIni = new List<int>();
+            List<int> listHoraFin = new List<int>();
+            List<int> listPersonal = new List<int>();
+            List<int> listEstado = new List<int>();
+
+            string query = "SELECT a.* FROM atencion a JOIN sucursal_servicio ss ON a.sucursal_servicio_id=ss.id JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where ss.sucursal_id=@sucursal_id and ss.servicio_id=@servicio_id and a.dia_id=@dia_id;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@sucursal_id", suc.id);
+            cmd.Parameters.AddWithValue("@servicio_id", ser.id);
+            cmd.Parameters.AddWithValue("@dia_id", dia.id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listId.Add(reader.GetInt32(0));
+                    listDiaId.Add(reader.GetInt32(1));
+                    listSucServId.Add(reader.GetInt32(2));
+                    listHoraIni.Add(reader.GetInt32(3));
+                    listHoraFin.Add(reader.GetInt32(4));
+                    listPersonal.Add(reader.GetInt32(5));
+                    listEstado.Add(reader.GetInt32(5));
+                }
+
+                for (int i = 0; i < listSucServId.Count; i++)
+                {
+                    listSucServ.Add(SucServ_Controller.obtenerPorId(listSucServId[i]));
+                }
+
+                for (int i = 0; i < listDiaId.Count; i++)
+                {
+                    listDia.Add(Dia_Contoller.obtenerPorId(listDiaId[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    Atencion atencion = new Atencion(listId[i], listDia[i], listSucServ[i], listHoraIni[i], listHoraFin[i], listPersonal[i], listEstado[i]);
+                    list.Add(atencion);
+                }
 
                 reader.Close();
                 DB_Controller.close();
