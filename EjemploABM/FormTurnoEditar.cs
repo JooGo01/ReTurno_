@@ -55,10 +55,10 @@ namespace EjemploABM
                 index = index + 1;
             }
             //cmbSucursal.SelectedIndex=cmbSucursal.FindStringExact(turno.sucursal.id.ToString() + "- ");
-            dtFechaIni.Value=turno.fecha_ini;
+            /*dtFechaIni.Value=turno.fecha_ini;
             dtHoraIni.Value= turno.fecha_ini;
             dtFechaFin.Value = turno.fecha_fin;
-            dtHoraFin.Value=turno.fecha_fin;
+            dtHoraFin.Value=turno.fecha_fin;*/
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -74,10 +74,10 @@ namespace EjemploABM
             usr = Usuario_Controller.obtenerPorDni(dni);
             Sucursal sucursal = new Sucursal();
             sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
-            DateTime horaIni = dtHoraIni.Value;
+            /*DateTime horaIni = dtHoraIni.Value;
             DateTime horaFin = dtHoraFin.Value;
             DateTime fechaIni = dtFechaIni.Value;
-            DateTime fechaFin = dtFechaFin.Value;
+            DateTime fechaFin = dtFechaFin.Value;*/
             String fechaHoraIni = "";
             String fechaHoraFin = "";
             DateTime dtIni = new DateTime();
@@ -87,8 +87,8 @@ namespace EjemploABM
 
             // Define el formato esperado
             string formato = "dd-MM-yyyy HH:mm:ss";
-            fechaHoraIni = fechaIni.ToString("dd-MM-yyyy") + " " + horaIni.ToString().Substring(horaIni.ToString().Length - 8);
-            fechaHoraFin = fechaFin.ToString("dd-MM-yyyy") + " " + horaFin.ToString().Substring(horaFin.ToString().Length - 8);
+            /*fechaHoraIni = fechaIni.ToString("dd-MM-yyyy") + " " + horaIni.ToString().Substring(horaIni.ToString().Length - 8);
+            fechaHoraFin = fechaFin.ToString("dd-MM-yyyy") + " " + horaFin.ToString().Substring(horaFin.ToString().Length - 8);*/
             // Intenta convertir la cadena a un objeto DateTime
             DateTime.TryParseExact(fechaHoraIni, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtIni);
             DateTime.TryParseExact(fechaHoraFin, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtFin);

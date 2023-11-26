@@ -66,7 +66,7 @@ namespace EjemploABM.Controladores
             }
             catch (Exception ex)
             {
-                throw new Exception("Hay un error en la query: " + ex.Message);
+                return MaxId;
             }
         }
 

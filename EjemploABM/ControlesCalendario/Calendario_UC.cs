@@ -22,17 +22,17 @@ namespace EjemploABM.ControlesCalendario
         List<Turno> turnos;
         public DateTime dt_seleccionado;
         public Sucursal suc_seleccionado;
-        public Calendario_UC(DateTime dt, Sucursal suc)
+        public Calendario_UC(DateTime dt, Sucursal suc, Servicio ser)
         {
             InitializeComponent();
-            cargarTurno(dt, suc);
+            cargarTurno(dt, suc, ser);
             dt_seleccionado = dt;
             suc_seleccionado = suc;
         }
 
-        private void cargarTurno(DateTime dt, Sucursal suc)
+        private void cargarTurno(DateTime dt, Sucursal suc, Servicio ser)
         {
-            turnos = Calendario_Controller.obtenerPorFecha(dt, suc);
+            turnos = Calendario_Controller.obtenerPorFecha(dt, suc, ser);
             dgv_evento.Rows.Clear();
             foreach (Turno trn in turnos)
             {

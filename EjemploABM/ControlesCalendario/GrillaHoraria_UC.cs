@@ -73,9 +73,9 @@ namespace EjemploABM.ControlesCalendario
             panel_contenedor_grillahor.Controls.Add(panelFila);
         }
 
-        private void cargarTurno(DateTime dt, Sucursal suc)
+        private void cargarTurno(DateTime dt, Sucursal suc, Servicio ser)
         {
-            turnos = Calendario_Controller.obtenerPorFecha(dt, suc);
+            turnos = Calendario_Controller.obtenerPorFecha(dt, suc, ser);
             
             foreach (Turno trn in turnos)
             {
