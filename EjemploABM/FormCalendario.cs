@@ -71,6 +71,7 @@ namespace EjemploABM
                 btnAchicar.Visible = false;
 
                 List<Sucursal> list = new List<Sucursal>();
+                List<SucursalServicio> listSucServ = new List<SucursalServicio>();
                 Direccion dire = new Direccion();
                 if (Program.logueado.tipo_usuario == "A")
                 {
@@ -82,6 +83,19 @@ namespace EjemploABM
                         cmbSucursal.Items.Add(textoSucursal);
                         cmbSucursal.SelectedIndex = 0;
                     }
+                    if (list.Count > 0)
+                    {
+                        listSucServ = SucServ_Controller.obtenerTodosActivosSucursal(list[0]);
+                        if (listSucServ != null)
+                        {
+                            foreach (SucursalServicio sucServ in listSucServ)
+                            {
+                                String textoServicio = sucServ.id_servicio.id.ToString() + "- " + sucServ.id_servicio.nombre_servicio.ToString();
+                                cbServicio.Items.Add(textoServicio);
+                                cbServicio.SelectedIndex = 0;
+                            }
+                        }
+                    }
                 }
                 else if (Program.logueado.tipo_usuario == "V")
                 {
@@ -92,6 +106,17 @@ namespace EjemploABM
                         String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
                         cmbSucursal.Items.Add(textoSucursal);
                         cmbSucursal.SelectedIndex = 0;
+                    }
+                    if (list.Count > 0) {
+                        listSucServ = SucServ_Controller.obtenerTodosActivosSucursal(list[0]);
+                        if (listSucServ != null) {
+                            foreach (SucursalServicio sucServ in listSucServ)
+                            {
+                                String textoServicio = sucServ.id_servicio.id.ToString() + "- " + sucServ.id_servicio.nombre_servicio.ToString();
+                                cbServicio.Items.Add(textoServicio);
+                                cbServicio.SelectedIndex = 0;
+                            }
+                        }
                     }
                 }
                 //descripcionEventos();

@@ -206,7 +206,7 @@ namespace EjemploABM.Controladores
             List<int> listIdSuc = new List<int>();
             List<int> listIdServ = new List<int>();
 
-            string query = "SELECT ss.* FROM sucursal_servicio ss JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where s.sucursal_id=@id and ss.estado_baja=0;";
+            string query = "SELECT ss.* FROM sucursal_servicio ss JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where s.id=@id and ss.estado_baja=0;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", suc.id);
@@ -241,15 +241,13 @@ namespace EjemploABM.Controladores
                     list.Add(sucServ);
                 }
 
-                Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
-
                 reader.Close();
                 DB_Controller.close();
 
             }
             catch (Exception ex)
             {
-                throw new Exception("Hay un error en la query: " + ex.Message);
+                list = null;
             }
 
             return list;
