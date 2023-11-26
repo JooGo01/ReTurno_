@@ -333,7 +333,7 @@ namespace EjemploABM.Controladores
 
         }
 
-        public static bool bajaSucServicio(SucursalServicio srv, int minServ, int estado)
+        public static bool bajaSucServicio(SucursalServicio srv, int estado)
         {
             //Update en la BBDD
 
@@ -342,7 +342,6 @@ namespace EjemploABM.Controladores
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", srv.id);
-            cmd.Parameters.AddWithValue("@tiempo_servicio", minServ);
             cmd.Parameters.AddWithValue("@estado_baja", estado);
 
             try

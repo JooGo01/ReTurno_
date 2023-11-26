@@ -107,6 +107,12 @@
     <Compile Include="ControlesDeUsuario\ControladorUsuario.Designer.cs">
       <DependentUpon>ControladorUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlesServicio\ControlServicio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesServicio\ControlServicio.Designer.cs">
+      <DependentUpon>ControlServicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesSucursal\ControladorSucursal.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesDeUsuario\ControladorUsuario.resx">
       <DependentUpon>ControladorUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesServicio\ControlServicio.resx">
+      <DependentUpon>ControlServicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesSucursal\ControladorSucursal.resx">
       <DependentUpon>ControladorSucursal.cs</DependentUpon>

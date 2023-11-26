@@ -47,6 +47,7 @@
             this.btnAgrandar = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.panel_control = new System.Windows.Forms.Panel();
             this.panel_combo = new System.Windows.Forms.Panel();
+            this.cbServicio = new System.Windows.Forms.ComboBox();
             this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSiguiente = new MaterialSkin.Controls.MaterialButton();
@@ -58,7 +59,7 @@
             this.btnAdm = new MaterialSkin.Controls.MaterialButton();
             this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
             this.btnCliente = new MaterialSkin.Controls.MaterialButton();
-            this.cbServicio = new System.Windows.Forms.ComboBox();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
@@ -269,6 +270,14 @@
             this.panel_combo.Size = new System.Drawing.Size(499, 44);
             this.panel_combo.TabIndex = 1;
             // 
+            // cbServicio
+            // 
+            this.cbServicio.FormattingEnabled = true;
+            this.cbServicio.Location = new System.Drawing.Point(291, 13);
+            this.cbServicio.Name = "cbServicio";
+            this.cbServicio.Size = new System.Drawing.Size(197, 21);
+            this.cbServicio.TabIndex = 1;
+            // 
             // cmbSucursal
             // 
             this.cmbSucursal.FormattingEnabled = true;
@@ -352,6 +361,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.materialButton1);
             this.panel2.Controls.Add(this.btnSuc);
             this.panel2.Controls.Add(this.btnAdm);
             this.panel2.Controls.Add(this.btnUsuario);
@@ -442,13 +452,24 @@
             this.btnCliente.UseVisualStyleBackColor = true;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
-            // cbServicio
+            // materialButton1
             // 
-            this.cbServicio.FormattingEnabled = true;
-            this.cbServicio.Location = new System.Drawing.Point(291, 13);
-            this.cbServicio.Name = "cbServicio";
-            this.cbServicio.Size = new System.Drawing.Size(197, 21);
-            this.cbServicio.TabIndex = 1;
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = null;
+            this.materialButton1.Location = new System.Drawing.Point(435, 3);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(83, 36);
+            this.materialButton1.TabIndex = 4;
+            this.materialButton1.Text = "SERVICIO";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
             // 
             // FormCalendario
             // 
@@ -511,5 +532,6 @@
         private System.Windows.Forms.Panel panel_combo;
         private System.Windows.Forms.ComboBox cmbSucursal;
         private System.Windows.Forms.ComboBox cbServicio;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }
