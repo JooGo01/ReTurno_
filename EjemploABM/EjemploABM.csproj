@@ -83,6 +83,12 @@
     <Compile Include="ControlesAdm\ControladorAdm.Designer.cs">
       <DependentUpon>ControladorAdm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlesAtencion\ControlAtencion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesAtencion\ControlAtencion.Designer.cs">
+      <DependentUpon>ControlAtencion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesCalendario\Calendario_UC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -179,6 +185,18 @@
     <Compile Include="FormUsuarioEditar.Designer.cs">
       <DependentUpon>FormUsuarioEditar.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAtencion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAtencion.Designer.cs">
+      <DependentUpon>frmAtencion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAtencionEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAtencionEditar.Designer.cs">
+      <DependentUpon>frmAtencionEditar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +231,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ControlesAdm\ControladorAdm.resx">
       <DependentUpon>ControladorAdm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesAtencion\ControlAtencion.resx">
+      <DependentUpon>ControlAtencion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesCalendario\Calendario_UC.resx">
       <DependentUpon>Calendario_UC.cs</DependentUpon>
@@ -261,6 +282,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuarioEditar.resx">
       <DependentUpon>FormUsuarioEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAtencion.resx">
+      <DependentUpon>frmAtencion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAtencionEditar.resx">
+      <DependentUpon>frmAtencionEditar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

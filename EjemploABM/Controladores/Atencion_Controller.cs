@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -260,6 +261,50 @@ namespace EjemploABM.Controladores
             return atencion;
         }
 
+        public static List<Atencion> obtenerPorDatos(Sucursal suc, Dia dia, Servicio ser, int hora_ini, int hora_fin)
+        {
+            List<Atencion> listAtencion = new List<Atencion>();
+            List<int> idAtencion= new List<int>();
+            Atencion atencion = new Atencion();
+            string query = "select * from dbo.atencion a join sucursal_servicio s on s.id=a.sucursal_servicio_id where a.dia_id=@dia_id and s.sucursal_id=@suc_id and s.servicio_id=@sev_id and (a.hora_apertura>=@hora_apertura and a.hora_cierre<=@hora_cierre);";
+            int id = 0;
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@dia_id ", dia.id);
+            cmd.Parameters.AddWithValue("@suc_id ", suc.id);
+            cmd.Parameters.AddWithValue("@sev_id ", ser.id);
+            cmd.Parameters.AddWithValue("@hora_apertura ", hora_ini);
+            cmd.Parameters.AddWithValue("@hora_cierre", hora_fin);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                    idAtencion.Add(id);
+                }
+                for (int i = 0; i < idAtencion.Count; i++)
+                {
+                    atencion = obtenerPorId(idAtencion[i]);
+                    listAtencion.Add(atencion);
+                }
+                
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                //throw new Exception("Hay un error en la query: " + ex.Message);
+                listAtencion = null;
+            }
+
+            return listAtencion;
+        }
 
 
         // EDIT / PUT

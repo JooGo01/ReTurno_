@@ -65,40 +65,58 @@ namespace EjemploABM
         {
             String servicio = txtServicio.Text;
             Servicio serv = new Servicio();
-            serv = Servicio_Controller.obtenerPorNombre(servicio.ToLower());
-            if(serv == null)
-            {
-                serv = new Servicio(Servicio_Controller.obtenerMaxId()+1, servicio);
-                Servicio_Controller.crearServicio(serv);
-            }
-            Atencion atencion = new Atencion();
             List<Sucursal> listSucursal = new List<Sucursal>();
             List<Dia> listDia = new List<Dia>();
             listDia = listDiaMarca();
             listSucursal = listSucursalMarca();
-            SucursalServicio sucServ= new SucursalServicio();
-            int id_max = 0;
-            int tiempo_servicio = Int32.Parse(txtTiempo.Text);
-            int hora_ini = 0;
-            int hora_fin = 0;
-            int cant_personal = 0;
-            String hora_texto_ini = cmbHoraIni.GetItemText(cmbHoraIni.SelectedItem);
-            String hora_texto_fin = cmbHoraFin.GetItemText(cmbHoraFin.SelectedItem);
-            String cant_personal_texto = cmbCantPersonal.GetItemText(cmbCantPersonal.SelectedItem);
-            hora_ini = Int32.Parse(hora_texto_ini);
-            hora_fin = Int32.Parse(hora_texto_fin);
-            cant_personal = Int32.Parse(cant_personal_texto);
-            foreach (Sucursal sucursal in listSucursal)
+
+            Boolean boolValidar = validarCheckbox(listSucursal, listDia);
+            if (boolValidar)
             {
-                id_max = SucServ_Controller.obtenerMaxId() + 1;
-                sucServ = new SucursalServicio(id_max, sucursal, serv, tiempo_servicio, 0);
-                SucServ_Controller.crearServicio(sucServ);
-                foreach (Dia dias in listDia)
+                serv = Servicio_Controller.obtenerPorNombre(servicio.ToLower());
+                if (serv == null)
                 {
-                    atencion = new Atencion(Atencion_Controller.obtenerMaxId() + 1, dias, sucServ, hora_ini, hora_fin, cant_personal, 0);
-                    Atencion_Controller.crearAtencion(atencion);
+                    serv = new Servicio(Servicio_Controller.obtenerMaxId() + 1, servicio);
+                    Servicio_Controller.crearServicio(serv);
                 }
+                Atencion atencion = new Atencion();
+                SucursalServicio sucServ = new SucursalServicio();
+                int id_max = 0;
+                int tiempo_servicio = Int32.Parse(txtTiempo.Text);
+                int hora_ini = 0;
+                int hora_fin = 0;
+                int cant_personal = 0;
+                String hora_texto_ini = cmbHoraIni.GetItemText(cmbHoraIni.SelectedItem);
+                String hora_texto_fin = cmbHoraFin.GetItemText(cmbHoraFin.SelectedItem);
+                String cant_personal_texto = cmbCantPersonal.GetItemText(cmbCantPersonal.SelectedItem);
+                hora_ini = Int32.Parse(hora_texto_ini);
+                hora_fin = Int32.Parse(hora_texto_fin);
+                cant_personal = Int32.Parse(cant_personal_texto);
+                foreach (Sucursal sucursal in listSucursal)
+                {
+                    id_max = SucServ_Controller.obtenerMaxId() + 1;
+                    sucServ = new SucursalServicio(id_max, sucursal, serv, tiempo_servicio, 0);
+                    SucServ_Controller.crearServicio(sucServ);
+                    foreach (Dia dias in listDia)
+                    {
+                        atencion = new Atencion(Atencion_Controller.obtenerMaxId() + 1, dias, sucServ, hora_ini, hora_fin, cant_personal, 0);
+                        Atencion_Controller.crearAtencion(atencion);
+                    }
+                }
+                MessageBox.Show("Servicio Creado", "ReTurno");
             }
+            else {
+                MessageBox.Show("Falta seleccionar alguna sucursal y/o dia", "ReTurno");
+            }
+        }
+
+        private Boolean validarCheckbox(List<Sucursal> listado_sucursal, List<Dia> listado_dia) {
+            bool validado;
+            validado = false;
+            if (listado_sucursal.Count > 0 && listado_dia.Count > 0) {
+                validado = true;
+            }
+            return validado;
         }
 
         private void llenadoCombo() {

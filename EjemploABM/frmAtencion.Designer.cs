@@ -1,6 +1,6 @@
 ﻿namespace EjemploABM
 {
-    partial class frmServicio
+    partial class frmAtencion
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnael_contenedor = new System.Windows.Forms.Panel();
+            this.cbServicio = new MaterialSkin.Controls.MaterialComboBox();
             this.pnl_contenedor_dia = new System.Windows.Forms.Panel();
             this.cmbCantPersonal = new MaterialSkin.Controls.MaterialComboBox();
             this.cmbHoraFin = new MaterialSkin.Controls.MaterialComboBox();
@@ -41,7 +42,6 @@
             this.pnl_contenedor_suc = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
-            this.txtServicio = new MaterialSkin.Controls.MaterialTextBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.pnael_contenedor.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -49,6 +49,7 @@
             // 
             // pnael_contenedor
             // 
+            this.pnael_contenedor.Controls.Add(this.cbServicio);
             this.pnael_contenedor.Controls.Add(this.pnl_contenedor_dia);
             this.pnael_contenedor.Controls.Add(this.cmbCantPersonal);
             this.pnael_contenedor.Controls.Add(this.cmbHoraFin);
@@ -60,21 +61,42 @@
             this.pnael_contenedor.Controls.Add(this.materialLabel1);
             this.pnael_contenedor.Controls.Add(this.pnl_contenedor_suc);
             this.pnael_contenedor.Controls.Add(this.panel1);
-            this.pnael_contenedor.Controls.Add(this.txtServicio);
             this.pnael_contenedor.Controls.Add(this.materialLabel2);
             this.pnael_contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnael_contenedor.Location = new System.Drawing.Point(3, 64);
             this.pnael_contenedor.Name = "pnael_contenedor";
-            this.pnael_contenedor.Size = new System.Drawing.Size(684, 574);
-            this.pnael_contenedor.TabIndex = 0;
+            this.pnael_contenedor.Size = new System.Drawing.Size(794, 575);
+            this.pnael_contenedor.TabIndex = 1;
+            // 
+            // cbServicio
+            // 
+            this.cbServicio.AutoResize = false;
+            this.cbServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbServicio.Depth = 0;
+            this.cbServicio.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbServicio.DropDownHeight = 174;
+            this.cbServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbServicio.DropDownWidth = 121;
+            this.cbServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbServicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbServicio.FormattingEnabled = true;
+            this.cbServicio.IntegralHeight = false;
+            this.cbServicio.ItemHeight = 43;
+            this.cbServicio.Location = new System.Drawing.Point(183, 16);
+            this.cbServicio.MaxDropDownItems = 4;
+            this.cbServicio.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbServicio.Name = "cbServicio";
+            this.cbServicio.Size = new System.Drawing.Size(459, 49);
+            this.cbServicio.StartIndex = 0;
+            this.cbServicio.TabIndex = 26;
             // 
             // pnl_contenedor_dia
             // 
             this.pnl_contenedor_dia.AutoScroll = true;
             this.pnl_contenedor_dia.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_contenedor_dia.Location = new System.Drawing.Point(0, 317);
+            this.pnl_contenedor_dia.Location = new System.Drawing.Point(0, 318);
             this.pnl_contenedor_dia.Name = "pnl_contenedor_dia";
-            this.pnl_contenedor_dia.Size = new System.Drawing.Size(684, 82);
+            this.pnl_contenedor_dia.Size = new System.Drawing.Size(794, 82);
             this.pnl_contenedor_dia.TabIndex = 25;
             // 
             // cmbCantPersonal
@@ -212,18 +234,18 @@
             // 
             this.pnl_contenedor_suc.AutoScroll = true;
             this.pnl_contenedor_suc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_contenedor_suc.Location = new System.Drawing.Point(0, 399);
+            this.pnl_contenedor_suc.Location = new System.Drawing.Point(0, 400);
             this.pnl_contenedor_suc.Name = "pnl_contenedor_suc";
-            this.pnl_contenedor_suc.Size = new System.Drawing.Size(684, 119);
+            this.pnl_contenedor_suc.Size = new System.Drawing.Size(794, 119);
             this.pnl_contenedor_suc.TabIndex = 13;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnAgregar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 518);
+            this.panel1.Location = new System.Drawing.Point(0, 519);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(684, 56);
+            this.panel1.Size = new System.Drawing.Size(794, 56);
             this.panel1.TabIndex = 12;
             // 
             // btnAgregar
@@ -240,28 +262,11 @@
             this.btnAgregar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnAgregar.Size = new System.Drawing.Size(155, 36);
             this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Agregar Servicio";
+            this.btnAgregar.Text = "Agregar Atencion";
             this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnAgregar.UseAccentColor = false;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // txtServicio
-            // 
-            this.txtServicio.AnimateReadOnly = false;
-            this.txtServicio.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtServicio.Depth = 0;
-            this.txtServicio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtServicio.LeadingIcon = null;
-            this.txtServicio.Location = new System.Drawing.Point(183, 15);
-            this.txtServicio.MaxLength = 50;
-            this.txtServicio.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtServicio.Multiline = false;
-            this.txtServicio.Name = "txtServicio";
-            this.txtServicio.Size = new System.Drawing.Size(460, 50);
-            this.txtServicio.TabIndex = 11;
-            this.txtServicio.Text = "";
-            this.txtServicio.TrailingIcon = null;
             // 
             // materialLabel2
             // 
@@ -275,15 +280,15 @@
             this.materialLabel2.TabIndex = 10;
             this.materialLabel2.Text = "Servicio:";
             // 
-            // frmServicio
+            // frmAtencion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 641);
+            this.ClientSize = new System.Drawing.Size(800, 642);
             this.Controls.Add(this.pnael_contenedor);
-            this.Name = "frmServicio";
-            this.Text = "Alta Servicio";
-            this.Load += new System.EventHandler(this.frmServicio_Load);
+            this.Name = "frmAtencion";
+            this.Text = "Agregar Atencion";
+            this.Load += new System.EventHandler(this.frmAtencion_Load);
             this.pnael_contenedor.ResumeLayout(false);
             this.pnael_contenedor.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -295,19 +300,19 @@
         #endregion
 
         private System.Windows.Forms.Panel pnael_contenedor;
-        private MaterialSkin.Controls.MaterialButton btnAgregar;
-        private MaterialSkin.Controls.MaterialTextBox txtServicio;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private System.Windows.Forms.Panel pnl_contenedor_suc;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnl_contenedor_dia;
+        private MaterialSkin.Controls.MaterialComboBox cmbCantPersonal;
+        private MaterialSkin.Controls.MaterialComboBox cmbHoraFin;
+        private MaterialSkin.Controls.MaterialComboBox cmbHoraIni;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialTextBox txtTiempo;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialComboBox cmbCantPersonal;
-        private MaterialSkin.Controls.MaterialComboBox cmbHoraFin;
-        private MaterialSkin.Controls.MaterialComboBox cmbHoraIni;
-        private System.Windows.Forms.Panel pnl_contenedor_dia;
+        private System.Windows.Forms.Panel pnl_contenedor_suc;
+        private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialButton btnAgregar;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialComboBox cbServicio;
     }
 }
