@@ -39,6 +39,9 @@
             this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hora_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hora_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel_contenedor.SuspendLayout();
@@ -67,6 +70,9 @@
             this.Ciudad,
             this.Provincia,
             this.Servicio,
+            this.Dia,
+            this.hora_inicio,
+            this.hora_fin,
             this.Editar,
             this.Eliminar});
             this.dgv_evento.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -74,6 +80,7 @@
             this.dgv_evento.Name = "dgv_evento";
             this.dgv_evento.Size = new System.Drawing.Size(1124, 468);
             this.dgv_evento.TabIndex = 3;
+            this.dgv_evento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_evento_CellContentClick);
             // 
             // panel1
             // 
@@ -103,6 +110,7 @@
             this.btnAgregar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnAgregar.UseAccentColor = false;
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // Id
             // 
@@ -139,6 +147,21 @@
             this.Servicio.HeaderText = "Servicio";
             this.Servicio.Name = "Servicio";
             // 
+            // Dia
+            // 
+            this.Dia.HeaderText = "Dia";
+            this.Dia.Name = "Dia";
+            // 
+            // hora_inicio
+            // 
+            this.hora_inicio.HeaderText = "Hora Inicio";
+            this.hora_inicio.Name = "hora_inicio";
+            // 
+            // hora_fin
+            // 
+            this.hora_fin.HeaderText = "Hora Fin";
+            this.hora_fin.Name = "hora_fin";
+            // 
             // Editar
             // 
             this.Editar.HeaderText = "Editar";
@@ -168,6 +191,8 @@
 
         private System.Windows.Forms.Panel panel_contenedor;
         private System.Windows.Forms.DataGridView dgv_evento;
+        private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialButton btnAgregar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Calle;
@@ -175,9 +200,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Provincia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hora_inicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hora_fin;
         private System.Windows.Forms.DataGridViewButtonColumn Editar;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
-        private System.Windows.Forms.Panel panel1;
-        private MaterialSkin.Controls.MaterialButton btnAgregar;
     }
 }

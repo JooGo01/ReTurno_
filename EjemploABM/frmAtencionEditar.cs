@@ -93,6 +93,7 @@ namespace EjemploABM
             if (tiempo_servicio != sucserv_pub.tiempo_servicio){
                 SucServ_Controller.editarSucServicio(sucserv_pub, tiempo_servicio, 0);
             }
+            MessageBox.Show("Atencion editada con exito", "ReTurno");
         }
     }
 }

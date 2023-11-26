@@ -20,6 +20,7 @@ using EjemploABM.Controladores;
 using System.Net;
 using EjemploABM.ControlesServicio;
 using EjemploABM.ControlesSucursal;
+using EjemploABM.ControlesAtencion;
 
 namespace EjemploABM
 {
@@ -40,6 +41,7 @@ namespace EjemploABM
                 btnAdm.Visible = false;
                 btnSuc.Visible = false;
                 btnServicio.Visible = false;
+                btnAtencion.Visible = false;
             }
             else if (Program.logueado.tipo_usuario == "A") {
                 btnCliente.Enabled = true;
@@ -47,12 +49,14 @@ namespace EjemploABM
                 btnAdm.Enabled = true;
                 btnSuc.Enabled = true;
                 btnServicio.Visible = true;
+                btnAtencion.Visible = true;
             } else if (Program.logueado.tipo_usuario == "V") {
                 btnCliente.Visible = false;
                 btnUsuario.Enabled = true;
                 btnAdm.Visible = false;
                 btnSuc.Visible = false;
                 btnServicio.Visible = false;
+                btnAtencion.Visible = false;
             }
 
             MaterialSkinManager.Instance.Theme = MaterialSkinManager.Themes.LIGHT; // or .DARK
@@ -594,6 +598,12 @@ namespace EjemploABM
         {
             ControlServicio cs = new ControlServicio();
             addUserControlTabAbm(cs);
+        }
+
+        private void btnAtencion_Click(object sender, EventArgs e)
+        {
+            ControlAtencion ca = new ControlAtencion();
+            addUserControlTabAbm(ca);
         }
     }
 }

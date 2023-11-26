@@ -60,6 +60,7 @@
             this.btnAdm = new MaterialSkin.Controls.MaterialButton();
             this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
             this.btnCliente = new MaterialSkin.Controls.MaterialButton();
+            this.btnAtencion = new MaterialSkin.Controls.MaterialButton();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
@@ -361,6 +362,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnAtencion);
             this.panel2.Controls.Add(this.btnServicio);
             this.panel2.Controls.Add(this.btnSuc);
             this.panel2.Controls.Add(this.btnAdm);
@@ -472,6 +474,26 @@
             this.btnCliente.UseVisualStyleBackColor = true;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
+            // btnAtencion
+            // 
+            this.btnAtencion.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAtencion.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAtencion.Depth = 0;
+            this.btnAtencion.HighEmphasis = true;
+            this.btnAtencion.Icon = null;
+            this.btnAtencion.Location = new System.Drawing.Point(528, 3);
+            this.btnAtencion.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAtencion.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAtencion.Name = "btnAtencion";
+            this.btnAtencion.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAtencion.Size = new System.Drawing.Size(85, 36);
+            this.btnAtencion.TabIndex = 5;
+            this.btnAtencion.Text = "ATENCION";
+            this.btnAtencion.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAtencion.UseAccentColor = false;
+            this.btnAtencion.UseVisualStyleBackColor = true;
+            this.btnAtencion.Click += new System.EventHandler(this.btnAtencion_Click);
+            // 
             // FormCalendario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,5 +556,6 @@
         private System.Windows.Forms.ComboBox cmbSucursal;
         private System.Windows.Forms.ComboBox cbServicio;
         private MaterialSkin.Controls.MaterialButton btnServicio;
+        private MaterialSkin.Controls.MaterialButton btnAtencion;
     }
 }

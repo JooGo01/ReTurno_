@@ -159,7 +159,7 @@ namespace EjemploABM.Controladores
             List<int> listPersonal = new List<int>();
             List<int> listEstado = new List<int>();
 
-            string query = "SELECT a.* FROM atencion a JOIN sucursal_servicio ss ON a.sucursal_servicio_id=ss.id JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where c.id=@cliente AND ss.estado_baja=0;";
+            string query = "SELECT a.* FROM atencion a JOIN sucursal_servicio ss ON a.sucursal_servicio_id=ss.id JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where c.id=@cliente AND ss.estado_baja=0 and a.estado_baja=0;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@cliente", cli.id);
@@ -195,8 +195,6 @@ namespace EjemploABM.Controladores
                     Atencion atencion = new Atencion(listId[i], listDia[i], listSucServ[i], listHoraIni[i], listHoraFin[i], listPersonal[i], listEstado[i]);
                     list.Add(atencion);
                 }
-
-                Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
 
                 reader.Close();
                 DB_Controller.close();
@@ -243,7 +241,7 @@ namespace EjemploABM.Controladores
                     horaFin=reader.GetInt32(4);
                     personal= reader.GetInt32(5);
                     estadoBaja= reader.GetInt32(6);
-                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                    Trace.WriteLine("Atencion encontrado, id: " + reader.GetInt32(0));
                 }
                 sucServ = SucServ_Controller.obtenerPorId(sucServId);
                 dia = Dia_Contoller.obtenerPorId(diaId);
@@ -313,7 +311,7 @@ namespace EjemploABM.Controladores
         {
             //Update en la BBDD
 
-            string query = "update dbo.atencion set hora_apertura  = @hora_apertura, hora_cierre=@hora_cierre, personal_servicio=@personal, estado_baja=@estado_baja" +
+            string query = "update dbo.atencion set hora_apertura  = @hora_apertura, hora_cierre=@hora_cierre, personal_servicio=@personal, estado_baja=@estado_baja " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -345,6 +343,29 @@ namespace EjemploABM.Controladores
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", sucServ.id.ToString());
+
+            try
+            {
+                DB_Controller.open();
+                cmd.ExecuteNonQuery();
+                DB_Controller.close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+        }
+
+        public static bool bajaAtencion(Atencion atencion)
+        {
+            //Update en la BBDD
+
+            string query = "update dbo.atencion set estado_baja=1" +
+                " where id = @id ;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id", atencion.id.ToString());
 
             try
             {
