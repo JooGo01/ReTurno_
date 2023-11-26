@@ -270,7 +270,7 @@ namespace EjemploABM.Controladores
             Sucursal suc = new Sucursal();
             Servicio serv = new Servicio();
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@id", id.ToString());
 
             try
             {
@@ -283,7 +283,7 @@ namespace EjemploABM.Controladores
                     idServ = reader.GetInt32(2);
                     tiempoServ = reader.GetInt32(3);
                     estadoBaja = reader.GetInt32(4);
-                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                    Trace.WriteLine("SucServ encontrado, nombre: " + reader.GetInt32(0));
                 }
                 suc = Sucursal_Controller.obtenerPorId(idSuc);
                 serv = Servicio_Controller.obtenerPorId(idServ);
@@ -336,7 +336,7 @@ namespace EjemploABM.Controladores
             //Update en la BBDD
 
             string query = "update dbo.sucursal_servicio set estado_baja=@estado_baja" +
-                "where id = @id ;";
+                " where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", srv.id);
@@ -347,6 +347,7 @@ namespace EjemploABM.Controladores
                 DB_Controller.open();
                 cmd.ExecuteNonQuery();
                 DB_Controller.close();
+                Atencion_Controller.bajaAtencionSucServ(srv);
                 return true;
             }
             catch (Exception ex)

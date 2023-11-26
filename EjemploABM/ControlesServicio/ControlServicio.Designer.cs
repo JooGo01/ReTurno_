@@ -30,13 +30,12 @@
         {
             this.panel_contenedor = new System.Windows.Forms.Panel();
             this.dgv_evento = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
             this.panel_contenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_evento)).BeginInit();
             this.panel1.SuspendLayout();
@@ -59,7 +58,6 @@
             this.Id,
             this.id_sucursal,
             this.id_servicio,
-            this.Editar,
             this.Eliminar});
             this.dgv_evento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_evento.Location = new System.Drawing.Point(0, 47);
@@ -67,31 +65,6 @@
             this.dgv_evento.Size = new System.Drawing.Size(1124, 468);
             this.dgv_evento.TabIndex = 3;
             this.dgv_evento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_evento_CellContentClick);
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // id_sucursal
-            // 
-            this.id_sucursal.HeaderText = "Sucursal";
-            this.id_sucursal.Name = "id_sucursal";
-            // 
-            // id_servicio
-            // 
-            this.id_servicio.HeaderText = "Servicio";
-            this.id_servicio.Name = "id_servicio";
-            // 
-            // Editar
-            // 
-            this.Editar.HeaderText = "Editar";
-            this.Editar.Name = "Editar";
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
             // 
             // panel1
             // 
@@ -123,6 +96,26 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+            // id_sucursal
+            // 
+            this.id_sucursal.HeaderText = "Sucursal";
+            this.id_sucursal.Name = "id_sucursal";
+            // 
+            // id_servicio
+            // 
+            this.id_servicio.HeaderText = "Servicio";
+            this.id_servicio.Name = "id_servicio";
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            // 
             // ControlServicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,12 +135,11 @@
 
         private System.Windows.Forms.Panel panel_contenedor;
         private System.Windows.Forms.DataGridView dgv_evento;
+        private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialButton btnAgregar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_servicio;
-        private System.Windows.Forms.DataGridViewButtonColumn Editar;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
-        private System.Windows.Forms.Panel panel1;
-        private MaterialSkin.Controls.MaterialButton btnAgregar;
     }
 }

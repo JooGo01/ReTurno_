@@ -296,10 +296,10 @@ namespace EjemploABM.Controladores
             //Update en la BBDD
 
             string query = "update dbo.atencion set estado_baja=1" +
-                "where sucursal_servicio_id = @id ;";
+                " where sucursal_servicio_id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", sucServ.id);
+            cmd.Parameters.AddWithValue("@id", sucServ.id.ToString());
 
             try
             {

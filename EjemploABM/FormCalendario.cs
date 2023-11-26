@@ -46,7 +46,7 @@ namespace EjemploABM
                 btnUsuario.Enabled = true;
                 btnAdm.Enabled = true;
                 btnSuc.Enabled = true;
-                btnServicio.Visible = false;
+                btnServicio.Visible = true;
             } else if (Program.logueado.tipo_usuario == "V") {
                 btnCliente.Visible = false;
                 btnUsuario.Enabled = true;
