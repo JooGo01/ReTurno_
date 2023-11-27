@@ -91,7 +91,7 @@ namespace EjemploABM.ControlesCalendario
                     }
                 }
 
-                if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                /*if (e.ColumnIndex == 6 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //editar
                     if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")
@@ -111,7 +111,7 @@ namespace EjemploABM.ControlesCalendario
                         MessageBox.Show("No cuenta con los permisos suficientes para realizar una edicion", "ReTurno");
                     }
                     //TODO - Button Clicked - Execute Code Here
-                }
+                }*/
             }
         }
     }
