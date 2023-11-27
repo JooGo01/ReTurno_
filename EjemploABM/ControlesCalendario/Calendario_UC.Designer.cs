@@ -30,16 +30,16 @@
         {
             this.btnAgregarEvento = new MaterialSkin.Controls.MaterialButton();
             this.dgv_evento = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel_contenedor_dgv = new System.Windows.Forms.Panel();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horario_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horario_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel_contenedor_dgv = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_evento)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel_contenedor_dgv.SuspendLayout();
@@ -76,7 +76,7 @@
             this.DNI,
             this.horario_inicio,
             this.horario_fin,
-            this.Editar,
+            this.Servicio,
             this.Eliminar});
             this.dgv_evento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_evento.Location = new System.Drawing.Point(0, 0);
@@ -84,6 +84,24 @@
             this.dgv_evento.Size = new System.Drawing.Size(843, 476);
             this.dgv_evento.TabIndex = 2;
             this.dgv_evento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_evento_CellContentClick);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnAgregarEvento);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(843, 36);
+            this.panel1.TabIndex = 3;
+            // 
+            // panel_contenedor_dgv
+            // 
+            this.panel_contenedor_dgv.Controls.Add(this.dgv_evento);
+            this.panel_contenedor_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_contenedor_dgv.Location = new System.Drawing.Point(0, 36);
+            this.panel_contenedor_dgv.Name = "panel_contenedor_dgv";
+            this.panel_contenedor_dgv.Size = new System.Drawing.Size(843, 476);
+            this.panel_contenedor_dgv.TabIndex = 4;
             // 
             // Id
             // 
@@ -115,33 +133,17 @@
             this.horario_fin.HeaderText = "Horario Fin";
             this.horario_fin.Name = "horario_fin";
             // 
-            // Editar
+            // Servicio
             // 
-            this.Editar.HeaderText = "Editar";
-            this.Editar.Name = "Editar";
+            this.Servicio.HeaderText = "Servicio";
+            this.Servicio.Name = "Servicio";
+            this.Servicio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Servicio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Eliminar
             // 
             this.Eliminar.HeaderText = "Eliminar";
             this.Eliminar.Name = "Eliminar";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnAgregarEvento);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(843, 36);
-            this.panel1.TabIndex = 3;
-            // 
-            // panel_contenedor_dgv
-            // 
-            this.panel_contenedor_dgv.Controls.Add(this.dgv_evento);
-            this.panel_contenedor_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_contenedor_dgv.Location = new System.Drawing.Point(0, 36);
-            this.panel_contenedor_dgv.Name = "panel_contenedor_dgv";
-            this.panel_contenedor_dgv.Size = new System.Drawing.Size(843, 476);
-            this.panel_contenedor_dgv.TabIndex = 4;
             // 
             // Calendario_UC
             // 
@@ -164,15 +166,15 @@
 
         private MaterialSkin.Controls.MaterialButton btnAgregarEvento;
         private System.Windows.Forms.DataGridView dgv_evento;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel_contenedor_dgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario_inicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario_fin;
-        private System.Windows.Forms.DataGridViewButtonColumn Editar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel_contenedor_dgv;
     }
 }

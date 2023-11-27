@@ -46,7 +46,8 @@ namespace EjemploABM.ControlesCalendario
                 dgv_evento.Rows[rowIndex].Cells[3].Value = trn.usuario.dni.ToString();
                 dgv_evento.Rows[rowIndex].Cells[4].Value = trn.fecha_ini.ToString();
                 dgv_evento.Rows[rowIndex].Cells[5].Value = trn.fecha_fin.ToString();
-                dgv_evento.Rows[rowIndex].Cells[6].Value = "Editar";
+                //dgv_evento.Rows[rowIndex].Cells[6].Value = "Editar";
+                dgv_evento.Rows[rowIndex].Cells[6].Value = ser.nombre_servicio;
                 dgv_evento.Rows[rowIndex].Cells[7].Value = "Eliminar";
             }
         }
@@ -58,7 +59,7 @@ namespace EjemploABM.ControlesCalendario
         private void btnAgregarEvento_Click(object sender, EventArgs e)
         {
 
-            FormTurno frmTurno = new FormTurno();
+            FormTurno frmTurno = new FormTurno(suc_seleccionado,ser_seleccionado,dt_seleccionado);
             DialogResult dr = frmTurno.ShowDialog();
 
             if (dr == DialogResult.OK)
@@ -107,7 +108,7 @@ namespace EjemploABM.ControlesCalendario
                     }
                     else
                     {
-                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una baja", "ReTurno");
+                        MessageBox.Show("No cuenta con los permisos suficientes para realizar una edicion", "ReTurno");
                     }
                     //TODO - Button Clicked - Execute Code Here
                 }

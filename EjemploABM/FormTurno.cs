@@ -18,31 +18,47 @@ namespace EjemploABM
     {
 
         public Cliente cli = new Cliente();
+        public Direccion dire = new Direccion();
+        public Sucursal suc = new Sucursal();
+        public Servicio ser = new Servicio();
         public SucursalServicio sucursalServicio = new SucursalServicio();
+        public DateTime dt_sel;
         public int intervalo_tiempo;
         public FormTurno()
         {
             InitializeComponent();
         }
 
-        private void FormTurno_Load(object sender, EventArgs e)
+        public FormTurno(Sucursal p_sucursal, Servicio p_servicio, DateTime p_dt)
         {
-            Direccion dire = new Direccion();
-            List<Sucursal> listSucursal = new List<Sucursal>();
-            if (Program.logueado.tipo_usuario == "S")
-            {
-                listSucursal = Sucursal_Controller.obtenerTodosSucCliente(Program.cli);
-            }
-            else {
-                listSucursal = Sucursal_Controller.obtenerTodosSucClienteAdm(Program.logueado);
-            }
-            foreach (Sucursal suc in listSucursal)
-            {
-                dire = Direccion_Controller.obtenerPorId(suc.direccion.id);
-                String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
-                cmbSucursal.Items.Add(textoSucursal);
-            }
+            InitializeComponent();
+            sucursalServicio = SucServ_Controller.obtenerPorSucServ(p_sucursal, p_servicio);
+            dt_sel = p_dt;
+            suc = p_sucursal;
+            ser = p_servicio;
+            intervalo_tiempo = sucursalServicio.tiempo_servicio;
+        }
+
+        private void FormTurno_Load(object sender, EventArgs e) { 
+            dire = sucursalServicio.id_sucursal.direccion;
+            suc = sucursalServicio.id_sucursal;
+            ser = sucursalServicio.id_servicio;
+            String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
+            cmbSucursal.Items.Add(textoSucursal);
+            cmbSucursal.Enabled = false;
             cmbSucursal.SelectedIndex = 0;
+            String textoServicio = ser.id.ToString() + "- " + ser.nombre_servicio.ToString();
+            cbServicio.Items.Add(textoServicio);
+            cbServicio.Enabled = false;
+            cbServicio.SelectedIndex = 0;
+            String hora_ini = dt_sel.ToString("HH:mm:ss");
+            DateTime dt_fin = dt_sel.AddMinutes(intervalo_tiempo);
+            String hora_fin=dt_fin.ToString("HH:mm:ss");
+            dtFecha.Value = dt_sel;
+            cbHoraIni.Items.Add(hora_ini);
+            cbHoraIni.Enabled = false;
+            cbHoraIni.SelectedIndex = 0;
+            lblHoraFin.Text = hora_fin;
         }
 
         private void materialLabel2_Click(object sender, EventArgs e)
@@ -57,19 +73,13 @@ namespace EjemploABM
 
         private void crear() {
             String dni = txtDni.Text;
-            String[] id_suc = cmbSucursal.Text.Split('-');
-            String[] id_ser = cbServicio.Text.Split('-');
             Usuario usr = new Usuario();
-            Servicio ser = new Servicio();
             usr = Usuario_Controller.obtenerPorDni(dni);
-            ser = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
-            Sucursal sucursal = new Sucursal();
-            sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
             DateTime fecha = new DateTime();
             fecha = dtFecha.Value;
             String fechaIni = fecha.ToString("dd-MM-yyyy");
             String fechaFin = fecha.ToString("dd-MM-yyyy");
-            String horaIni = cbHoraIni.ToString();
+            String horaIni = cbHoraIni.Text;
             String horaFin = lblHoraFin.Text.ToString();
             String fechaHoraIni = fechaIni + " " + horaIni;
             String fechaHoraFin = fechaFin + " " + horaFin;
@@ -83,18 +93,18 @@ namespace EjemploABM
             DateTime.TryParseExact(fechaHoraIni, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtIni);
             DateTime.TryParseExact(fechaHoraFin, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtFin);
             //Formato Fecha 20231018 17:00:00
-            Boolean boolSobreTurno = Calendario_Controller.obtenerPorFecha(dtIni, dtFin, sucursal);
+            Boolean boolSobreTurno = Calendario_Controller.obtenerPorFecha(dtIni, dtFin, suc);
             if (boolSobreTurno)
             {
                 DialogResult dialogResult = MessageBox.Show("Ya hay un turno creado dentro de este rango horario en esta fecha ¿Desea crear el turno?", "Crear Turno", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     //do something
-                    Calendario_Controller.crearTurno(usr, sucursal, dtIni, dtFin, ser);
+                    Calendario_Controller.crearTurno(usr, suc, dtIni, dtFin, ser);
                     MessageBox.Show("Turno Creado", "ReTurno");
                 }
             }else {
-                Calendario_Controller.crearTurno(usr, sucursal, dtIni, dtFin, ser);
+                Calendario_Controller.crearTurno(usr, suc, dtIni, dtFin, ser);
                 MessageBox.Show("Turno Creado", "ReTurno");
             }
         }

@@ -299,6 +299,45 @@ namespace EjemploABM.Controladores
             return srv;
         }
 
+        public static SucursalServicio obtenerPorSucServ(Sucursal suc, Servicio ser)
+        {
+            SucursalServicio srv = new SucursalServicio();
+            string query = "select * from dbo.sucursal_servicio where sucursal_id = @suc_id and servicio_id=@ser_id;";
+            int id = 0;
+            int idSuc = 0;
+            int idServ = 0;
+            int tiempoServ = 0;
+            int estadoBaja = 0;
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@suc_id", suc.id.ToString());
+            cmd.Parameters.AddWithValue("@ser_id", ser.id.ToString());
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                    tiempoServ = reader.GetInt32(3);
+                    estadoBaja = reader.GetInt32(4);
+                    Trace.WriteLine("SucServ encontrado, nombre: " + reader.GetInt32(0));
+                }
+                srv = new SucursalServicio(id, suc, ser, tiempoServ, estadoBaja);
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return srv;
+        }
+
 
 
         // EDIT / PUT
