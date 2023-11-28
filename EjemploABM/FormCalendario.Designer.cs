@@ -279,6 +279,7 @@
             this.cbServicio.Name = "cbServicio";
             this.cbServicio.Size = new System.Drawing.Size(197, 21);
             this.cbServicio.TabIndex = 1;
+            this.cbServicio.SelectedIndexChanged += new System.EventHandler(this.cbServicio_SelectedIndexChanged);
             // 
             // cmbSucursal
             // 

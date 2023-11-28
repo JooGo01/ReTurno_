@@ -176,7 +176,13 @@ namespace EjemploABM
         {
             Panel dia = sender as Panel;
             if (dia != null) {
-                eventoPanelDia(dia.Name);
+                if (cbServicio.Text != "" && cmbSucursal.Text != "")
+                {
+                    eventoPanelDia(dia.Name);
+                }
+                else {
+                    MessageBox.Show("No hay servicio ni sucursal seleccionada para poder visualizar la grilla horaria", "ReTurno");
+                }
             }
         }
 
@@ -583,7 +589,7 @@ namespace EjemploABM
 
         private void cmbSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _infoCalendario = new InfoMesCalendario(10, 2023);
+            _infoCalendario = new InfoMesCalendario(DateTime.Now.Month, DateTime.Now.Year);
             limpiezaEventos();
             llenarCalendario();
             descripcionEventos();
@@ -611,6 +617,11 @@ namespace EjemploABM
         {
             ControlAtencion ca = new ControlAtencion();
             addUserControlTabAbm(ca);
+        }
+
+        private void cbServicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
