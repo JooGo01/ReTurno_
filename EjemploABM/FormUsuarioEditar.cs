@@ -61,6 +61,7 @@ namespace EjemploABM
         private void btnEditar_Click(object sender, EventArgs e)
         {
             editar();
+            MessageBox.Show("Usuario Editado", "ReTurno");
         }
 
         private void editar()
