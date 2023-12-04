@@ -346,7 +346,7 @@ namespace EjemploABM.Controladores
         {
             //Update en la BBDD
 
-            string query = "update dbo.sucursal_servicio set tiempo_servicio  = @tiempo_servicio , estado_baja=@estado_baja" +
+            string query = "update dbo.sucursal_servicio set tiempo_servicio  = @tiempo_servicio , estado_baja=@estado_baja " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);

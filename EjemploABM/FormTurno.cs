@@ -75,37 +75,45 @@ namespace EjemploABM
             String dni = txtDni.Text;
             Usuario usr = new Usuario();
             usr = Usuario_Controller.obtenerPorDni(dni);
-            DateTime fecha = new DateTime();
-            fecha = dtFecha.Value;
-            String fechaIni = fecha.ToString("dd-MM-yyyy");
-            String fechaFin = fecha.ToString("dd-MM-yyyy");
-            String horaIni = cbHoraIni.Text;
-            String horaFin = lblHoraFin.Text.ToString();
-            String fechaHoraIni = fechaIni + " " + horaIni;
-            String fechaHoraFin = fechaFin + " " + horaFin;
-            DateTime dtIni = new DateTime();
-            DateTime dtFin = new DateTime();
-            //string fechaString = "22-10-2023 15:30:45"; // Reemplaza esto con tu cadena de fecha
-
-            // Define el formato esperado
-            string formato = "dd-MM-yyyy HH:mm:ss";
-            // Intenta convertir la cadena a un objeto DateTime
-            DateTime.TryParseExact(fechaHoraIni, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtIni);
-            DateTime.TryParseExact(fechaHoraFin, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtFin);
-            //Formato Fecha 20231018 17:00:00
-            Boolean boolSobreTurno = Calendario_Controller.obtenerPorFecha(dtIni, dtFin, suc);
-            if (boolSobreTurno)
+            if (usr.id > 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Ya hay un turno creado dentro de este rango horario en esta fecha ¿Desea crear el turno?", "Crear Turno", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                DateTime fecha = new DateTime();
+                fecha = dtFecha.Value;
+                String fechaIni = fecha.ToString("dd-MM-yyyy");
+                String fechaFin = fecha.ToString("dd-MM-yyyy");
+                String horaIni = cbHoraIni.Text;
+                String horaFin = lblHoraFin.Text.ToString();
+                String fechaHoraIni = fechaIni + " " + horaIni;
+                String fechaHoraFin = fechaFin + " " + horaFin;
+                DateTime dtIni = new DateTime();
+                DateTime dtFin = new DateTime();
+                //string fechaString = "22-10-2023 15:30:45"; // Reemplaza esto con tu cadena de fecha
+
+                // Define el formato esperado
+                string formato = "dd-MM-yyyy HH:mm:ss";
+                // Intenta convertir la cadena a un objeto DateTime
+                DateTime.TryParseExact(fechaHoraIni, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtIni);
+                DateTime.TryParseExact(fechaHoraFin, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtFin);
+                //Formato Fecha 20231018 17:00:00
+                Boolean boolSobreTurno = Calendario_Controller.obtenerPorFecha(dtIni, dtFin, suc);
+                if (boolSobreTurno)
                 {
-                    //do something
+                    DialogResult dialogResult = MessageBox.Show("Ya hay un turno creado dentro de este rango horario en esta fecha ¿Desea crear el turno?", "Crear Turno", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        //do something
+                        Calendario_Controller.crearTurno(usr, suc, dtIni, dtFin, ser);
+                        MessageBox.Show("Turno Creado", "ReTurno");
+                    }
+                }
+                else
+                {
                     Calendario_Controller.crearTurno(usr, suc, dtIni, dtFin, ser);
                     MessageBox.Show("Turno Creado", "ReTurno");
                 }
-            }else {
-                Calendario_Controller.crearTurno(usr, suc, dtIni, dtFin, ser);
-                MessageBox.Show("Turno Creado", "ReTurno");
+            }
+            else {
+                MessageBox.Show("Usuario no encontrado", "ReTurno");
             }
         }
 
