@@ -57,7 +57,7 @@ namespace EjemploABM
             dtFecha.Value = dt_sel;
             cbHoraIni.Items.Add(hora_ini);
             cbHoraIni.Enabled = false;
-            cbHoraIni.SelectedIndex = 0;
+            cbHoraIni.SelectedIndex = (cbHoraIni.Items.Count-1);
             lblHoraFin.Text = hora_fin;
         }
 
