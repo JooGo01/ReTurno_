@@ -61,6 +61,7 @@
             this.btnAdm = new MaterialSkin.Controls.MaterialButton();
             this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
             this.btnCliente = new MaterialSkin.Controls.MaterialButton();
+            this.lblFechaSeleccionada = new System.Windows.Forms.Label();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
@@ -292,6 +293,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblFechaSeleccionada);
             this.panel1.Controls.Add(this.btnSiguiente);
             this.panel1.Controls.Add(this.btnAnterior);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -496,6 +498,14 @@
             this.btnCliente.UseVisualStyleBackColor = true;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
+            // lblFechaSeleccionada
+            // 
+            this.lblFechaSeleccionada.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFechaSeleccionada.Location = new System.Drawing.Point(64, 0);
+            this.lblFechaSeleccionada.Name = "lblFechaSeleccionada";
+            this.lblFechaSeleccionada.Size = new System.Drawing.Size(148, 44);
+            this.lblFechaSeleccionada.TabIndex = 2;
+            // 
             // FormCalendario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -559,5 +569,6 @@
         private System.Windows.Forms.ComboBox cbServicio;
         private MaterialSkin.Controls.MaterialButton btnServicio;
         private MaterialSkin.Controls.MaterialButton btnAtencion;
+        private System.Windows.Forms.Label lblFechaSeleccionada;
     }
 }

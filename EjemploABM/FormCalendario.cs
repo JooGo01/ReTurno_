@@ -183,6 +183,14 @@ namespace EjemploABM
                 else {
                     MessageBox.Show("No hay servicio ni sucursal seleccionada para poder visualizar la grilla horaria", "ReTurno");
                 }
+                String filacol = dia.Name.Substring(dia.Name.Length - 2);
+                int fila = Int32.Parse(filacol.Substring(0, 1));
+                int col = Int32.Parse(filacol.Substring(1, 1));
+                DateTime fecha = _infoCalendario.diaGrilla(fila, col);
+                lblFechaSeleccionada.Text = fecha.ToString("dd-MM-yyyy");
+                lblFechaSeleccionada.Font = new Font("Calibri", 14);
+                lblFechaSeleccionada.ForeColor = Color.Black;
+                lblFechaSeleccionada.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             }
         }
 
