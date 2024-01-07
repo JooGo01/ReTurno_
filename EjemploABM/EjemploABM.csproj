@@ -74,6 +74,7 @@
     <Compile Include="Controladores\Direccion_Controller.cs" />
     <Compile Include="Controladores\Rubro_Controller.cs" />
     <Compile Include="Controladores\Servicio_Controller.cs" />
+    <Compile Include="Controladores\SubServicio_Controller.cs" />
     <Compile Include="Controladores\SucServ_Controller.cs" />
     <Compile Include="Controladores\Sucursal_Controller.cs" />
     <Compile Include="Controladores\Usuario_Controller.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Modelo\Direccion.cs" />
     <Compile Include="Modelo\Rubro.cs" />
     <Compile Include="Modelo\Servicio.cs" />
+    <Compile Include="Modelo\SubServicio.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Modelo\SucursalServicio.cs" />
     <Compile Include="Modelo\Turno.cs" />

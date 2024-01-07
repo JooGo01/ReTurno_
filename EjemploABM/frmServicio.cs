@@ -63,7 +63,9 @@ namespace EjemploABM
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            String servicio = txtServicio.Text;
+            String subservicio_nombre = txtSubServicio.Text;
+            String servicio_nombre = txtServicio.Text;
+            SubServicio sbserv = new SubServicio();
             Servicio serv = new Servicio();
             List<Sucursal> listSucursal = new List<Sucursal>();
             List<Dia> listDia = new List<Dia>();
@@ -73,11 +75,18 @@ namespace EjemploABM
             Boolean boolValidar = validarCheckbox(listSucursal, listDia);
             if (boolValidar)
             {
-                serv = Servicio_Controller.obtenerPorNombre(servicio.ToLower());
+                serv = Servicio_Controller.obtenerPorNombre(subservicio_nombre.ToLower());
                 if (serv == null)
                 {
-                    serv = new Servicio(Servicio_Controller.obtenerMaxId() + 1, servicio);
+                    serv = new Servicio(Servicio_Controller.obtenerMaxId() + 1, subservicio_nombre);
                     Servicio_Controller.crearServicio(serv);
+                }
+
+                sbserv = SubServicio_Controller.obtenerPorNombre(subservicio_nombre.ToLower());
+                if (sbserv == null)
+                {
+                    sbserv = new SubServicio(SubServicio_Controller.obtenerMaxId() + 1, subservicio_nombre, serv);
+                    SubServicio_Controller.crearServicio(sbserv);
                 }
                 Atencion atencion = new Atencion();
                 SucursalServicio sucServ = new SucursalServicio();
@@ -95,7 +104,7 @@ namespace EjemploABM
                 foreach (Sucursal sucursal in listSucursal)
                 {
                     id_max = SucServ_Controller.obtenerMaxId() + 1;
-                    sucServ = new SucursalServicio(id_max, sucursal, serv, tiempo_servicio, 0);
+                    sucServ = new SucursalServicio(id_max, sucursal, sbserv, tiempo_servicio, 0);
                     SucServ_Controller.crearServicio(sucServ);
                     foreach (Dia dias in listDia)
                     {

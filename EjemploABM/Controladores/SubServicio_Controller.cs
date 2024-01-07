@@ -4,25 +4,28 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EjemploABM.Controladores
 {
-    class Servicio_Controller
+    class SubServicio_Controller
     {
-        public static bool crearServicio(Servicio serv)
+        public static bool crearServicio(SubServicio sbServ)
         {
             //Darlo de alta en la BBDD
 
-            string query = "insert into dbo.servicio values" +
+            string query = "insert into dbo.subservicio values" +
                "(" +
-               "@nombre_servicio" +
+               "@nombre_servicio," +
+               "@servicio_id" + 
                ");";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             //cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
-            cmd.Parameters.AddWithValue("@nombre_servicio", serv.nombre_servicio.ToString());
+            cmd.Parameters.AddWithValue("@nombre_servicio", sbServ.nombre_servicio.ToString());
+            cmd.Parameters.AddWithValue("@servicio_id", sbServ.id_servicio.ToString());
 
             try
             {
@@ -44,7 +47,7 @@ namespace EjemploABM.Controladores
         public static int obtenerMaxId()
         {
             int MaxId = 0;
-            string query = "select max(id) from dbo.servicio;";
+            string query = "select max(id) from dbo.subservicio;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -71,10 +74,15 @@ namespace EjemploABM.Controladores
 
         // GET ALL
 
-        public static List<Servicio> obtenerTodos()
+        public static List<SubServicio> obtenerTodos()
         {
-            List<Servicio> list = new List<Servicio>();
-            string query = "select * from dbo.servicio;";
+            List<SubServicio> list = new List<SubServicio>();
+            List<int> listSubServId = new List<int>();
+            List<int> listServId = new List<int>();
+            List<String> listSubServNombre = new List<String>();
+            List<Servicio> listServ = new List<Servicio>();
+            Servicio serv = new Servicio();
+            string query = "select * from dbo.subservicio;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
 
@@ -85,11 +93,25 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    list.Add(new Servicio(reader.GetInt32(0), reader.GetString(1)));
-                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                    listSubServId.Add(reader.GetInt32(0));
+                    listSubServNombre.Add(reader.GetString(1));
+                    listServId.Add(reader.GetInt32(2));
+                    Trace.WriteLine("SubServicio encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();
+
+                for (int i = 0; i < listServId.Count; i++)
+                {
+                    serv = Servicio_Controller.obtenerPorId(listServId[i]);
+                    listServ.Add(serv);
+                }
+
+                for (int i = 0; i < listServId.Count; i++)
+                {
+                    list.Add(new SubServicio(listSubServId[i], listSubServNombre[i], listServ[i]));
+                }
+
                 DB_Controller.close();
 
             }
@@ -101,14 +123,14 @@ namespace EjemploABM.Controladores
             return list;
         }
 
-        public static List<Servicio> obtenerTodosServiciosSucursal(Sucursal suc)
+        public static List<SubServicio> obtenerTodosSubServiciosServicio(Servicio serv)
         {
-            List<Servicio> list = new List<Servicio>();
-            Servicio serv = new Servicio();
-            List<int> listIdServ = new List<int>();
-            string query = "select se.id from sucursal s join sucursal_servicio ss on ss.sucursal_id=s.id join subservicio sbs on sbs.id=ss.subservicio_id join servicio se on sbs.servicio_id=se.id where s.id=@id_suc;";
+            List<SubServicio> list = new List<SubServicio>();
+            SubServicio sbServ = new SubServicio();
+            List<int> listIdSbServ = new List<int>();
+            string query = "select ss.id from subservicio ss join servicio se on ss.servicio_id=se.id where se.id=@id_srv;";
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id_suc", suc.id);
+            cmd.Parameters.AddWithValue("@id_srv", serv.id);
 
             try
             {
@@ -117,17 +139,18 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    listIdServ.Add(reader.GetInt32(0));
+                    listIdSbServ.Add(reader.GetInt32(0));
                     Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
                 }
 
-                for (int i = 0; i < listIdServ.Count; i++)
+                reader.Close();
+
+                for (int i = 0; i < listIdSbServ.Count; i++)
                 {
-                    serv = Servicio_Controller.obtenerPorId(listIdServ[i]);
-                    list.Add(serv);
+                    sbServ = SubServicio_Controller.obtenerPorId(listIdSbServ[i]);
+                    list.Add(sbServ);
                 }
 
-                reader.Close();
                 DB_Controller.close();
 
             }
@@ -139,12 +162,12 @@ namespace EjemploABM.Controladores
             return list;
         }
 
-        public static List<Servicio> obtenerTodosServiciosCliente(Cliente cli)
+        public static List<SubServicio> obtenerTodosSubServiciosCliente(Cliente cli)
         {
-            List<Servicio> list = new List<Servicio>();
-            Servicio serv = new Servicio();
-            List<int> listIdServ = new List<int>();
-            string query = "select se.id from sucursal s join sucursal_servicio ss on ss.sucursal_id=s.id join subservicio sbs on sbs.id=ss.subservicio_id join servicio se on sbs.servicio_id=se.id join cliente c on s.cliente_id=c.id where c.id=@id_cli;";
+            List<SubServicio> list = new List<SubServicio>();
+            SubServicio sbServ = new SubServicio();
+            List<int> listIdSubServ = new List<int>();
+            string query = "select sbs.id from sucursal s join sucursal_servicio ss on ss.sucursal_id=s.id join subservicio sbs on sbs.id=ss.subservicio_id join servicio se on sbs.servicio_id=se.id join cliente c on s.cliente_id=c.id where c.id=@id_cli;";
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id_cli", cli.id);
 
@@ -155,14 +178,14 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    listIdServ.Add(reader.GetInt32(0));
-                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                    listIdSubServ.Add(reader.GetInt32(0));
+                    Trace.WriteLine("Id subservicio encontrado, id: " + reader.GetInt32(0));
                 }
 
-                for (int i = 0; i < listIdServ.Count; i++)
+                for (int i = 0; i < listIdSubServ.Count; i++)
                 {
-                    serv = obtenerPorId(listIdServ[i]);
-                    list.Add(serv);
+                    sbServ = obtenerPorId(listIdSubServ[i]);
+                    list.Add(sbServ);
                 }
 
                 reader.Close();
@@ -181,10 +204,14 @@ namespace EjemploABM.Controladores
 
         // GET ONE BY ID
 
-        public static Servicio obtenerPorId(int id)
+        public static SubServicio obtenerPorId(int id)
         {
-            Servicio srv = new Servicio();
-            string query = "select * from dbo.servicio where id = @id;";
+            SubServicio sbsrv = new SubServicio();
+            Servicio serv = new Servicio();
+            int id_sbsrv=0;
+            int id_srv=0;
+            String nombre_sbsrv="";
+            string query = "select * from dbo.subservicio where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -196,26 +223,36 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    srv = new Servicio(reader.GetInt32(0), reader.GetString(1));
-                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                    id_sbsrv = reader.GetInt32(0);
+                    nombre_sbsrv = reader.GetString(1);
+                    id_srv = reader.GetInt32(2);
+                    Trace.WriteLine("SubServicio encontrado, nombre: " + nombre_sbsrv);
                 }
-
                 reader.Close();
+                if (id_srv > 0)
+                {
+                    serv = Servicio_Controller.obtenerPorId(id_srv);
+                    sbsrv = new SubServicio(id_sbsrv, nombre_sbsrv, serv);
+                }
                 DB_Controller.close();
-
             }
             catch (Exception ex)
             {
                 throw new Exception("Hay un error en la query: " + ex.Message);
             }
 
-            return srv;
+            return sbsrv;
         }
 
-        public static Servicio obtenerPorNombre(String nom_ser)
+        public static SubServicio obtenerPorNombre(String nom_ser)
         {
-            Servicio srv = new Servicio();
-            string query = "select * from dbo.servicio where lcase(nombre_servicio) = @nombre;";
+            SubServicio sbsrv = new SubServicio();
+            Servicio serv = new Servicio();
+            int id_sbsrv = 0;
+            int id_srv = 0;
+            String nombre_sbsrv = "";
+
+            string query = "select * from dbo.subservicio where lcase(nombre_servicio) = @nombre;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@nombre", nom_ser);
@@ -227,11 +264,17 @@ namespace EjemploABM.Controladores
 
                 while (reader.Read())
                 {
-                    srv = new Servicio(reader.GetInt32(0), reader.GetString(1));
-                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                    id_sbsrv = reader.GetInt32(0);
+                    nombre_sbsrv = reader.GetString(1);
+                    id_srv = reader.GetInt32(2);
+                    Trace.WriteLine("SubServicio encontrado, nombre: " + nombre_sbsrv);
                 }
-
                 reader.Close();
+                if (id_srv > 0)
+                {
+                    serv = Servicio_Controller.obtenerPorId(id_srv);
+                    sbsrv = new SubServicio(id_sbsrv, nombre_sbsrv, serv);
+                }
                 DB_Controller.close();
 
             }
@@ -240,22 +283,22 @@ namespace EjemploABM.Controladores
                 return null;
             }
 
-            return srv;
+            return sbsrv;
         }
 
 
 
         // EDIT / PUT
 
-        public static bool editarServicio(Servicio srv, String nombre)
+        public static bool editarSubServicio(Servicio sbsrv, String nombre)
         {
             //Update en la BBDD
 
-            string query = "update dbo.servicio set nombre_servicio  = @nombre_servicio , " +
+            string query = "update dbo.subservicio set nombre_servicio  = @nombre_servicio , " +
                 "where id = @id ;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id", srv.id);
+            cmd.Parameters.AddWithValue("@id", sbsrv.id);
             cmd.Parameters.AddWithValue("@nombre_servicio", nombre);
 
             try
