@@ -35,6 +35,7 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSubServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel_contenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_evento)).BeginInit();
@@ -58,6 +59,7 @@
             this.Id,
             this.id_sucursal,
             this.id_servicio,
+            this.clSubServicio,
             this.Eliminar});
             this.dgv_evento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_evento.Location = new System.Drawing.Point(0, 47);
@@ -111,6 +113,11 @@
             this.id_servicio.HeaderText = "Servicio";
             this.id_servicio.Name = "id_servicio";
             // 
+            // clSubServicio
+            // 
+            this.clSubServicio.HeaderText = "Sub-Servicio";
+            this.clSubServicio.Name = "clSubServicio";
+            // 
             // Eliminar
             // 
             this.Eliminar.HeaderText = "Eliminar";
@@ -140,6 +147,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_sucursal;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_servicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clSubServicio;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
     }
 }

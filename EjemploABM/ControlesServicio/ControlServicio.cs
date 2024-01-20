@@ -41,8 +41,9 @@ namespace EjemploABM.ControlesServicio
 
                     dgv_evento.Rows[rowIndex].Cells[0].Value = sucServ.id.ToString();
                     dgv_evento.Rows[rowIndex].Cells[1].Value = sucServ.id_sucursal.id.ToString();
-                    dgv_evento.Rows[rowIndex].Cells[2].Value = sucServ.id_subservicio.nombre_servicio.ToString();
-                    dgv_evento.Rows[rowIndex].Cells[3].Value = "Eliminar";
+                    dgv_evento.Rows[rowIndex].Cells[2].Value = sucServ.id_subservicio.id_servicio.nombre_servicio.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[3].Value = sucServ.id_subservicio.nombre_servicio.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[4].Value = "Eliminar";
                 }
             }
         }
@@ -52,7 +53,7 @@ namespace EjemploABM.ControlesServicio
             var senderGrid = (DataGridView)sender;
             if ((dgv_evento.Rows[e.RowIndex].Cells[0].Value) != null)
             {
-                if (e.ColumnIndex == 3 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                if (e.ColumnIndex == 4 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //eliminar
                     if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")

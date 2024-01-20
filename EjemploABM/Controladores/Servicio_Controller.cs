@@ -215,7 +215,7 @@ namespace EjemploABM.Controladores
         public static Servicio obtenerPorNombre(String nom_ser)
         {
             Servicio srv = new Servicio();
-            string query = "select * from dbo.servicio where lcase(nombre_servicio) = @nombre;";
+            string query = "select * from dbo.servicio where lower(nombre_servicio) = @nombre;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@nombre", nom_ser);
@@ -228,7 +228,7 @@ namespace EjemploABM.Controladores
                 while (reader.Read())
                 {
                     srv = new Servicio(reader.GetInt32(0), reader.GetString(1));
-                    Trace.WriteLine("Rubro encontrado, nombre: " + reader.GetString(1));
+                    Trace.WriteLine("Servicio encontrado, nombre: " + reader.GetString(1));
                 }
 
                 reader.Close();

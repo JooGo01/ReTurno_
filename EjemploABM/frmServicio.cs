@@ -75,15 +75,15 @@ namespace EjemploABM
             Boolean boolValidar = validarCheckbox(listSucursal, listDia);
             if (boolValidar)
             {
-                serv = Servicio_Controller.obtenerPorNombre(subservicio_nombre.ToLower());
-                if (serv == null)
+                serv = Servicio_Controller.obtenerPorNombre(servicio_nombre.ToLower());
+                if (serv == null || serv.id==0)
                 {
-                    serv = new Servicio(Servicio_Controller.obtenerMaxId() + 1, subservicio_nombre);
+                    serv = new Servicio(Servicio_Controller.obtenerMaxId() + 1, servicio_nombre);
                     Servicio_Controller.crearServicio(serv);
                 }
 
                 sbserv = SubServicio_Controller.obtenerPorNombre(subservicio_nombre.ToLower());
-                if (sbserv == null)
+                if (sbserv == null || sbserv.id==0)
                 {
                     sbserv = new SubServicio(SubServicio_Controller.obtenerMaxId() + 1, subservicio_nombre, serv);
                     SubServicio_Controller.crearServicio(sbserv);

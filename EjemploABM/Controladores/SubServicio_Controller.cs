@@ -25,7 +25,7 @@ namespace EjemploABM.Controladores
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             //cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
             cmd.Parameters.AddWithValue("@nombre_servicio", sbServ.nombre_servicio.ToString());
-            cmd.Parameters.AddWithValue("@servicio_id", sbServ.id_servicio.ToString());
+            cmd.Parameters.AddWithValue("@servicio_id", sbServ.id_servicio.id.ToString());
 
             try
             {
@@ -252,7 +252,7 @@ namespace EjemploABM.Controladores
             int id_srv = 0;
             String nombre_sbsrv = "";
 
-            string query = "select * from dbo.subservicio where lcase(nombre_servicio) = @nombre;";
+            string query = "select * from dbo.subservicio where lower(nombre_servicio) = @nombre;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@nombre", nom_ser);
