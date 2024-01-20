@@ -297,7 +297,7 @@ namespace EjemploABM.Controladores
             List<Sucursal> listSuc = new List<Sucursal>();
             List<Usuario> listUsr = new List<Usuario>();
             List<SubServicio> listServ = new List<SubServicio>();
-            string query = "select * from dbo.turno where estado_baja=0 and sucursal_id=@suc_id and servicio_id=@ser_id and (fecha_ini = @fecha);";
+            string query = "select * from dbo.turno where estado_baja=0 and sucursal_id=@suc_id and subservicio_id=@ser_id and (fecha_ini = @fecha);";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@fecha", fecha.ToString("yyyyMMdd HH:mm:ss"));

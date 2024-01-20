@@ -200,7 +200,44 @@ namespace EjemploABM.Controladores
             return list;
         }
 
+        public static List<SubServicio> obtenerTodosSubServiciosSucursalServicio(Servicio serv, Sucursal suc)
+        {
+            List<SubServicio> list = new List<SubServicio>();
+            SubServicio sbServ = new SubServicio();
+            List<int> listIdSubServ = new List<int>();
+            string query = "select sb.id from sucursal_servicio ss join subservicio sb on sb.id=ss.subservicio_id join servicio s on sb.servicio_id=s.id where ss.sucursal_id=@id_suc and s.id=@id_serv;";
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@id_serv", serv.id);
+            cmd.Parameters.AddWithValue("@id_suc", suc.id);
 
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listIdSubServ.Add(reader.GetInt32(0));
+                    Trace.WriteLine("Id subservicio encontrado, id: " + reader.GetInt32(0));
+                }
+
+                for (int i = 0; i < listIdSubServ.Count; i++)
+                {
+                    sbServ = obtenerPorId(listIdSubServ[i]);
+                    list.Add(sbServ);
+                }
+
+                reader.Close();
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                list = null;
+            }
+
+            return list;
+        }
 
         // GET ONE BY ID
 

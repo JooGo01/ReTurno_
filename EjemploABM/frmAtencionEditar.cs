@@ -38,8 +38,10 @@ namespace EjemploABM
             cbDia.Items.Add(atencion_pub.dia_id.nombre_dia);
             cbDia.SelectedIndex = 0;
             cbDia.Enabled = false;
-
-            cbServicio.Items.Add(serv_pub.id.ToString() + "- " + serv_pub.nombre_servicio.ToString());
+            if (!cbServicio.Items.Contains(serv_pub.id_servicio.id.ToString() + "- " + serv_pub.id_servicio.nombre_servicio.ToString()))
+            {
+                cbServicio.Items.Add(serv_pub.id_servicio.id.ToString() + "- " + serv_pub.id_servicio.nombre_servicio.ToString());
+            }
             cbServicio.SelectedIndex = 0;
             cbServicio.Enabled = false;
 

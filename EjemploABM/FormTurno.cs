@@ -39,7 +39,7 @@ namespace EjemploABM
             intervalo_tiempo = sucursalServicio.tiempo_servicio;
         }
 
-        private void FormTurno_Load(object sender, EventArgs e) { 
+        private void FormTurno_Load(object sender, EventArgs e) {
             dire = sucursalServicio.id_sucursal.direccion;
             suc = sucursalServicio.id_sucursal;
             ser = sucursalServicio.id_subservicio;
@@ -47,8 +47,11 @@ namespace EjemploABM
             cmbSucursal.Items.Add(textoSucursal);
             cmbSucursal.Enabled = false;
             cmbSucursal.SelectedIndex = 0;
-            String textoServicio = ser.id.ToString() + "- " + ser.nombre_servicio.ToString();
-            cbServicio.Items.Add(textoServicio);
+            //String textoServicio = ser.id.ToString() + "- " + ser.nombre_servicio.ToString();
+            String textoServicio = ser.id_servicio.id.ToString() + "- " + ser.id_servicio.nombre_servicio.ToString();
+            if (!cbServicio.Items.Contains(textoServicio)) {
+                cbServicio.Items.Add(textoServicio);
+            }
             cbServicio.Enabled = false;
             cbServicio.SelectedIndex = 0;
             String hora_ini = dt_sel.ToString("HH:mm:ss");
@@ -167,8 +170,12 @@ namespace EjemploABM
             cbServicio.Items.Clear();
             foreach (SucursalServicio sucServ in listSucServ)
             {
-                String textoTipoTurno = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio;
-                cbServicio.Items.Add(textoTipoTurno);
+                //String textoTipoTurno = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio;
+                String textoTipoTurno = sucServ.id_subservicio.id_servicio.id.ToString() + "- " + sucServ.id_subservicio.id_servicio.nombre_servicio.ToString();
+                if (!cbServicio.Items.Contains(textoTipoTurno))
+                {
+                    cbServicio.Items.Add(textoTipoTurno);
+                }
             }
             cbServicio.SelectedIndex = 0;
         }

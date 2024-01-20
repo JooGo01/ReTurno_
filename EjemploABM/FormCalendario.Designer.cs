@@ -50,6 +50,7 @@
             this.cbServicio = new System.Windows.Forms.ComboBox();
             this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblFechaSeleccionada = new System.Windows.Forms.Label();
             this.btnSiguiente = new MaterialSkin.Controls.MaterialButton();
             this.btnAnterior = new MaterialSkin.Controls.MaterialButton();
             this.tab_abm = new System.Windows.Forms.TabPage();
@@ -61,7 +62,7 @@
             this.btnAdm = new MaterialSkin.Controls.MaterialButton();
             this.btnUsuario = new MaterialSkin.Controls.MaterialButton();
             this.btnCliente = new MaterialSkin.Controls.MaterialButton();
-            this.lblFechaSeleccionada = new System.Windows.Forms.Label();
+            this.cbSubServicio = new System.Windows.Forms.ComboBox();
             this.tabControlCalendario.SuspendLayout();
             this.tab_calendario.SuspendLayout();
             this.panel_contenedor_calendario.SuspendLayout();
@@ -265,29 +266,30 @@
             // 
             // panel_combo
             // 
+            this.panel_combo.Controls.Add(this.cbSubServicio);
             this.panel_combo.Controls.Add(this.cbServicio);
             this.panel_combo.Controls.Add(this.cmbSucursal);
             this.panel_combo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_combo.Location = new System.Drawing.Point(349, 0);
+            this.panel_combo.Location = new System.Drawing.Point(296, 0);
             this.panel_combo.Name = "panel_combo";
-            this.panel_combo.Size = new System.Drawing.Size(499, 44);
+            this.panel_combo.Size = new System.Drawing.Size(552, 44);
             this.panel_combo.TabIndex = 1;
             // 
             // cbServicio
             // 
             this.cbServicio.FormattingEnabled = true;
-            this.cbServicio.Location = new System.Drawing.Point(291, 13);
+            this.cbServicio.Location = new System.Drawing.Point(211, 13);
             this.cbServicio.Name = "cbServicio";
-            this.cbServicio.Size = new System.Drawing.Size(197, 21);
+            this.cbServicio.Size = new System.Drawing.Size(167, 21);
             this.cbServicio.TabIndex = 1;
             this.cbServicio.SelectedIndexChanged += new System.EventHandler(this.cbServicio_SelectedIndexChanged);
             // 
             // cmbSucursal
             // 
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(21, 13);
+            this.cmbSucursal.Location = new System.Drawing.Point(3, 13);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(264, 21);
+            this.cmbSucursal.Size = new System.Drawing.Size(202, 21);
             this.cmbSucursal.TabIndex = 0;
             this.cmbSucursal.SelectedIndexChanged += new System.EventHandler(this.cmbSucursal_SelectedIndexChanged);
             // 
@@ -301,6 +303,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(276, 44);
             this.panel1.TabIndex = 0;
+            // 
+            // lblFechaSeleccionada
+            // 
+            this.lblFechaSeleccionada.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFechaSeleccionada.Location = new System.Drawing.Point(64, 0);
+            this.lblFechaSeleccionada.Name = "lblFechaSeleccionada";
+            this.lblFechaSeleccionada.Size = new System.Drawing.Size(148, 44);
+            this.lblFechaSeleccionada.TabIndex = 2;
             // 
             // btnSiguiente
             // 
@@ -498,13 +508,13 @@
             this.btnCliente.UseVisualStyleBackColor = true;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
-            // lblFechaSeleccionada
+            // cbSubServicio
             // 
-            this.lblFechaSeleccionada.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFechaSeleccionada.Location = new System.Drawing.Point(64, 0);
-            this.lblFechaSeleccionada.Name = "lblFechaSeleccionada";
-            this.lblFechaSeleccionada.Size = new System.Drawing.Size(148, 44);
-            this.lblFechaSeleccionada.TabIndex = 2;
+            this.cbSubServicio.FormattingEnabled = true;
+            this.cbSubServicio.Location = new System.Drawing.Point(382, 13);
+            this.cbSubServicio.Name = "cbSubServicio";
+            this.cbSubServicio.Size = new System.Drawing.Size(167, 21);
+            this.cbSubServicio.TabIndex = 2;
             // 
             // FormCalendario
             // 
@@ -570,5 +580,6 @@
         private MaterialSkin.Controls.MaterialButton btnServicio;
         private MaterialSkin.Controls.MaterialButton btnAtencion;
         private System.Windows.Forms.Label lblFechaSeleccionada;
+        private System.Windows.Forms.ComboBox cbSubServicio;
     }
 }

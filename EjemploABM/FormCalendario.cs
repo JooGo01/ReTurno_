@@ -21,6 +21,7 @@ using System.Net;
 using EjemploABM.ControlesServicio;
 using EjemploABM.ControlesSucursal;
 using EjemploABM.ControlesAtencion;
+using System.Net.NetworkInformation;
 
 namespace EjemploABM
 {
@@ -94,8 +95,12 @@ namespace EjemploABM
                         {
                             foreach (SucursalServicio sucServ in listSucServ)
                             {
-                                String textoServicio = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio.ToString();
-                                cbServicio.Items.Add(textoServicio);
+                                //String textoServicio = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio.ToString();
+                                String textoServicio = sucServ.id_subservicio.id_servicio.id.ToString() + "- " + sucServ.id_subservicio.id_servicio.nombre_servicio.ToString();
+                                if (!cbServicio.Items.Contains(textoServicio))
+                                {
+                                    cbServicio.Items.Add(textoServicio);
+                                }
                                 cbServicio.SelectedIndex = 0;
                             }
                         }
@@ -116,8 +121,12 @@ namespace EjemploABM
                         if (listSucServ != null) {
                             foreach (SucursalServicio sucServ in listSucServ)
                             {
-                                String textoServicio = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio.ToString();
-                                cbServicio.Items.Add(textoServicio);
+                                //String textoServicio = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio.ToString();
+                                String textoServicio = sucServ.id_subservicio.id_servicio.id.ToString() + "- " + sucServ.id_subservicio.id_servicio.nombre_servicio.ToString();
+                                if (!cbServicio.Items.Contains(textoServicio))
+                                {
+                                    cbServicio.Items.Add(textoServicio);
+                                }
                                 cbServicio.SelectedIndex = 0;
                             }
                         }
@@ -176,12 +185,12 @@ namespace EjemploABM
         {
             Panel dia = sender as Panel;
             if (dia != null) {
-                if (cbServicio.Text != "" && cmbSucursal.Text != "")
+                if (cbServicio.Text != "" && cmbSucursal.Text != "" && cbSubServicio.Text!="")
                 {
                     eventoPanelDia(dia.Name);
                 }
                 else {
-                    MessageBox.Show("No hay servicio ni sucursal seleccionada para poder visualizar la grilla horaria", "ReTurno");
+                    MessageBox.Show("No hay sucursal/servicio/subservicio seleccionado para poder visualizar la grilla horaria", "ReTurno");
                 }
                 String filacol = dia.Name.Substring(dia.Name.Length - 2);
                 int fila = Int32.Parse(filacol.Substring(0, 1));
@@ -203,7 +212,7 @@ namespace EjemploABM
             DateTime fecha = _infoCalendario.diaGrilla(fila,col);
             Sucursal suc = new Sucursal();
             String[] id_suc = cmbSucursal.Text.Split('-');
-            String[] id_ser = cbServicio.Text.Split('-');
+            String[] id_ser = cbSubServicio.Text.Split('-');
             suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
             SubServicio ser = new SubServicio();
             ser = SubServicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
@@ -629,7 +638,25 @@ namespace EjemploABM
 
         private void cbServicio_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (cbServicio.Text != "" && cmbSucursal.Text != "") {
+                Servicio serv = new Servicio();
+                Sucursal suc = new Sucursal();
+                String[] id_ser = cbServicio.Text.Split('-');
+                String[] id_suc = cmbSucursal.Text.Split('-');
+                suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
+                serv = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
+                List<SubServicio> listSubServicios = new List<SubServicio>();
+                listSubServicios = SubServicio_Controller.obtenerTodosSubServiciosSucursalServicio(serv,suc);
+                cbSubServicio.Items.Clear();
+                if (listSubServicios != null) {
+                    foreach (SubServicio sbs in listSubServicios)
+                    {
+                        String textoSubServicio = sbs.id.ToString() + "- " + sbs.nombre_servicio;
+                        cbSubServicio.Items.Add(textoSubServicio);
+                        cbSubServicio.SelectedIndex = 0;
+                    }
+                }
+            }
         }
     }
 }

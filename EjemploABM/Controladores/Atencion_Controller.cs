@@ -219,11 +219,11 @@ namespace EjemploABM.Controladores
             List<int> listPersonal = new List<int>();
             List<int> listEstado = new List<int>();
 
-            string query = "SELECT a.* FROM atencion a JOIN sucursal_servicio ss ON a.sucursal_servicio_id=ss.id JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where ss.sucursal_id=@sucursal_id and ss.servicio_id=@servicio_id and a.dia_id=@dia_id;";
+            string query = "SELECT a.* FROM atencion a JOIN sucursal_servicio ss ON a.sucursal_servicio_id=ss.id JOIN sucursal s ON ss.sucursal_id=s.id JOIN cliente c ON s.cliente_id=c.id where ss.sucursal_id=@sucursal_id and ss.subservicio_id=@subservicio_id and a.dia_id=@dia_id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@sucursal_id", suc.id);
-            cmd.Parameters.AddWithValue("@servicio_id", ser.id);
+            cmd.Parameters.AddWithValue("@subservicio_id", ser.id);
             cmd.Parameters.AddWithValue("@dia_id", dia.id);
 
             try

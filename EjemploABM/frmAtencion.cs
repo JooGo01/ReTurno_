@@ -36,7 +36,9 @@ namespace EjemploABM
                 foreach (Servicio ser in listServicio)
                 {
                     String textoServicio = ser.id + "- " + ser.nombre_servicio;
-                    cbServicio.Items.Add(textoServicio);
+                    if (!cbServicio.Items.Contains(textoServicio)) {
+                        cbServicio.Items.Add(textoServicio);
+                    }
                 }
             }
             else { 
