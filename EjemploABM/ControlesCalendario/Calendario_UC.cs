@@ -47,8 +47,9 @@ namespace EjemploABM.ControlesCalendario
                 dgv_evento.Rows[rowIndex].Cells[4].Value = trn.fecha_ini.ToString();
                 dgv_evento.Rows[rowIndex].Cells[5].Value = trn.fecha_fin.ToString();
                 //dgv_evento.Rows[rowIndex].Cells[6].Value = "Editar";
-                dgv_evento.Rows[rowIndex].Cells[6].Value = ser.nombre_servicio;
-                dgv_evento.Rows[rowIndex].Cells[7].Value = "Eliminar";
+                dgv_evento.Rows[rowIndex].Cells[6].Value = ser.id_servicio.nombre_servicio;
+                dgv_evento.Rows[rowIndex].Cells[7].Value = ser.nombre_servicio;
+                dgv_evento.Rows[rowIndex].Cells[8].Value = "Eliminar";
             }
         }
 
@@ -74,7 +75,7 @@ namespace EjemploABM.ControlesCalendario
             var senderGrid = (DataGridView)sender;
             //String id_check = dgv_evento.Rows[e.RowIndex].Cells[0].Value.ToString();
             if ((dgv_evento.Rows[e.RowIndex].Cells[0].Value)!=null) {
-                if (e.ColumnIndex == 7 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                if (e.ColumnIndex == 8 && senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     //eliminar
                     if (Program.logueado.tipo_usuario == "S" || Program.logueado.tipo_usuario == "A")

@@ -43,12 +43,14 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAgregar = new MaterialSkin.Controls.MaterialButton();
+            this.cbSubServicio = new MaterialSkin.Controls.MaterialComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cbSubServicio);
             this.panel1.Controls.Add(this.lblHoraFin);
             this.panel1.Controls.Add(this.cbHoraIni);
             this.panel1.Controls.Add(this.materialLabel6);
@@ -136,6 +138,7 @@
             this.cbServicio.Size = new System.Drawing.Size(198, 49);
             this.cbServicio.StartIndex = 0;
             this.cbServicio.TabIndex = 16;
+            this.cbServicio.SelectedIndexChanged += new System.EventHandler(this.cbServicio_SelectedIndexChanged);
             // 
             // materialLabel5
             // 
@@ -197,6 +200,7 @@
             this.txtDni.TabIndex = 9;
             this.txtDni.Text = "";
             this.txtDni.TrailingIcon = null;
+            this.txtDni.TextChanged += new System.EventHandler(this.txtDni_TextChanged);
             // 
             // materialLabel3
             // 
@@ -277,6 +281,28 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // cbSubServicio
+            // 
+            this.cbSubServicio.AutoResize = false;
+            this.cbSubServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbSubServicio.Depth = 0;
+            this.cbSubServicio.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbSubServicio.DropDownHeight = 174;
+            this.cbSubServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSubServicio.DropDownWidth = 121;
+            this.cbSubServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbSubServicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbSubServicio.FormattingEnabled = true;
+            this.cbSubServicio.IntegralHeight = false;
+            this.cbSubServicio.ItemHeight = 43;
+            this.cbSubServicio.Location = new System.Drawing.Point(351, 122);
+            this.cbSubServicio.MaxDropDownItems = 4;
+            this.cbSubServicio.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbSubServicio.Name = "cbSubServicio";
+            this.cbSubServicio.Size = new System.Drawing.Size(198, 49);
+            this.cbSubServicio.StartIndex = 0;
+            this.cbSubServicio.TabIndex = 20;
+            // 
             // FormTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,5 +336,6 @@
         private MaterialSkin.Controls.MaterialComboBox cbHoraIni;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialLabel lblHoraFin;
+        private MaterialSkin.Controls.MaterialComboBox cbSubServicio;
     }
 }

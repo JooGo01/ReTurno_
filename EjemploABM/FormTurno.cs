@@ -54,10 +54,13 @@ namespace EjemploABM
             }
             cbServicio.Enabled = false;
             cbServicio.SelectedIndex = 0;
+            cbSubServicio.Enabled = false;
+            cbSubServicio.SelectedIndex = 0;
             String hora_ini = dt_sel.ToString("HH:mm:ss");
             DateTime dt_fin = dt_sel.AddMinutes(intervalo_tiempo);
             String hora_fin=dt_fin.ToString("HH:mm:ss");
             dtFecha.Value = dt_sel;
+            dtFecha.Enabled = false;
             cbHoraIni.Items.Add(hora_ini);
             cbHoraIni.Enabled = false;
             cbHoraIni.SelectedIndex = (cbHoraIni.Items.Count-1);
@@ -162,13 +165,13 @@ namespace EjemploABM
 
         private void cmbSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<SucursalServicio> listSucServ = new List<SucursalServicio> ();
+            /*List<SucursalServicio> listSucServ = new List<SucursalServicio> ();
             String[] id_suc = cmbSucursal.Text.Split('-');
             Sucursal sucursal = new Sucursal();
             sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
-            listSucServ = SucServ_Controller.obtenerTodosActivosSucursal(sucursal);
+            listSucServ = SucServ_Controller.obtenerTodosActivosSucursal(sucursal);*/
             cbServicio.Items.Clear();
-            foreach (SucursalServicio sucServ in listSucServ)
+            /*foreach (SucursalServicio sucServ in listSucServ)
             {
                 //String textoTipoTurno = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio;
                 String textoTipoTurno = sucServ.id_subservicio.id_servicio.id.ToString() + "- " + sucServ.id_subservicio.id_servicio.nombre_servicio.ToString();
@@ -176,7 +179,9 @@ namespace EjemploABM
                 {
                     cbServicio.Items.Add(textoTipoTurno);
                 }
-            }
+            }*/
+            String textoTipoTurno = sucursalServicio.id_subservicio.id_servicio.id.ToString() + "- " + sucursalServicio.id_subservicio.id_servicio.nombre_servicio.ToString();
+            cbServicio.Items.Add(textoTipoTurno);
             cbServicio.SelectedIndex = 0;
         }
 
@@ -185,7 +190,7 @@ namespace EjemploABM
             DateTime fechaSeleccionada = dtFecha.Value;
             DayOfWeek diaDeLaSemana = fechaSeleccionada.DayOfWeek;
             String[] id_suc = cmbSucursal.Text.Split('-');
-            String[] id_ser = cbServicio.Text.Split('-');
+            String[] id_ser = cbSubServicio.Text.Split('-');
             SubServicio ser = new SubServicio();
             ser = SubServicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
             Sucursal sucursal = new Sucursal();
@@ -215,6 +220,19 @@ namespace EjemploABM
             else {
                 btnAgregar.Enabled = false;
             }
+        }
+
+        private void txtDni_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbServicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbSubServicio.Items.Clear();
+            String textoTipoTurno = sucursalServicio.id_subservicio.id.ToString() + "- " + sucursalServicio.id_subservicio.nombre_servicio.ToString();
+            cbSubServicio.Items.Add(textoTipoTurno);
+            cbSubServicio.SelectedIndex = 0;
         }
     }
 }

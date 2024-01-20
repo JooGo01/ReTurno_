@@ -302,7 +302,7 @@ namespace EjemploABM.Controladores
         public static SucursalServicio obtenerPorSucServ(Sucursal suc, SubServicio ser)
         {
             SucursalServicio srv = new SucursalServicio();
-            string query = "select * from dbo.sucursal_servicio where sucursal_id = @suc_id and servicio_id=@ser_id;";
+            string query = "select * from dbo.sucursal_servicio where sucursal_id = @suc_id and subservicio_id=@ser_id;";
             int id = 0;
             int idSuc = 0;
             int idServ = 0;

@@ -39,6 +39,7 @@
             this.horario_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horario_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSbServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_evento)).BeginInit();
             this.panel1.SuspendLayout();
@@ -77,6 +78,7 @@
             this.horario_inicio,
             this.horario_fin,
             this.Servicio,
+            this.colSbServicio,
             this.Eliminar});
             this.dgv_evento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_evento.Location = new System.Drawing.Point(0, 0);
@@ -140,6 +142,11 @@
             this.Servicio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Servicio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // colSbServicio
+            // 
+            this.colSbServicio.HeaderText = "SubServicio";
+            this.colSbServicio.Name = "colSbServicio";
+            // 
             // Eliminar
             // 
             this.Eliminar.HeaderText = "Eliminar";
@@ -175,6 +182,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn horario_inicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario_fin;
         private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSbServicio;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
     }
 }
