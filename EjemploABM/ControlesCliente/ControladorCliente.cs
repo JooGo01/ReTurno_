@@ -36,14 +36,16 @@ namespace EjemploABM.ControlesCliente
             if (Program.logueado.tipo_usuario == "A")
             {
                 cli = Cliente_Controller.obtenerPorId(Program.cli.id);
-                int rowIndex = dgv_evento.Rows.Add();
-                dgv_evento.Rows[rowIndex].Cells[0].Value = cli.id.ToString();
-                dgv_evento.Rows[rowIndex].Cells[1].Value = cli.razon_social.ToString();
-                dgv_evento.Rows[rowIndex].Cells[2].Value = cli.rubro.nombre.ToString();
-                dgv_evento.Rows[rowIndex].Cells[3].Value = cli.usr.id.ToString();
-                dgv_evento.Rows[rowIndex].Cells[4].Value = cli.usr.email.ToString();
-                dgv_evento.Rows[rowIndex].Cells[5].Value = "Editar";
-                dgv_evento.Rows[rowIndex].Cells[6].Value = "Eliminar";
+                if (cli.id > 0) {
+                    int rowIndex = dgv_evento.Rows.Add();
+                    dgv_evento.Rows[rowIndex].Cells[0].Value = cli.id.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[1].Value = cli.razon_social.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[2].Value = cli.rubro.nombre.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[3].Value = cli.usr.id.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[4].Value = cli.usr.email.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[5].Value = "Editar";
+                    dgv_evento.Rows[rowIndex].Cells[6].Value = "Eliminar";
+                }
             } else if (Program.logueado.tipo_usuario == "S") {
                 listCli = Cliente_Controller.obtenerTodos();
                 foreach (Cliente cliente in listCli)

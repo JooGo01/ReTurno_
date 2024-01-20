@@ -13,7 +13,7 @@ namespace EjemploABM.Controladores
 {
     class Calendario_Controller
     {
-        public static bool crearTurno(Usuario usr, Sucursal suc, DateTime fecha_ini, DateTime fecha_fin, Servicio servicio)
+        public static bool crearTurno(Usuario usr, Sucursal suc, DateTime fecha_ini, DateTime fecha_fin, SubServicio servicio)
         {
             //Darlo de alta en la BBDD
 
@@ -94,7 +94,7 @@ namespace EjemploABM.Controladores
             List<Sucursal> listSuc = new List<Sucursal>();
             List<Usuario> listUsr = new List<Usuario>();
             List<int> listIdServ = new List<int>();
-            List<Servicio> listServ = new List<Servicio>();
+            List<SubServicio> listServ = new List<SubServicio>();
             string query = "select * from dbo.turno;";
             //id, sucursal_id, usuario_id, fecha_ini, fecha_fin, estado, estado_baja
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -130,7 +130,7 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listIdServ.Count; i++)
                 {
-                    listServ.Add(Servicio_Controller.obtenerPorId(listIdServ[i]));
+                    listServ.Add(SubServicio_Controller.obtenerPorId(listIdServ[i]));
                 }
 
                 for (int i = 0; i < listId.Count; i++)
@@ -211,7 +211,7 @@ namespace EjemploABM.Controladores
             return list;
         }*/
 
-        public static List<Turno> obtenerPorFecha(DateTime fecha, Sucursal suc, Servicio ser)
+        public static List<Turno> obtenerPorFecha(DateTime fecha, Sucursal suc, SubServicio ser)
         {
             List<Turno> list = new List<Turno>();
             List<int> listId = new List<int>();
@@ -224,7 +224,7 @@ namespace EjemploABM.Controladores
             List<int> listIdServ = new List<int>();
             List<Sucursal> listSuc = new List<Sucursal>();
             List<Usuario> listUsr = new List<Usuario>();
-            List<Servicio> listServ = new List<Servicio>();
+            List<SubServicio> listServ = new List<SubServicio>();
             string query = "select * from dbo.turno where estado_baja=0 and sucursal_id=@suc_id and servicio_id=@ser_id and (fecha_ini >= @fecha and fecha_fin<@fecha_fin);";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -264,7 +264,7 @@ namespace EjemploABM.Controladores
 
                 for(int i=0; i<listIdServ.Count; i++)
                 {
-                    listServ.Add(Servicio_Controller.obtenerPorId(listIdServ[i]));
+                    listServ.Add(SubServicio_Controller.obtenerPorId(listIdServ[i]));
                 }
 
                 for (int i = 0; i < listId.Count; i++)
@@ -283,7 +283,7 @@ namespace EjemploABM.Controladores
             return list;
         }
 
-        public static List<Turno> obtenerPorFechaHora(DateTime fecha, Sucursal suc, Servicio ser)
+        public static List<Turno> obtenerPorFechaHora(DateTime fecha, Sucursal suc, SubServicio ser)
         {
             List<Turno> list = new List<Turno>();
             List<int> listId = new List<int>();
@@ -296,7 +296,7 @@ namespace EjemploABM.Controladores
             List<int> listIdServ = new List<int>();
             List<Sucursal> listSuc = new List<Sucursal>();
             List<Usuario> listUsr = new List<Usuario>();
-            List<Servicio> listServ = new List<Servicio>();
+            List<SubServicio> listServ = new List<SubServicio>();
             string query = "select * from dbo.turno where estado_baja=0 and sucursal_id=@suc_id and servicio_id=@ser_id and (fecha_ini = @fecha);";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -335,7 +335,7 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listIdServ.Count; i++)
                 {
-                    listServ.Add(Servicio_Controller.obtenerPorId(listIdServ[i]));
+                    listServ.Add(SubServicio_Controller.obtenerPorId(listIdServ[i]));
                 }
 
                 for (int i = 0; i < listId.Count; i++)
@@ -366,7 +366,7 @@ namespace EjemploABM.Controladores
             int srv_id = 0;
             Sucursal suc = new Sucursal();
             Usuario usr = new Usuario();
-            Servicio servicio = new Servicio();
+            SubServicio sbservicio = new SubServicio();
             string query = "select * from dbo.turno where id = @id;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
@@ -390,14 +390,14 @@ namespace EjemploABM.Controladores
 
                 suc = Sucursal_Controller.obtenerPorId(suc_id);
                 usr = Usuario_Controller.obtenerPorId(usr_id);
-                servicio=Servicio_Controller.obtenerPorId(srv_id);
+                sbservicio = SubServicio_Controller.obtenerPorId(srv_id);
 
                 DB_Controller.open();
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    trn = new Turno(reader.GetInt32(0), suc, usr, reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), servicio);
+                    trn = new Turno(reader.GetInt32(0), suc, usr, reader.GetDateTime(3), reader.GetDateTime(4), reader.GetInt32(5), sbservicio);
                     Trace.WriteLine("Usr encontrado, nombre: " + reader.GetInt32(0));
                 }
 

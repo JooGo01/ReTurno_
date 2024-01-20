@@ -16,13 +16,13 @@ namespace EjemploABM
     {
         public DateTime dt_seleccionado;
         public Sucursal suc_seleccionado;
-        public Servicio ser_seleccionado;
+        public SubServicio ser_seleccionado;
         public frmVisualizarTurno()
         {
             InitializeComponent();
         }
 
-        public frmVisualizarTurno(Sucursal suc, Servicio ser, DateTime dt)
+        public frmVisualizarTurno(Sucursal suc, SubServicio ser, DateTime dt)
         {
             InitializeComponent();
             dt_seleccionado= dt;

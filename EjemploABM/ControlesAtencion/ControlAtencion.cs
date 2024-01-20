@@ -58,7 +58,7 @@ namespace EjemploABM.ControlesAtencion
                     dgv_evento.Rows[rowIndex].Cells[3].Value = atencion.sucursal_servicio_id.id_sucursal.direccion.altura.ToString();
                     dgv_evento.Rows[rowIndex].Cells[4].Value = atencion.sucursal_servicio_id.id_sucursal.direccion.ciudad.ToString();
                     dgv_evento.Rows[rowIndex].Cells[5].Value = atencion.sucursal_servicio_id.id_sucursal.direccion.provincia.ToString();
-                    dgv_evento.Rows[rowIndex].Cells[6].Value = atencion.sucursal_servicio_id.id_servicio.nombre_servicio.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[6].Value = atencion.sucursal_servicio_id.id_subservicio.nombre_servicio.ToString();
                     dgv_evento.Rows[rowIndex].Cells[7].Value = atencion.dia_id.nombre_dia.ToString();
                     dgv_evento.Rows[rowIndex].Cells[8].Value = atencion.hora_apertura.ToString();
                     dgv_evento.Rows[rowIndex].Cells[9].Value = atencion.hora_cierre.ToString();

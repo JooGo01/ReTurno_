@@ -94,7 +94,7 @@ namespace EjemploABM
                         {
                             foreach (SucursalServicio sucServ in listSucServ)
                             {
-                                String textoServicio = sucServ.id_servicio.id.ToString() + "- " + sucServ.id_servicio.nombre_servicio.ToString();
+                                String textoServicio = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio.ToString();
                                 cbServicio.Items.Add(textoServicio);
                                 cbServicio.SelectedIndex = 0;
                             }
@@ -116,7 +116,7 @@ namespace EjemploABM
                         if (listSucServ != null) {
                             foreach (SucursalServicio sucServ in listSucServ)
                             {
-                                String textoServicio = sucServ.id_servicio.id.ToString() + "- " + sucServ.id_servicio.nombre_servicio.ToString();
+                                String textoServicio = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio.ToString();
                                 cbServicio.Items.Add(textoServicio);
                                 cbServicio.SelectedIndex = 0;
                             }
@@ -205,8 +205,8 @@ namespace EjemploABM
             String[] id_suc = cmbSucursal.Text.Split('-');
             String[] id_ser = cbServicio.Text.Split('-');
             suc = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
-            Servicio ser = new Servicio();
-            ser = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
+            SubServicio ser = new SubServicio();
+            ser = SubServicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
             /*Calendario_UC calendarioUC = new Calendario_UC(fecha,suc, ser);
             addUserControl(calendarioUC);*/
             if (ser != null && suc!=null)

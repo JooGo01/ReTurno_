@@ -20,7 +20,7 @@ namespace EjemploABM
         public Cliente cli = new Cliente();
         public Direccion dire = new Direccion();
         public Sucursal suc = new Sucursal();
-        public Servicio ser = new Servicio();
+        public SubServicio ser = new SubServicio();
         public SucursalServicio sucursalServicio = new SucursalServicio();
         public DateTime dt_sel;
         public int intervalo_tiempo;
@@ -29,7 +29,7 @@ namespace EjemploABM
             InitializeComponent();
         }
 
-        public FormTurno(Sucursal p_sucursal, Servicio p_servicio, DateTime p_dt)
+        public FormTurno(Sucursal p_sucursal, SubServicio p_servicio, DateTime p_dt)
         {
             InitializeComponent();
             sucursalServicio = SucServ_Controller.obtenerPorSucServ(p_sucursal, p_servicio);
@@ -42,7 +42,7 @@ namespace EjemploABM
         private void FormTurno_Load(object sender, EventArgs e) { 
             dire = sucursalServicio.id_sucursal.direccion;
             suc = sucursalServicio.id_sucursal;
-            ser = sucursalServicio.id_servicio;
+            ser = sucursalServicio.id_subservicio;
             String textoSucursal = suc.id.ToString() + "- " + dire.calle + " " + dire.altura;
             cmbSucursal.Items.Add(textoSucursal);
             cmbSucursal.Enabled = false;
@@ -167,7 +167,7 @@ namespace EjemploABM
             cbServicio.Items.Clear();
             foreach (SucursalServicio sucServ in listSucServ)
             {
-                String textoTipoTurno = sucServ.id_servicio.id.ToString() + "- " + sucServ.id_servicio.nombre_servicio;
+                String textoTipoTurno = sucServ.id_subservicio.id.ToString() + "- " + sucServ.id_subservicio.nombre_servicio;
                 cbServicio.Items.Add(textoTipoTurno);
             }
             cbServicio.SelectedIndex = 0;
@@ -179,8 +179,8 @@ namespace EjemploABM
             DayOfWeek diaDeLaSemana = fechaSeleccionada.DayOfWeek;
             String[] id_suc = cmbSucursal.Text.Split('-');
             String[] id_ser = cbServicio.Text.Split('-');
-            Servicio ser = new Servicio();
-            ser = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
+            SubServicio ser = new SubServicio();
+            ser = SubServicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
             Sucursal sucursal = new Sucursal();
             sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
             int valorDia = 0;
@@ -191,7 +191,7 @@ namespace EjemploABM
             validacionDia(valorDia, sucursal, ser);
         }
 
-        private void validacionDia(int dia, Sucursal suc, Servicio ser) {
+        private void validacionDia(int dia, Sucursal suc, SubServicio ser) {
             Dia obj_dia = new Dia();
             obj_dia = Dia_Contoller.obtenerPorId(dia);
             List<Atencion> listAtencion = new List<Atencion>();

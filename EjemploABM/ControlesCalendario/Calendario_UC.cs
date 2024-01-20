@@ -22,8 +22,8 @@ namespace EjemploABM.ControlesCalendario
         List<Turno> turnos;
         public DateTime dt_seleccionado;
         public Sucursal suc_seleccionado;
-        public Servicio ser_seleccionado;
-        public Calendario_UC(DateTime dt, Sucursal suc, Servicio ser)
+        public SubServicio ser_seleccionado;
+        public Calendario_UC(DateTime dt, Sucursal suc, SubServicio ser)
         {
             InitializeComponent();
             cargarTurno(dt, suc, ser);
@@ -32,7 +32,7 @@ namespace EjemploABM.ControlesCalendario
             ser_seleccionado = ser;
         }
 
-        private void cargarTurno(DateTime dt, Sucursal suc, Servicio ser)
+        private void cargarTurno(DateTime dt, Sucursal suc, SubServicio ser)
         {
             turnos = Calendario_Controller.obtenerPorFecha(dt, suc, ser);
             dgv_evento.Rows.Clear();

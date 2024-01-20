@@ -16,7 +16,7 @@ namespace EjemploABM
     {
 
         public Sucursal suc_pub;
-        public Servicio serv_pub;
+        public SubServicio serv_pub;
         public SucursalServicio sucserv_pub;
         public Atencion atencion_pub;
         public frmAtencionEditar()
@@ -30,7 +30,7 @@ namespace EjemploABM
             atencion_pub = atencion;
             suc_pub = atencion.sucursal_servicio_id.id_sucursal;
             sucserv_pub = atencion.sucursal_servicio_id;
-            serv_pub = atencion.sucursal_servicio_id.id_servicio;
+            serv_pub = atencion.sucursal_servicio_id.id_subservicio;
             llenadoDatos();
         }
 

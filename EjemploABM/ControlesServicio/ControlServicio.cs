@@ -41,7 +41,7 @@ namespace EjemploABM.ControlesServicio
 
                     dgv_evento.Rows[rowIndex].Cells[0].Value = sucServ.id.ToString();
                     dgv_evento.Rows[rowIndex].Cells[1].Value = sucServ.id_sucursal.id.ToString();
-                    dgv_evento.Rows[rowIndex].Cells[2].Value = sucServ.id_servicio.nombre_servicio.ToString();
+                    dgv_evento.Rows[rowIndex].Cells[2].Value = sucServ.id_subservicio.nombre_servicio.ToString();
                     dgv_evento.Rows[rowIndex].Cells[3].Value = "Eliminar";
                 }
             }

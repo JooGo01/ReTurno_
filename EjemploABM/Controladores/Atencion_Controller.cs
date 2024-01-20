@@ -206,7 +206,7 @@ namespace EjemploABM.Controladores
             return list;
         }
 
-        public static List<Atencion> obtenerTodosSucSer(Sucursal suc, Servicio ser, Dia dia)
+        public static List<Atencion> obtenerTodosSucSer(Sucursal suc, SubServicio ser, Dia dia)
         {
             List<Atencion> list = new List<Atencion>();
             List<SucursalServicio> listSucServ = new List<SucursalServicio>();
@@ -383,7 +383,7 @@ namespace EjemploABM.Controladores
             return atencion;
         }
 
-        public static List<Atencion> obtenerPorDatos(Sucursal suc, Dia dia, Servicio ser, int hora_ini, int hora_fin)
+        public static List<Atencion> obtenerPorDatos(Sucursal suc, Dia dia, SubServicio ser, int hora_ini, int hora_fin)
         {
             List<Atencion> listAtencion = new List<Atencion>();
             List<int> idAtencion= new List<int>();

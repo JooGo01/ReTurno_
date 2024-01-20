@@ -106,7 +106,7 @@ namespace EjemploABM
             return validado;
         }
 
-        private Boolean validarExistencia(Sucursal suc, Dia dia, Servicio ser, int hora_ini, int hora_fin) {
+        private Boolean validarExistencia(Sucursal suc, Dia dia, SubServicio ser, int hora_ini, int hora_fin) {
             bool validado;
             List<Atencion> listAtencion = new List<Atencion>();
             validado = false;
@@ -117,7 +117,7 @@ namespace EjemploABM
             return validado;
         }
 
-        private Boolean validacion(List<Sucursal> listado_sucursal, List<Dia> listado_dia, Servicio ser, int hora_ini, int hora_fin) {
+        private Boolean validacion(List<Sucursal> listado_sucursal, List<Dia> listado_dia, SubServicio ser, int hora_ini, int hora_fin) {
             bool validado;
             bool blnExistencia;
             bool valExistencia;
@@ -207,7 +207,7 @@ namespace EjemploABM
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             String servicio = cbServicio.Text;
-            Servicio serv = new Servicio();
+            SubServicio serv = new SubServicio();
             List<Sucursal> listSucursal = new List<Sucursal>();
             List<Dia> listDia = new List<Dia>();
             listDia = listDiaMarca();
@@ -223,7 +223,7 @@ namespace EjemploABM
             hora_ini = Int32.Parse(hora_texto_ini);
             hora_fin = Int32.Parse(hora_texto_fin);
             cant_personal = Int32.Parse(cant_personal_texto);
-            serv = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
+            serv = SubServicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
 
             Boolean validar = validacion(listSucursal, listDia, serv, hora_ini, hora_fin);
             if (validar)

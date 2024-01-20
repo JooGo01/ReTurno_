@@ -26,7 +26,7 @@ namespace EjemploABM.Controladores
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             //cmd.Parameters.AddWithValue("@id", obtenerMaxId() + 1);
             cmd.Parameters.AddWithValue("@sucursal", sucServ.id_sucursal.id);
-            cmd.Parameters.AddWithValue("@servicio", sucServ.id_servicio.id);
+            cmd.Parameters.AddWithValue("@servicio", sucServ.id_subservicio.id);
             cmd.Parameters.AddWithValue("@tiempo_serv", sucServ.tiempo_servicio);
             cmd.Parameters.AddWithValue("@estado", 0);
 
@@ -81,7 +81,7 @@ namespace EjemploABM.Controladores
         {
             List<SucursalServicio> list = new List<SucursalServicio>();
             List<Sucursal> listSucursal = new List<Sucursal>();
-            List<Servicio> listServicio = new List<Servicio>();
+            List<SubServicio> listSubServicio = new List<SubServicio>();
             List<int> listId = new List<int>();
             List<int> listTiempoServicio = new List<int>();
             List<int> listEstadoBaja = new List<int>();
@@ -114,12 +114,12 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listIdServ.Count; i++)
                 {
-                    listServicio.Add(Servicio_Controller.obtenerPorId(listIdServ[i]));
+                    listSubServicio.Add(SubServicio_Controller.obtenerPorId(listIdServ[i]));
                 }
 
                 for (int i = 0; i < listId.Count; i++)
                 {
-                    SucursalServicio sucServ = new SucursalServicio(listId[i], listSucursal[i], listServicio[i], listTiempoServicio[i], listEstadoBaja[i]);
+                    SucursalServicio sucServ = new SucursalServicio(listId[i], listSucursal[i], listSubServicio[i], listTiempoServicio[i], listEstadoBaja[i]);
                     list.Add(sucServ);
                 }
 
@@ -141,7 +141,7 @@ namespace EjemploABM.Controladores
         {
             List<SucursalServicio> list = new List<SucursalServicio>();
             List<Sucursal> listSucursal = new List<Sucursal>();
-            List<Servicio> listServicio = new List<Servicio>();
+            List<SubServicio> listServicio = new List<SubServicio>();
             List<int> listId = new List<int>();
             List<int> listTiempoServicio = new List<int>();
             List<int> listEstadoBaja = new List<int>();
@@ -174,7 +174,7 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listIdServ.Count; i++)
                 {
-                    listServicio.Add(Servicio_Controller.obtenerPorId(listIdServ[i]));
+                    listServicio.Add(SubServicio_Controller.obtenerPorId(listIdServ[i]));
                 }
 
                 for (int i = 0; i < listId.Count; i++)
@@ -199,7 +199,7 @@ namespace EjemploABM.Controladores
         {
             List<SucursalServicio> list = new List<SucursalServicio>();
             List<Sucursal> listSucursal = new List<Sucursal>();
-            List<Servicio> listServicio = new List<Servicio>();
+            List<SubServicio> listServicio = new List<SubServicio>();
             List<int> listId = new List<int>();
             List<int> listTiempoServicio = new List<int>();
             List<int> listEstadoBaja = new List<int>();
@@ -232,7 +232,7 @@ namespace EjemploABM.Controladores
 
                 for (int i = 0; i < listIdServ.Count; i++)
                 {
-                    listServicio.Add(Servicio_Controller.obtenerPorId(listIdServ[i]));
+                    listServicio.Add(SubServicio_Controller.obtenerPorId(listIdServ[i]));
                 }
 
                 for (int i = 0; i < listId.Count; i++)
@@ -266,7 +266,7 @@ namespace EjemploABM.Controladores
             int tiempoServ = 0;
             int estadoBaja = 0;
             Sucursal suc = new Sucursal();
-            Servicio serv = new Servicio();
+            SubServicio serv = new SubServicio();
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@id", id.ToString());
 
@@ -284,7 +284,7 @@ namespace EjemploABM.Controladores
                     Trace.WriteLine("SucServ encontrado, nombre: " + reader.GetInt32(0));
                 }
                 suc = Sucursal_Controller.obtenerPorId(idSuc);
-                serv = Servicio_Controller.obtenerPorId(idServ);
+                serv = SubServicio_Controller.obtenerPorId(idServ);
                 srv = new SucursalServicio(id,suc,serv,tiempoServ,estadoBaja);
 
                 reader.Close();
@@ -299,7 +299,7 @@ namespace EjemploABM.Controladores
             return srv;
         }
 
-        public static SucursalServicio obtenerPorSucServ(Sucursal suc, Servicio ser)
+        public static SucursalServicio obtenerPorSucServ(Sucursal suc, SubServicio ser)
         {
             SucursalServicio srv = new SucursalServicio();
             string query = "select * from dbo.sucursal_servicio where sucursal_id = @suc_id and servicio_id=@ser_id;";

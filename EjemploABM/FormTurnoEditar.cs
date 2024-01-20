@@ -165,8 +165,8 @@ namespace EjemploABM
             DayOfWeek diaDeLaSemana = fechaSeleccionada.DayOfWeek;
             String[] id_suc = cmbSucursal.Text.Split('-');
             String[] id_ser = cbServicio.Text.Split('-');
-            Servicio ser = new Servicio();
-            ser = Servicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
+            SubServicio ser = new SubServicio();
+            ser = SubServicio_Controller.obtenerPorId(Int32.Parse(id_ser[0]));
             Sucursal sucursal = new Sucursal();
             sucursal = Sucursal_Controller.obtenerPorId(Int32.Parse(id_suc[0]));
             int valorDia = 0;
@@ -178,7 +178,7 @@ namespace EjemploABM
             validacionDia(valorDia, sucursal, ser);
         }
 
-        private void validacionDia(int dia, Sucursal suc, Servicio ser)
+        private void validacionDia(int dia, Sucursal suc, SubServicio ser)
         {
             Dia obj_dia = new Dia();
             obj_dia = Dia_Contoller.obtenerPorId(dia);

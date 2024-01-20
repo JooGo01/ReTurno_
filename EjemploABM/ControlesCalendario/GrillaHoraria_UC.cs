@@ -24,14 +24,14 @@ namespace EjemploABM.ControlesCalendario
         public List<Atencion> listAtencion;
         public DateTime dt_seleccionado;
         public Sucursal suc_seleccionado;
-        public Servicio ser_seleccionado;
+        public SubServicio ser_seleccionado;
         public Atencion atencion;
         public Dia dia;
         public int hora_ini;
         public int hora_fin;
         public int intervalo_minutos;
         public int pos_x = 0;
-        public GrillaHoraria_UC(DateTime dt, Sucursal suc, Servicio sc)
+        public GrillaHoraria_UC(DateTime dt, Sucursal suc, SubServicio sc)
         {
             InitializeComponent();
             //cargarTurno(dt, suc);
